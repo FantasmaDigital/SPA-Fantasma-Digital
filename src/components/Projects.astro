@@ -1,0 +1,464 @@
+---
+type ProjectsProps = {
+  projects: {
+    id: number;
+    title: string;
+    description: string;
+    technologies: string[];
+    imageUrl: string;
+    site: string;
+    callout: string;
+  }[];
+};
+
+const projects: ProjectsProps["projects"] = [
+  {
+    id: 1,
+    title: "Landing fintech",
+    description:
+      "Sitio responsive para onboarding y conversion, performance optimizada y animaciones suaves.",
+    technologies: ["Astro", "Tailwind", "GSAP"],
+    imageUrl: "/images/projects/fintech-landing.jpg",
+    site: "tuyo.app",
+    callout: "Spend",
+  },
+  {
+    id: 2,
+    title: "Dashboard SaaS",
+    description:
+      "Panel de metricas en tiempo real con dashboards modulares, dark mode y accesibilidad AA.",
+    technologies: ["React", "TypeScript", "D3"],
+    imageUrl: "/images/projects/saas-dashboard.jpg",
+    site: "growlytics.io",
+    callout: "Earn",
+  },
+  {
+    id: 3,
+    title: "Ecommerce premium",
+    description:
+      "Catalogo 3D, checkout con Stripe y CMS headless para lanzar campanas en minutos.",
+    technologies: ["Next.js", "Sanity", "Stripe"],
+    imageUrl: "/images/projects/ecommerce.jpg",
+    site: "luxette.com",
+    callout: "Shop",
+  },
+  {
+    id: 4,
+    title: "Plataforma edtech",
+    description:
+      "Streaming en vivo, quizzes adaptativos y panel de progreso para 80k estudiantes.",
+    technologies: ["Vue", "Node", "PostgreSQL"],
+    imageUrl: "/images/projects/edtech.jpg",
+    site: "mentorflow.ai",
+    callout: "Learn",
+  },
+  {
+    id: 5,
+    title: "App logistica",
+    description:
+      "Ruteo dinamico, geofencing y tracking en tiempo real con alertas push.",
+    technologies: ["React Native", "Mapbox", "NestJS"],
+    imageUrl: "/images/projects/logistics.jpg",
+    site: "cargozen.io",
+    callout: "Move",
+  },
+  {
+    id: 6,
+    title: "Intranet corporativa",
+    description:
+      "Single sign-on, espacios de equipos y workflows aprobatorios para 12 sedes.",
+    technologies: ["Angular", "GraphQL", "Keycloak"],
+    imageUrl: "/images/projects/intranet.jpg",
+    site: "zenit.group",
+    callout: "Trust",
+  },
+];
+
+const [primary, secondary, ...rest] = projects;
+const truncate = (text: string, max = 150) =>
+  text.length > max ? `${text.slice(0, max)}...` : text;
+---
+
+<section class="frame">
+  <div class="orb orb-a" />
+  <div class="orb orb-b" />
+
+  <div class="row">
+    <div class="card hero" style={`background-image:url(${primary.imageUrl});`}>
+      <div class="card-overlay">
+        <div class="brand-line">
+          <span class="brand-mark">tuyo</span>
+          <span class="brand-ghost">Visa</span>
+        </div>
+        <div class="hero-title">{primary.title}</div>
+        <div class="hero-meta">{primary.site}</div>
+        <p class="hero-copy">{truncate(primary.description, 120)}</p>
+        <div class="chips">
+          {primary.technologies.map((tech) => (
+            <span class="chip">{tech}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="word-block">
+      <span class="word">{primary.callout.toUpperCase()}</span>
+    </div>
+  </div>
+
+  <div class="row bottom">
+    <div class="word-block align-end">
+      <span class="word">{secondary.callout.toUpperCase()}</span>
+    </div>
+
+    <div class="card metric">
+      <div class="ring ring-left" />
+      <div class="ring ring-right" />
+      <div class="metric-content">
+        <div class="metric-value">{secondary.site}</div>
+        <div class="metric-sub">{secondary.title}</div>
+        <p class="metric-copy">{truncate(secondary.description, 110)}</p>
+        <div class="chips center">
+          {secondary.technologies.map((tech) => (
+            <span class="chip ghost">{tech}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="more-grid">
+    {rest.map((project) => (
+      <article class="tile">
+        <div class="tile-callout">{project.callout}</div>
+        <div class="tile-head">
+          <div class="tile-meta">{project.site}</div>
+          <h3 class="tile-title">{project.title}</h3>
+        </div>
+        <p class="tile-copy">{truncate(project.description, 130)}</p>
+        <div class="chips wrap">
+          {project.technologies.map((tech) => (
+            <span class="chip ghost">{tech}</span>
+          ))}
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .frame {
+    width: 85%;
+    margin: 3.5rem auto;
+    /* padding: clamp(1.5rem, 3vw, 2rem); */
+    /* background: #050b12; */
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.8rem, 2vw, 1.2rem);
+    color: #f5fcff;
+    font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+    /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45); */
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(60px);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .orb-a {
+    width: 380px;
+    height: 380px;
+    background: #65ffcd;
+    top: -140px;
+    left: -120px;
+  }
+
+  .orb-b {
+    width: 320px;
+    height: 320px;
+    background: #25c4ff;
+    bottom: -160px;
+    right: -120px;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: clamp(0.8rem, 2vw, 1.2rem);
+    align-items: stretch;
+    position: relative;
+    z-index: 1;
+  }
+
+  .row.bottom {
+    grid-template-columns: 0.9fr 1.3fr;
+  }
+
+  .card {
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(135deg, rgba(14, 23, 33, 0.95), rgba(10, 18, 28, 0.9));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card.hero {
+    min-height: 240px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .card.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(6, 9, 15, 0.7), rgba(7, 13, 21, 0.55));
+  }
+
+  .card-overlay {
+    position: relative;
+    padding: clamp(1.1rem, 3vw, 1.6rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    height: 100%;
+  }
+
+  .brand-line {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #9df3d2;
+  }
+
+  .brand-mark {
+    color: #65ffcd;
+    font-size: 1.05rem;
+  }
+
+  .brand-ghost {
+    margin-left: auto;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .hero-title {
+    font-size: clamp(1.5rem, 3vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-meta {
+    font-size: 0.9rem;
+    color: rgba(245, 252, 255, 0.75);
+  }
+
+  .hero-copy {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: rgba(245, 252, 255, 0.8);
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.35rem;
+  }
+
+  .chip {
+    padding: 0.38rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-size: 0.82rem;
+    color: #f5fcff;
+  }
+
+  .chip.ghost {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #f7fbff;
+  }
+
+  .word-block {
+    /* background: #050b12; */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .word-block.align-end {
+    align-items: flex-start;
+  }
+
+  .word {
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: #040406;
+  }
+
+  .card.metric {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(140% 120% at 10% 10%, rgba(34, 255, 172, 0.08), transparent),
+      radial-gradient(120% 120% at 90% 0%, rgba(34, 190, 255, 0.08), transparent),
+      #0b121c;
+  }
+
+  .ring {
+    position: absolute;
+    height: 72%;
+    width: 32%;
+    border: 2px solid rgba(101, 255, 205, 0.5);
+    border-radius: 999px;
+    opacity: 0.65;
+  }
+
+  .ring-left {
+    left: 10%;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+  }
+
+  .ring-right {
+    right: 10%;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+  }
+
+  .metric-content {
+    position: relative;
+    text-align: center;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    max-width: 420px;
+    z-index: 1;
+  }
+
+  .metric-value {
+    font-size: clamp(2.1rem, 6vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #f6fcff;
+  }
+
+  .metric-sub {
+    margin-top: 0.25rem;
+    font-weight: 700;
+    color: #7cf0cb;
+    letter-spacing: -0.01em;
+  }
+
+  .metric-copy {
+    margin: 0.7rem 0 0.9rem;
+    color: rgba(245, 252, 255, 0.78);
+    line-height: 1.6;
+  }
+
+  .chips.center {
+    justify-content: center;
+  }
+
+  .chips.wrap {
+    justify-content: flex-start;
+  }
+
+  .more-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: clamp(0.75rem, 2vw, 1rem);
+    position: relative;
+    z-index: 1;
+  }
+
+  .tile {
+    position: relative;
+    padding: 1rem;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: radial-gradient(140% 120% at 0% 0%, rgba(101, 255, 205, 0.05), transparent),
+      radial-gradient(120% 120% at 100% 0%, rgba(37, 196, 255, 0.05), transparent),
+      #0a111a;
+    box-shadow: 0 12px 38px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    overflow: hidden;
+  }
+
+  .tile-callout {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.32rem 0.65rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0c1118;
+    background: linear-gradient(135deg, #65ffcd, #25c4ff);
+    border-radius: 999px;
+    font-weight: 800;
+  }
+
+  .tile-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .tile-meta {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(245, 252, 255, 0.7);
+  }
+
+  .tile-title {
+    margin: 0;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .tile-copy {
+    margin: 0.15rem 0 0.45rem;
+    color: rgba(245, 252, 255, 0.8);
+    line-height: 1.5;
+    min-height: 60px;
+  }
+
+  @media (max-width: 900px) {
+    .row,
+    .row.bottom {
+      grid-template-columns: 1fr;
+    }
+
+    .word-block {
+      min-height: 140px;
+    }
+
+    .word {
+      font-size: clamp(3rem, 12vw, 4.5rem);
+    }
+
+    .tile {
+      padding: 0.9rem;
+    }
+  }
+</style>

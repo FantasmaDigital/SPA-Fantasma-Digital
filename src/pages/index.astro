@@ -2,27 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import BrandCarousel from "../components/BrandCarousel.astro";
-
-const AnimationScriptLines = [
-	"---",
-	"// Define las props. El tipo de 'nombre' es string y es requerido.",
-	"interface Props {",
-	"\tnombre: string;",
-	"}",
-	"",
-	"// Desestructura la prop 'nombre'",
-	"const { nombre } = Astro.props;",
-	"---",
-	"",
-	'<div class="bienvenida-card">',
-	'\t<h1 class="titulo">¡Hola, {nombre}! 👋</h1>',
-	'\t<p class="mensaje">',
-	"\t\tBienvenido de vuelta a tu aplicación Astro.",
-	"\t\tEstamos listos para despegar.",
-	"\t</p>",
-	"</div>",
-	"",
-];
+import Projects from "../components/Projects.astro";
 ---
 
 <Layout title=" | Software y Soluciones Digitales">
@@ -32,4 +12,6 @@ const AnimationScriptLines = [
 	</div>
 
 	<BrandCarousel />
+
+	<Projects />
 </Layout>
