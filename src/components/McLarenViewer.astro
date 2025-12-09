@@ -1,0 +1,164 @@
+---
+---
+
+<div
+    id="mclarenViewer"
+    class="relative w-[120%] md:w-[135%] h-[70vh] min-h-[420px] pointer-events-none translate-x-[50%]"
+></div>
+
+<script>
+    import * as THREE from "three";
+    import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+    import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+    import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+
+    const MODEL_PATH = "/3D/2020-mclaren-gt/source/2020_mclaren_gt.glb";
+
+    function initMcLarenViewer() {
+        const container = document.getElementById("mclarenViewer");
+        if (!(container instanceof HTMLElement)) return null;
+
+        const scene = new THREE.Scene();
+
+        const camera = new THREE.PerspectiveCamera(
+            35,
+            container.clientWidth / container.clientHeight,
+            0.1,
+            100,
+        );
+        camera.position.set(2.5, 1.5, 4);
+
+        const renderer = new THREE.WebGLRenderer({
+            antialias: true,
+            alpha: true,
+        });
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.1;
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setClearColor(0x040406, 0);
+        container.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.enablePan = false;
+        controls.minDistance = 0.5;
+        controls.maxDistance = 3;
+        controls.target.set(0.2, 0.25, 0);
+
+        const keyLight = new THREE.DirectionalLight(0xffffff, 2.6);
+        keyLight.position.set(5, 5, 4);
+        scene.add(keyLight);
+
+        const fillLight = new THREE.DirectionalLight(0xffffff, 1.6);
+        fillLight.position.set(-4, 2, -2);
+        scene.add(fillLight);
+
+        const rimLight = new THREE.DirectionalLight(0x88ccff, 1.1);
+        rimLight.position.set(0, 3, -5);
+        scene.add(rimLight);
+
+        scene.add(new THREE.AmbientLight(0x606060, 1.4));
+
+        const pmremGenerator = new THREE.PMREMGenerator(renderer);
+        const envTexture = pmremGenerator.fromScene(
+            new RoomEnvironment(),
+            0.1,
+        ).texture;
+        scene.environment = envTexture;
+
+        const loader = new GLTFLoader();
+        loader.load(
+            MODEL_PATH,
+            (gltf) => {
+                const model = gltf.scene;
+                model.traverse((child) => {
+                    if (child instanceof THREE.Mesh) {
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                        if (child.material) {
+                            child.material.metalness = Math.min(
+                                child.material.metalness ?? 0.8,
+                                0.8,
+                            );
+                            child.material.roughness = Math.max(
+                                child.material.roughness ?? 0.3,
+                                0.2,
+                            );
+                        }
+                    }
+                });
+
+                const box = new THREE.Box3().setFromObject(model);
+                const size = new THREE.Vector3();
+                const center = new THREE.Vector3();
+                box.getSize(size);
+                box.getCenter(center);
+                model.position.sub(center);
+                model.position.y -= 0.25;
+
+                const targetSize = 4; // normaliza para que ocupe la vista con menos zoom
+                const baseMaxDim = Math.max(size.x, size.y, size.z) || 1;
+                const scale = targetSize / baseMaxDim;
+                model.scale.setScalar(scale);
+                model.rotation.y = -Math.PI / 7;
+
+                const maxDim = baseMaxDim * scale;
+                const fitDistance =
+                    maxDim / (2 * Math.atan((Math.PI * camera.fov) / 360));
+                const distance = fitDistance * 0.8;
+                camera.position.set(distance * 0.5, distance * 0.7, distance);
+                controls.target.set(0.2, 0.25, 0);
+
+                scene.add(model);
+            },
+            undefined,
+            (error) => {
+                console.error("Error cargando McLaren:", error);
+                const fallback = document.createElement("p");
+                fallback.textContent =
+                    "No se pudo cargar el 3D (revisa la ruta /3D/2020-mclaren-gt/source/2020_mclaren_gt.glb)";
+                fallback.className =
+                    "absolute inset-0 flex items-center justify-center text-white text-center text-sm bg-black/50";
+                container.appendChild(fallback);
+            },
+        );
+
+        const handleResize = () => {
+            if (!container.clientWidth || !container.clientHeight) return;
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        let rafId = 0;
+        const animate = () => {
+            rafId = requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        };
+        animate();
+
+        return () => {
+            cancelAnimationFrame(rafId);
+            window.removeEventListener("resize", handleResize);
+            controls.dispose();
+            renderer.dispose();
+            if (renderer.domElement.parentNode) {
+                renderer.domElement.parentNode.removeChild(renderer.domElement);
+            }
+            pmremGenerator.dispose();
+        };
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const cleanupMcLaren = initMcLarenViewer();
+
+        window.addEventListener("beforeunload", () => {
+            if (cleanupMcLaren) cleanupMcLaren();
+        });
+    });
+</script>

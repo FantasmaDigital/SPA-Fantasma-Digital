@@ -1,0 +1,304 @@
+---
+const { language, filename, code, codeLines, tabs = [] } = Astro.props;
+const tabsExist = tabs.length > 0;
+const hasCodeLines = Array.isArray(codeLines) && codeLines.length > 0;
+const providedCode = hasCodeLines ? codeLines.join("\n") : code || "";
+const defaultCode = tabsExist ? tabs[0].code : providedCode;
+const resolvedCodeLines =
+    !tabsExist && hasCodeLines
+        ? codeLines
+        : defaultCode
+          ? defaultCode.split("\n")
+          : [];
+
+const resolvedCode = resolvedCodeLines;
+
+function formatIndex(index: number) {
+    // Tipado mejorado
+    const number = index;
+    const str = String(number);
+    return str.padStart(2, "0");
+}
+
+const HIGHLIGHTS = {
+    const: "text-blue-800",
+    let: "text-green-600",
+    div: "text-blue-700",
+    "/div": "text-blue-700",
+    p: "text-blue-700",
+    "/p": "text-blue-700",
+    h1: "text-blue-700",
+    "/h1": "text-blue-700",
+    class: "text-blue-500",
+    "<": "text-gray-500",
+    ">": "text-gray-500",
+    "=": "text-gray-600",
+    "{": "text-yellow-600",
+    "}": "text-yellow-600",
+    string: "text-green-500",
+    interface: "text-blue-700",
+    Props: "text-blue-500",
+    nombre: "text-purple-800",
+    "nombre:": "text-purple-800",
+    "Astro.props;": "text-green-800",
+};
+
+function tokenize(line: any) {
+    return line.split(/(\s+|<|>|\{|\}|\(|\)|=)/g).filter(Boolean);
+}
+
+function colorizeLine(line: any) {
+    const tokens = tokenize(line);
+
+    return tokens
+        .map((token: string) => {
+            const cls = HIGHLIGHTS[token as keyof typeof HIGHLIGHTS] || "";
+            if (cls) {
+                return `<span class="${cls}">${token}</span>`;
+            }
+            return token;
+        })
+        .join("");
+}
+---
+
+<div
+    id="codeblock-container"
+    data-initial-code={resolvedCode.join("\n")}
+    class="relative w-full rounded bg-gray-200 font-mono text-sm overflow-hidden z-90"
+>
+    <div class="flex flex-col gap-2">
+        {
+            tabsExist && (
+                <div id="tab-buttons" class="flex overflow-x-auto">
+                    {tabs.map((tab: any, index: number) => (
+                        <button
+                            data-code={tab.code}
+                            data-language={tab.language || language}
+                            data-index={index}
+                            class:list={[
+                                "px-3 !py-2 text-xs transition-colors font-sans whitespace-nowrap",
+                                index === 0
+                                    ? "text-[#040406]"
+                                    : "text-zinc-400 hover:text-zinc-200",
+                            ]}
+                        >
+                            {tab.name}
+                        </button>
+                    ))}
+                </div>
+            )
+        }
+
+        {
+            !tabsExist && filename && (
+                <div class="flex justify-between items-center p-3 w-full border-b-1 border-zinc-200 shadow-lg">
+                    <div class="text-xs text-zinc-700 font-semibold">
+                        {filename}
+                    </div>
+                    <button
+                        id="copy-button-single"
+                        data-code={resolvedCode.join("\n")}
+                        class="flex items-center gap-1 text-xs text-zinc-400 hover:text-zinc-200 transition-colors font-sans"
+                    >
+                        <svg
+                            id="copy-icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-copy"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M8 8m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" />
+                            <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2" />
+                        </svg>
+                        <svg
+                            id="check-icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-check hidden"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M5 12l5 5l10 -10" />
+                        </svg>
+                    </button>
+                </div>
+            )
+        }
+    </div>
+
+    <div class="overflow-x-auto text-sm">
+        <div class="flex flex-col h-full w-full">
+            {
+                resolvedCode.map((line: string, index: number) => (
+                    <div class="px-3 flex flex-row gap-5">
+                        <span class="text-gray-800 font-medium">
+                            {formatIndex(index + 1)}
+                        </span>
+                        <div
+                            class:list={[
+                                "whitespace-pre font-mono",
+                                line.startsWith("//")
+                                    ? "text-green-700"
+                                    : "text-gray-800",
+                            ]}
+                            set:html={colorizeLine(line)}
+                        />
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .font-mono {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+            "Liberation Mono", "Courier New", monospace;
+    }
+
+    /* Pequeña mejora: Asegura que el número de línea no se mueva */
+    .px-3 > span:first-child {
+        min-width: 1.5rem; /* Ajusta este valor si los números pasan de 99 */
+        text-align: right;
+        flex-shrink: 0;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const container = document.getElementById("codeblock-container");
+        if (!container) return;
+        const INITIAL_CODE = container.getAttribute("data-initial-code");
+        const tabButtons = container.querySelectorAll("#tab-buttons button");
+        const copyButtonSingle = container.querySelector("#copy-button-single");
+        tabButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const newCode = button.getAttribute("data-code");
+                const linesContainer = container.querySelector(
+                    ".flex.flex-col.h-full.w-full",
+                );
+
+                if (linesContainer && newCode) {
+                    const newLines = newCode.split("\n");
+                    linesContainer.innerHTML = newLines
+                        .map((line, index) => {
+                            const lineNumber = String(index + 1).padStart(
+                                2,
+                                "0",
+                            );
+                            const lineClass = line.startsWith("//")
+                                ? "text-green-700"
+                                : "text-gray-200";
+
+                            return `
+                            <div class="px-3 flex flex-row gap-5">
+                                <span class="text-gray-300 font-semibold">${lineNumber}</span>
+                                <span class="${lineClass} whitespace-pre">${line}</span>
+                            </div>
+                        `;
+                        })
+                        .join("");
+                }
+
+                // 2. Actualizar el estilo del botón activo
+                tabButtons.forEach((btn) => {
+                    btn.classList.remove("text-white");
+                    btn.classList.add("text-zinc-400", "hover:text-zinc-200");
+                });
+                button.classList.add("text-white");
+                button.classList.remove("text-zinc-400", "hover:text-zinc-200");
+
+                // 3. (Opcional): Lógica de resaltado de sintaxis aquí
+            });
+        });
+
+        // --- Funcionalidad de Copiado (para modo single) ---
+        const copyLogic = (copyButton: HTMLElement, textToCopy: string) => {
+            if (!copyButton) return;
+
+            navigator.clipboard
+                .writeText(textToCopy || "")
+                .then(() => {
+                    // Mostrar ícono de check
+                    const copyIcon = copyButton.querySelector("#copy-icon");
+                    const checkIcon = copyButton.querySelector("#check-icon");
+
+                    if (copyIcon && checkIcon) {
+                        copyIcon.classList.add("hidden");
+                        checkIcon.classList.remove("hidden");
+
+                        setTimeout(() => {
+                            copyIcon.classList.remove("hidden");
+                            checkIcon.classList.add("hidden");
+                        }, 2000);
+                    }
+                })
+                .catch((err) => {
+                    console.error("Error al copiar:", err);
+                });
+        };
+
+        // Copiado en modo single
+        if (copyButtonSingle) {
+            copyButtonSingle.addEventListener("click", () => {
+                const code = copyButtonSingle.getAttribute("data-code");
+                copyLogic(copyButtonSingle as HTMLElement, code || "");
+            });
+        }
+    });
+
+    const codeBlock = document.querySelector(
+        "#codeblock-container",
+    ) as HTMLElement;
+
+    if (codeBlock) {
+        const baseXPx = window.innerWidth * 0.1 + 50;
+        const baseY = 70;
+
+        codeBlock.style.transform = `translate(${baseXPx}px, ${baseY}px)`;
+
+        document.addEventListener("scroll", () => {
+            const widthMiddle = window.innerWidth / 2;
+            const rect = codeBlock.getBoundingClientRect();
+            const absoluteX = rect.left + window.scrollX;
+            const codeBlockCenter = (absoluteX - 0.1 - 50) * 2;
+
+            const scrollY = window.scrollY;
+            const offsetX = -scrollY * 0.87;
+            const offsetY = scrollY / 10;
+
+            codeBlock.style.display;
+            codeBlock.style.transform = `translate(${baseXPx + offsetX}px, ${baseY + offsetY}px)`;
+        });
+    }
+</script>
+<!-- 
+<style>
+    .half-line {
+        position: fixed;
+        top: 0;
+        left: 50%; /* Mitad horizontal */
+        width: 2px; /* Grosor de la línea */
+        height: 100vh; /* Alto pantalla completa */
+        background: red;
+        transform: translateX(-1px); /* Centrar la línea exacta */
+        pointer-events: none; /* No bloquea clicks */
+        z-index: 9999;
+    }
+</style>
+
+<div class="half-line"></div> -->

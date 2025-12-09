@@ -1,0 +1,151 @@
+<div
+    class="relative w-full h-screen overflow-hidden flex flex-col items-center justify-center bg-[#040406]"
+>
+    <div
+        class="absolute inset-0 z-0 opacity-70 [background-size:40px_40px] [background-image:linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)]"
+    ></div>
+    <div
+        class="pointer-events-none absolute inset-x-0 bottom-0 top-1/2 z-10 bg-gradient-to-t from-[#040406] via-[#040406]/80 to-transparent"
+    ></div>
+    <div
+        class="pointer-events-none absolute inset-0 z-20 bg-[#040406]/60 [mask-image:radial-gradient(ellipse_at_center,transparent_25%,#040406)]"
+    ></div>
+    <div
+        class="relative z-30 w-[90%] flex flex-col justify-between items-center gap-10"
+    >
+        <div
+            class="w-full md:w-[55%] flex flex-col items-center text-center gap-5"
+        >
+            <h1
+                class="text-white text-[6vw] font-bold text-center flex justify-center"
+            >
+                <span id="heroTitle">Design. Build.</span>
+            </h1>
+            <p class="text-white text-[2vw]">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. amet
+                consectetur adipisicing elit.
+            </p>
+
+            <button
+                class="w-max px-20 py-3 rounded uppercase text-black bg-[#ffcc33] font-semibold mx-auto mt-5"
+                >Agenda tu cita</button
+            >
+        </div>
+    </div>
+</div>
+
+<style>
+    #heroTitle {
+        display: inline-block;
+        white-space: pre; /* Mantiene los espacios en blanco y es crucial para el efecto de tipeo */
+        border-right: 0.15em solid white; /* El cursor */
+        animation: blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes blink-caret {
+        from,
+        to {
+            border-color: transparent;
+        }
+        50% {
+            border-color: white;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const titleElement = document.getElementById("heroTitle");
+        if (!(titleElement instanceof HTMLElement)) return;
+
+        const originalText = "Design. Build.";
+        titleElement.textContent = ""; // Vaciamos para iniciar la animación
+
+        const SCROLL_THRESHOLD = 50;
+
+        const SLOW_TYPE_SPEED_MS = 150;
+        const FAST_TYPE_SPEED_MS = 50;
+
+        let isRevealed = false;
+        let isAnimating = false;
+        let animationTimeout: any = null;
+        let initialAnimationDone = false;
+
+        function stopAnimation() {
+            if (animationTimeout !== null) clearTimeout(animationTimeout);
+            isAnimating = false;
+        }
+
+        // Función principal de animación de tipeo/borrado
+        function animateTyping(targetText:any, speed:any) {
+            if (!titleElement) return;
+            stopAnimation();
+            isAnimating = true;
+
+            const textLength = originalText.length;
+            let currentText = titleElement.textContent || "";
+            let isTyping = targetText === originalText;
+
+            const typeAnimation = () => {
+                let currentLength = currentText.length;
+
+                if (isTyping) {
+                    if (currentLength < textLength) {
+                        currentText += originalText[currentLength];
+                        titleElement.textContent = currentText;
+                        animationTimeout = setTimeout(typeAnimation, speed);
+                    } else {
+                        isAnimating = false;
+                        isRevealed = true;
+                        if (!initialAnimationDone) {
+                            initialAnimationDone = true;
+                        }
+                    }
+                } else {
+                    if (currentLength > 0) {
+                        currentText = currentText.substring(
+                            0,
+                            currentLength - 1,
+                        );
+                        titleElement.textContent = currentText;
+                        animationTimeout = setTimeout(typeAnimation, speed);
+                    } else {
+                        isAnimating = false;
+                        isRevealed = false;
+                    }
+                }
+            };
+
+            typeAnimation();
+        }
+
+        // Lógica de Scroll para controlar la animación
+        function handleScroll() {
+            const scroll = window.scrollY;
+
+            // 1. CONDICIÓN DE BORRADO (Scroll Down)
+            if (
+                scroll > SCROLL_THRESHOLD &&
+                isRevealed &&
+                initialAnimationDone
+            ) {
+                animateTyping("", FAST_TYPE_SPEED_MS);
+            }
+
+            // 2. CONDICIÓN DE ESCRITURA (Scroll Up/Top)
+            else if (scroll <= SCROLL_THRESHOLD && initialAnimationDone) {
+                if (!isRevealed) {
+                    animateTyping(originalText, SLOW_TYPE_SPEED_MS);
+                }
+            }
+        }
+
+        // --- INICIO DE LA PÁGINA ---
+
+        // 1. Inicia la animación de ESCRITURA al cargar la página (Única vez).
+        animateTyping(originalText, SLOW_TYPE_SPEED_MS);
+
+        // 2. Añade el listener de scroll.
+        window.addEventListener("scroll", handleScroll);
+    });
+</script>
