@@ -7,6 +7,7 @@ type ProjectsProps = {
     technologies: string[];
     imageUrl: string;
     site: string;
+    hiddenCallout?: string;
     callout: string;
   }[];
 };
@@ -16,61 +17,67 @@ const projects: ProjectsProps["projects"] = [
     id: 1,
     title: "Landing fintech",
     description:
-      "Sitio responsive para onboarding y conversion, performance optimizada y animaciones suaves.",
+      "Landing de adquisicion y onboarding KYC con variantes A/B, microcopys legales y lighthouse 95+.",
     technologies: ["Astro", "Tailwind", "GSAP"],
     imageUrl: "/images/projects/fintech-landing.jpg",
-    site: "tuyo.app",
-    callout: "Spend",
+    site: "https://tuyo.app",
+    hiddenCallout: "Fintech",
+    callout: "Launch",
   },
   {
     id: 2,
-    title: "Dashboard SaaS",
+    title: "Dashboard SaaS B2B",
     description:
-      "Panel de metricas en tiempo real con dashboards modulares, dark mode y accesibilidad AA.",
+      "Panel de metricas realtime con roles RBAC, facturacion stripe y export de reportes en un clic.",
     technologies: ["React", "TypeScript", "D3"],
     imageUrl: "/images/projects/saas-dashboard.jpg",
-    site: "growlytics.io",
-    callout: "Earn",
+    site: "https://growlytics.io",
+    hiddenCallout: "SaaS",
+    callout: "Scale",
   },
   {
     id: 3,
     title: "Ecommerce premium",
     description:
-      "Catalogo 3D, checkout con Stripe y CMS headless para lanzar campanas en minutos.",
+      "Catalogo 3D con bundles inteligentes, checkout stripe, CMS headless y page builder sin codigo.",
     technologies: ["Next.js", "Sanity", "Stripe"],
     imageUrl: "/images/projects/ecommerce.jpg",
-    site: "luxette.com",
-    callout: "Shop",
+    site: "https://luxette.com",
+    hiddenCallout: "Ecommerce",
+    callout: "Convert",
   },
   {
     id: 4,
     title: "Plataforma edtech",
     description:
-      "Streaming en vivo, quizzes adaptativos y panel de progreso para 80k estudiantes.",
+      "Streaming en vivo, quizzes adaptativos y panel de progreso con WebRTC y CDN global.",
     technologies: ["Vue", "Node", "PostgreSQL"],
     imageUrl: "/images/projects/edtech.jpg",
-    site: "mentorflow.ai",
-    callout: "Learn",
+    site: "https://mentorflow.ai",
+    hiddenCallout: "Edtech",
+    callout: "Teach",
   },
   {
     id: 5,
-    title: "App logistica",
+    title: "Suite logistica",
     description:
-      "Ruteo dinamico, geofencing y tracking en tiempo real con alertas push.",
+      "Ruteo dinamico, geofencing, tracking en tiempo real y alertas push para flotas distribuidas.",
     technologies: ["React Native", "Mapbox", "NestJS"],
     imageUrl: "/images/projects/logistics.jpg",
-    site: "cargozen.io",
-    callout: "Move",
+    site: "https://cargozen.io",
+    hiddenCallout: "Logistics",
+    callout: "Deliver",
   },
   {
     id: 6,
     title: "Intranet corporativa",
     description:
-      "Single sign-on, espacios de equipos y workflows aprobatorios para 12 sedes.",
+      "SSO con Keycloak, espacios de equipos, workflows aprobatorios y bus de eventos interno.",
     technologies: ["Angular", "GraphQL", "Keycloak"],
     imageUrl: "/images/projects/intranet.jpg",
-    site: "zenit.group",
-    callout: "Trust",
+    site: "https://zenit.group",
+    hiddenCallout: "Corporate",
+    callout: "Unify",
   },
 ];
 
@@ -79,9 +86,12 @@ const truncate = (text: string, max = 150) =>
   text.length > max ? `${text.slice(0, max)}...` : text;
 ---
 
-<section class="frame">
-  <div class="orb orb-a" />
-  <div class="orb orb-b" />
+<section id="frame" class="frame">
+  <div class="orb orb-b"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="diagonal-beam" aria-hidden="true"></div>
+
+  <div class="parallax-title" id="title-paralax"></div>
 
   <div class="row">
     <div class="card hero" style={`background-image:url(${primary.imageUrl});`}>
@@ -94,57 +104,96 @@ const truncate = (text: string, max = 150) =>
         <div class="hero-meta">{primary.site}</div>
         <p class="hero-copy">{truncate(primary.description, 120)}</p>
         <div class="chips">
-          {primary.technologies.map((tech) => (
-            <span class="chip">{tech}</span>
-          ))}
+          {primary.technologies.map((tech) => <span class="chip">{tech}</span>)}
         </div>
       </div>
     </div>
 
-    <div class="word-block">
-      <span class="word">{primary.callout.toUpperCase()}</span>
+    <div class="word-block align-end">
+      <span class="word m-auto" id="first-word"
+        ><span class="callout-hidden link-underline"
+          >{primary.hiddenCallout?.toUpperCase()}</span
+        >{primary.callout.toUpperCase()}</span
+      >
     </div>
   </div>
 
   <div class="row bottom">
     <div class="word-block align-end">
-      <span class="word">{secondary.callout.toUpperCase()}</span>
+      <span class="word m-auto z-10" id="second-word"
+        ><span class="callout-hidden link-underline"
+          >{secondary.hiddenCallout?.toUpperCase()}</span
+        >{secondary.callout.toUpperCase()}</span
+      >
     </div>
 
     <div class="card metric">
-      <div class="ring ring-left" />
-      <div class="ring ring-right" />
+      <div class="ring ring-left"></div>
+      <div class="ring ring-right"></div>
       <div class="metric-content">
         <div class="metric-value">{secondary.site}</div>
         <div class="metric-sub">{secondary.title}</div>
         <p class="metric-copy">{truncate(secondary.description, 110)}</p>
         <div class="chips center">
-          {secondary.technologies.map((tech) => (
-            <span class="chip ghost">{tech}</span>
-          ))}
+          {
+            secondary.technologies.map((tech) => (
+              <span class="chip ghost">{tech}</span>
+            ))
+          }
         </div>
       </div>
     </div>
   </div>
 
   <div class="more-grid">
-    {rest.map((project) => (
-      <article class="tile">
-        <div class="tile-callout">{project.callout}</div>
-        <div class="tile-head">
-          <div class="tile-meta">{project.site}</div>
-          <h3 class="tile-title">{project.title}</h3>
-        </div>
-        <p class="tile-copy">{truncate(project.description, 130)}</p>
-        <div class="chips wrap">
-          {project.technologies.map((tech) => (
-            <span class="chip ghost">{tech}</span>
-          ))}
-        </div>
-      </article>
-    ))}
+    {
+      rest.map((project) => (
+        <article class="tile">
+          <div class="tile-callout">{project.callout}</div>
+          <div class="tile-head">
+            <div class="tile-meta">{project.site}</div>
+            <h3 class="tile-title">{project.title}</h3>
+          </div>
+          <p class="tile-copy">{truncate(project.description, 130)}</p>
+          <div class="chips wrap">
+            {project.technologies.map((tech) => (
+              <span class="chip ghost">{tech}</span>
+            ))}
+          </div>
+        </article>
+      ))
+    }
   </div>
 </section>
+
+<div class="find-world-container">
+  <div class="find-world">
+    <div class="find-world-col">
+      <h2 class="find-world-title title-left">
+        <span class="typing-text typing-first" data-text="Find a world"></span>
+        <span class="typing-caret caret-first"></span>
+      </h2>
+      <p class="find-world-sub">
+        Diseñamos producto con research rápido, UX clara y branding que conecta
+        con negocio. Todo listo para ser construido sin perder intención.
+      </p>
+    </div>
+
+    <img src="logo-blanco.png" alt="Fantasma Digital" class="find-world-logo" />
+
+    <div class="find-world-col">
+      <h2 class="find-world-title title-right">
+        <span class="typing-text typing-second" data-text="of possibilities"></span>
+        <span class="typing-caret caret-second"></span>
+      </h2>
+      <p class="find-world-sub">
+        Construimos y operamos: arquitectura escalable, CI/CD, observabilidad y soporte
+        de lanzamiento para que puedas crecer sin fricción.
+      </p>
+    </div>
+  </div>
+  <span class="absolute bottom-10 right-10 underline hover:cursor-pointer transition-colors duration-300 hover:text-[#ffcc33]">Contactanos y pon tus ideas a volar</span>
+</div>
 
 <style>
   .frame {
@@ -153,15 +202,31 @@ const truncate = (text: string, max = 150) =>
     /* padding: clamp(1.5rem, 3vw, 2rem); */
     /* background: #050b12; */
     border-radius: 28px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     gap: clamp(0.8rem, 2vw, 1.2rem);
     color: #f5fcff;
     font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
     /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45); */
+  }
+
+  :global(body),
+  :global(body.inverted) {
+    transition:
+      background-color 0.4s ease,
+      color 0.4s ease;
+  }
+
+  :global(body.inverted) {
+    background: #040406;
+    color: #f5fcff;
+  }
+
+  :global(body.inverted .word) {
+    color: #f5fcff;
   }
 
   .orb {
@@ -172,18 +237,10 @@ const truncate = (text: string, max = 150) =>
     pointer-events: none;
   }
 
-  .orb-a {
-    width: 380px;
-    height: 380px;
-    background: #65ffcd;
-    top: -140px;
-    left: -120px;
-  }
-
   .orb-b {
     width: 320px;
     height: 320px;
-    background: #25c4ff;
+    background: #ffffff;
     bottom: -160px;
     right: -120px;
   }
@@ -201,10 +258,34 @@ const truncate = (text: string, max = 150) =>
     grid-template-columns: 0.9fr 1.3fr;
   }
 
+  .parallax-title {
+    position: absolute;
+    left: 50%;
+    top: clamp(0.4rem, 2vw, 0.9rem);
+    transform: translateX(-50%);
+    font-weight: 800;
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    color: #0c1118;
+    z-index: 6;
+    pointer-events: none;
+  }
+
+  .parallax-end {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    pointer-events: none;
+  }
+
   .card {
     border-radius: 22px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: linear-gradient(135deg, rgba(14, 23, 33, 0.95), rgba(10, 18, 28, 0.9));
+    background: linear-gradient(
+      135deg,
+      rgba(14, 23, 33, 0.95),
+      rgba(10, 18, 28, 0.9)
+    );
     position: relative;
     overflow: hidden;
   }
@@ -219,7 +300,11 @@ const truncate = (text: string, max = 150) =>
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(160deg, rgba(6, 9, 15, 0.7), rgba(7, 13, 21, 0.55));
+    background: linear-gradient(
+      160deg,
+      rgba(6, 9, 15, 0.7),
+      rgba(7, 13, 21, 0.55)
+    );
   }
 
   .card-overlay {
@@ -280,25 +365,24 @@ const truncate = (text: string, max = 150) =>
     padding: 0.38rem 0.75rem;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.18);
     font-size: 0.82rem;
     color: #f5fcff;
   }
 
   .chip.ghost {
     background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.12);
     color: #f7fbff;
   }
 
   .word-block {
     /* background: #050b12; */
-    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: clamp(1rem, 3vw, 1.5rem);
+    position: relative;
+    z-index: 4;
   }
 
   .word-block.align-end {
@@ -310,14 +394,74 @@ const truncate = (text: string, max = 150) =>
     font-weight: 900;
     letter-spacing: -0.05em;
     color: #040406;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+  }
+
+  .callout-hidden {
+    display: inline-flex;
+    align-items: baseline;
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+    max-width: 0;
+    margin-right: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    flex-shrink: 1;
+    pointer-events: auto;
+    transition:
+      opacity 0.35s ease,
+      transform 0.35s ease,
+      max-width 0.5s ease,
+      margin-right 0.5s ease;
+    will-change: opacity, transform, max-width, margin-right;
+  }
+
+  .callout-hidden.callout-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    max-width: 14ch;
+    margin-right: 0.35rem;
+  }
+
+  .link-underline {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 4px;
+    border-radius: 999px;
+    background-color: #ffcc33;
+    transition: width 0.5s ease;
+  }
+
+  .link-underline:hover::after {
+    width: 100%;
   }
 
   .card.metric {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(140% 120% at 10% 10%, rgba(34, 255, 172, 0.08), transparent),
-      radial-gradient(120% 120% at 90% 0%, rgba(34, 190, 255, 0.08), transparent),
+    background:
+      radial-gradient(
+        140% 120% at 10% 10%,
+        rgba(34, 255, 172, 0.08),
+        transparent
+      ),
+      radial-gradient(
+        120% 120% at 90% 0%,
+        rgba(34, 190, 255, 0.08),
+        transparent
+      ),
       #0b121c;
   }
 
@@ -393,8 +537,17 @@ const truncate = (text: string, max = 150) =>
     padding: 1rem;
     border-radius: 18px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    background: radial-gradient(140% 120% at 0% 0%, rgba(101, 255, 205, 0.05), transparent),
-      radial-gradient(120% 120% at 100% 0%, rgba(37, 196, 255, 0.05), transparent),
+    background:
+      radial-gradient(
+        140% 120% at 0% 0%,
+        rgba(101, 255, 205, 0.05),
+        transparent
+      ),
+      radial-gradient(
+        120% 120% at 100% 0%,
+        rgba(37, 196, 255, 0.05),
+        transparent
+      ),
       #0a111a;
     box-shadow: 0 12px 38px rgba(0, 0, 0, 0.4);
     display: flex;
@@ -443,6 +596,132 @@ const truncate = (text: string, max = 150) =>
     min-height: 60px;
   }
 
+  .diagonal-beam {
+    position: fixed;
+    top: -20%;
+    right: -10%;
+    width: 130%;
+    height: 45%;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.08) 45%,
+      rgba(255, 255, 255, 0.22) 50%,
+      rgba(255, 255, 255, 0.08) 55%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    filter: blur(28px);
+    transform: rotate(18deg);
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.75;
+    animation: beam-drift 6s ease-in-out infinite alternate;
+    z-index: 3;
+  }
+
+  @keyframes beam-drift {
+    0% {
+      transform: rotate(18deg) translateY(-12px);
+      opacity: 0.65;
+    }
+    100% {
+      transform: rotate(18deg) translateY(12px);
+      opacity: 0.9;
+    }
+  }
+
+  .find-world-container {
+    position: relative;
+    min-height: 100dvh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .find-world {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-items: center;
+    gap: clamp(0.65rem, 2vw, 1.2rem);
+    width: min(90vw, 900px);
+    min-width: clamp(320px, 60vw, 720px);
+    color: #f5fcff;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  .find-world h2 {
+    margin: 0;
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    min-width: 12ch;
+  }
+
+  .find-world .title-left {
+    justify-content: flex-end;
+  }
+
+  .find-world .title-right {
+    justify-content: flex-start;
+  }
+
+  .find-world-logo {
+    height: clamp(62px, 9vw, 94px);
+    opacity: 0.25;
+  }
+
+  .find-world-col {
+    display: grid;
+    gap: 0.4rem;
+    align-items: start;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .find-world-sub {
+    margin: 0;
+    color: #f5fcff;
+    opacity: 0.9;
+    line-height: 1.6;
+    font-weight: 600;
+    max-width: 360px;
+    font-size: .75rem;
+  }
+
+  .typing-text {
+    min-height: 1em;
+  }
+
+  .typing-caret {
+    width: 2px;
+    height: 1.2em;
+    background: currentColor;
+    display: inline-block;
+    margin-left: 4px;
+    animation: caret-blink 0.9s steps(1) infinite;
+    visibility: hidden;
+  }
+
+  @keyframes caret-blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    50.01%,
+    100% {
+      opacity: 0;
+    }
+  }
+
   @media (max-width: 900px) {
     .row,
     .row.bottom {
@@ -462,3 +741,312 @@ const truncate = (text: string, max = 150) =>
     }
   }
 </style>
+
+<script>
+  const logoWhite = document.querySelector("#logo-white") as HTMLElement | null;
+  const logoBlack = document.querySelector("#logo-black") as HTMLElement | null;
+  const layerWhite = document.querySelector(
+    "#layerWhite"
+  ) as HTMLElement | null;
+  const plusMenu = document.querySelector(
+    "#plusMenu"
+  ) as HTMLImageElement | null;
+  const frame = document.querySelector(".frame") as HTMLElement | null;
+  const firstWord = document.querySelector("#first-word") as HTMLElement | null;
+  const secondWord = document.querySelector(
+    "#second-word"
+  ) as HTMLElement | null;
+  const parallaxTitle = document.querySelector(
+    "#title-paralax"
+  ) as HTMLElement | null;
+  const moreGrid = document.querySelector(".more-grid") as HTMLElement | null;
+  const calloutHiddenSpans =
+    document.querySelectorAll<HTMLElement>(".callout-hidden");
+  const typingFirst = document.querySelector(".typing-first") as HTMLElement | null;
+  const typingSecond = document.querySelector(".typing-second") as HTMLElement | null;
+  const caretFirst = document.querySelector(".caret-first") as HTMLElement | null;
+  const caretSecond = document.querySelector(".caret-second") as HTMLElement | null;
+  const allCarets = document.querySelectorAll<HTMLElement>(".typing-caret");
+  const findWorld = document.querySelector(".find-world") as HTMLElement | null;
+  const pageBody = document.body;
+  const triggerOffset = 320; // +200px delay before activating animation
+
+  let frameTop = 0;
+  let parallaxLimit = Infinity;
+  let moreGridTop = 0;
+  let blackStateActive = false;
+  let invertedStateActive = false;
+
+  const updateFrameMetrics = () => {
+    if (frame) {
+      const rect = frame.getBoundingClientRect();
+      frameTop = rect.top + window.scrollY;
+    }
+
+    // Límite: alto total del frame (hasta el fondo del componente)
+    if (frame) {
+      parallaxLimit = Math.max(0, frame.scrollHeight);
+    } else if (parallaxTitle) {
+      const rect = parallaxTitle.getBoundingClientRect();
+      parallaxLimit = Math.max(0, rect.top + window.scrollY - frameTop);
+    } else {
+      parallaxLimit = Infinity;
+    }
+
+    if (moreGrid) {
+      const rect = moreGrid.getBoundingClientRect();
+      moreGridTop = rect.top + window.scrollY;
+    } else {
+      moreGridTop = Infinity;
+    }
+  };
+
+  const showBlackLogo = () => {
+    logoWhite?.classList.add("logo-hidden");
+    logoWhite?.classList.remove("logo-visible");
+    logoBlack?.classList.add("logo-visible");
+    logoBlack?.classList.remove("logo-hidden");
+  };
+
+  const showWhiteLogo = () => {
+    logoBlack?.classList.add("logo-hidden");
+    logoBlack?.classList.remove("logo-visible");
+    logoWhite?.classList.add("logo-visible");
+    logoWhite?.classList.remove("logo-hidden");
+  };
+
+  const setPlusIcon = (useBlack: any) => {
+    if (!(plusMenu instanceof HTMLImageElement)) return;
+    plusMenu.classList.add("cross-fade-out");
+
+    requestAnimationFrame(() => {
+      plusMenu.src = useBlack
+        ? "svg/plus-svgrepo-com.svg"
+        : "svg/plus-svgrepo-com-wh.svg";
+
+      requestAnimationFrame(() => {
+        plusMenu.classList.remove("cross-fade-out");
+      });
+    });
+  };
+
+  const backgroundTriggerExtra = 200; // extra px after more-grid before color invert
+  let typingCycle = 0;
+  let typingInProgress = false;
+  const isElementInViewport = (el: HTMLElement) => {
+    const rect = el.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 0;
+  };
+
+  const setActiveCaret = (active: HTMLElement | null) => {
+    allCarets.forEach((caret) => {
+      caret.style.visibility = active && caret === active ? "visible" : "hidden";
+    });
+  };
+
+  const typeText = (
+    el: HTMLElement,
+    text: string,
+    speed = 85,
+    pause = 180,
+    cycle: number
+  ) =>
+    new Promise<void>((resolve) => {
+      let index = 0;
+      const step = () => {
+        if (cycle !== typingCycle) return resolve();
+        el.textContent = text.slice(0, index);
+        index += 1;
+        if (index <= text.length) {
+          setTimeout(step, speed);
+        } else {
+          setTimeout(resolve, pause);
+        }
+      };
+      step();
+    });
+
+  const resetTyping = () => {
+    if (typingFirst) typingFirst.textContent = "";
+    if (typingSecond) typingSecond.textContent = "";
+    setActiveCaret(null);
+    typingInProgress = false;
+  };
+
+  const runTypingSequence = async () => {
+    if (!typingFirst || !typingSecond) return;
+    if (typingInProgress) return;
+    typingInProgress = true;
+    const cycle = ++typingCycle;
+    const firstText = typingFirst.dataset.text ?? "";
+    const secondText = typingSecond.dataset.text ?? "";
+    resetTyping();
+
+    setActiveCaret(caretFirst);
+    await typeText(typingFirst, firstText, 85, 180, cycle);
+
+    if (cycle === typingCycle) {
+      setActiveCaret(caretSecond);
+      await typeText(typingSecond, secondText, 85, 180, cycle);
+    }
+
+    if (cycle === typingCycle) setActiveCaret(null);
+    typingInProgress = false;
+  };
+
+  const showCallouts = () => {
+    calloutHiddenSpans.forEach((span) => {
+      if (span.classList.contains("hidden")) {
+        span.classList.remove("hidden");
+        requestAnimationFrame(() => span.classList.add("callout-visible"));
+      } else {
+        span.classList.add("callout-visible");
+      }
+    });
+  };
+
+  const hideCallouts = () => {
+    calloutHiddenSpans.forEach((span) => {
+      span.classList.remove("callout-visible");
+    });
+  };
+
+  const handleTypingVisibility = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      if (!typingFirst || !typingSecond) return;
+      if (entry.isIntersecting) {
+        runTypingSequence();
+      } else {
+        typingCycle += 1; // cancel current cycle
+        resetTyping();
+      }
+    });
+  };
+
+  const handleScroll = () => {
+    if (!frame) return;
+
+    const isMenuOpen = layerWhite && !layerWhite.classList.contains("hidden");
+    if (isMenuOpen) return;
+
+    const { top } = frame.getBoundingClientRect();
+    const moreGridRect = moreGrid?.getBoundingClientRect();
+    const viewportCoversMoreGrid =
+      !!moreGridRect && window.innerHeight >= moreGridRect.bottom;
+    const shouldShowBlack = top <= triggerOffset || viewportCoversMoreGrid;
+    const frameTriggerScroll = Math.max(0, frameTop - triggerOffset);
+    const moreGridTriggerScroll = Math.max(0, moreGridTop - window.innerHeight);
+    const triggerReason = viewportCoversMoreGrid
+      ? `viewport >= moreGrid.bottom (${Math.round(window.innerHeight)} >= ${Math.round(moreGridRect?.bottom ?? 0)}) | threshold scrollY >= ${Math.round(moreGridTriggerScroll)}`
+      : `frame top <= offset (${Math.round(top)} <= ${triggerOffset}) | threshold scrollY >= ${Math.round(frameTriggerScroll)}`;
+
+    // Log solo cuando cambia el estado de activación
+    if (shouldShowBlack !== blackStateActive) {
+      blackStateActive = shouldShowBlack;
+      console.log(
+        shouldShowBlack
+          ? `Black logo active | ${triggerReason} | scrollY ${Math.round(window.scrollY)}`
+          : `White logo active | scrollY ${Math.round(window.scrollY)}`
+      );
+    }
+
+    // Invertir colores 200px DESPUÉS de pasar la more-grid
+    const isInverted = window.scrollY >= moreGridTop + backgroundTriggerExtra;
+    if (pageBody) {
+      pageBody.classList.toggle("inverted", isInverted);
+    }
+
+    if (isInverted !== invertedStateActive) {
+      invertedStateActive = isInverted;
+      if (isInverted) {
+        showCallouts();
+      } else {
+        hideCallouts();
+      }
+    }
+
+    calloutHiddenSpans.forEach((span) => {
+      if (isInverted) {
+        // Show with fade/slide in
+        if (span.classList.contains("hidden")) {
+          span.classList.remove("hidden");
+          requestAnimationFrame(() => span.classList.add("callout-visible"));
+        } else {
+          span.classList.add("callout-visible");
+        }
+      } else {
+        // Hide with fade/slide out, then remove from flow
+        span.classList.remove("callout-visible");
+        const onTransitionEnd = () => {
+          span.classList.add("hidden");
+          span.removeEventListener("transitionend", onTransitionEnd);
+        };
+        span.addEventListener("transitionend", onTransitionEnd);
+        // Fallback in case transitionend does not fire
+        setTimeout(() => {
+          if (!span.classList.contains("callout-visible")) {
+            span.classList.add("hidden");
+          }
+        }, 400);
+      }
+    });
+
+    // Prioridad de iconos/logos: modo invertido manda
+    if (isInverted) {
+      showWhiteLogo();
+      setPlusIcon(false);
+    } else if (shouldShowBlack) {
+      showBlackLogo();
+      setPlusIcon(true);
+    } else {
+      showWhiteLogo();
+      setPlusIcon(false);
+    }
+
+    if (shouldShowBlack) {
+      const scrollFromFrameStart = Math.max(0, window.scrollY - frameTop);
+      const cappedScroll = Math.min(scrollFromFrameStart, parallaxLimit-75);
+
+      if (firstWord) {
+        firstWord.style.transform = `translateY(${cappedScroll}px)`;
+      }
+
+      if (secondWord) {
+        const boostedScroll = Math.min(cappedScroll * 1.2, parallaxLimit);
+        secondWord.style.transform = `translateY(${boostedScroll}px)`;
+      }
+    } else {
+      if (firstWord) firstWord.style.transform = "translateY(0px)";
+      if (secondWord) secondWord.style.transform = "translateY(0px)";
+    }
+  };
+
+  const init = () => {
+    updateFrameMetrics();
+    handleScroll();
+
+    if (findWorld && "IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(handleTypingVisibility, {
+        threshold: 0.35,
+      });
+      observer.observe(findWorld);
+      if (isElementInViewport(findWorld)) {
+        runTypingSequence();
+      }
+    } else {
+      runTypingSequence();
+    }
+  };
+
+  if (firstWord) firstWord.style.transition = "transform 0.15s ease-out";
+  if (secondWord) secondWord.style.transition = "transform 0.15s ease-out";
+
+  window.addEventListener("scroll", handleScroll);
+  window.addEventListener("resize", () => {
+    updateFrameMetrics();
+    handleScroll();
+  });
+  window.addEventListener("load", init);
+
+  if (document.readyState === "complete") init();
+</script>

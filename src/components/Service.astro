@@ -1,0 +1,459 @@
+---
+const services = [
+  {
+    title: "Product Strategy",
+    description:
+      "Discovery veloz, definición de roadmap, propuesta de valor y KPIs listos para construir y medir.",
+    icon: "🧭",
+  },
+  {
+    title: "UX/UI & Design Systems",
+    description:
+      "Interfaces claras, prototipos validables y sistemas de diseño escalables listos para desarrollo.",
+    icon: "🎨",
+  },
+  {
+    title: "Full-stack Engineering",
+    description:
+      "Arquitectura en la nube, APIs seguras, frontends rápidos y CI/CD para despliegues continuos.",
+    icon: "🛠️",
+  },
+  {
+    title: "AI & Automation",
+    description:
+      "Integración de LLMs, automatización de flujos y copilotos internos con trazabilidad y guardrails.",
+    icon: "🤖",
+  },
+  {
+    title: "QA & Observability",
+    description:
+      "Testing automatizado, monitoreo, alertas y SLOs para operar en producción con confianza.",
+    icon: "🔍",
+  },
+    {
+    title: "Product Strategy",
+    description:
+      "Discovery veloz, definición de roadmap, propuesta de valor y KPIs listos para construir y medir.",
+    icon: "🧭",
+  },
+  {
+    title: "UX/UI & Design Systems",
+    description:
+      "Interfaces claras, prototipos validables y sistemas de diseño escalables listos para desarrollo.",
+    icon: "🎨",
+  },
+  {
+    title: "Full-stack Engineering",
+    description:
+      "Arquitectura en la nube, APIs seguras, frontends rápidos y CI/CD para despliegues continuos.",
+    icon: "🛠️",
+  },
+  {
+    title: "AI & Automation",
+    description:
+      "Integración de LLMs, automatización de flujos y copilotos internos con trazabilidad y guardrails.",
+    icon: "🤖",
+  },
+  {
+    title: "QA & Observability",
+    description:
+      "Testing automatizado, monitoreo, alertas y SLOs para operar en producción con confianza.",
+    icon: "🔍",
+  },
+  {
+    title: "Product Strategy",
+    description:
+      "Discovery veloz, definición de roadmap, propuesta de valor y KPIs listos para construir y medir.",
+    icon: "🧭",
+  },
+  {
+    title: "UX/UI & Design Systems",
+    description:
+      "Interfaces claras, prototipos validables y sistemas de diseño escalables listos para desarrollo.",
+    icon: "🎨",
+  },
+  {
+    title: "Full-stack Engineering",
+    description:
+      "Arquitectura en la nube, APIs seguras, frontends rápidos y CI/CD para despliegues continuos.",
+    icon: "🛠️",
+  },
+  {
+    title: "AI & Automation",
+    description:
+      "Integración de LLMs, automatización de flujos y copilotos internos con trazabilidad y guardrails.",
+    icon: "🤖",
+  },
+  {
+    title: "QA & Observability",
+    description:
+      "Testing automatizado, monitoreo, alertas y SLOs para operar en producción con confianza.",
+    icon: "🔍",
+  },
+    {
+    title: "Product Strategy",
+    description:
+      "Discovery veloz, definición de roadmap, propuesta de valor y KPIs listos para construir y medir.",
+    icon: "🧭",
+  },
+  {
+    title: "UX/UI & Design Systems",
+    description:
+      "Interfaces claras, prototipos validables y sistemas de diseño escalables listos para desarrollo.",
+    icon: "🎨",
+  },
+  {
+    title: "Full-stack Engineering",
+    description:
+      "Arquitectura en la nube, APIs seguras, frontends rápidos y CI/CD para despliegues continuos.",
+    icon: "🛠️",
+  },
+  {
+    title: "AI & Automation",
+    description:
+      "Integración de LLMs, automatización de flujos y copilotos internos con trazabilidad y guardrails.",
+    icon: "🤖",
+  },
+  {
+    title: "QA & Observability",
+    description:
+      "Testing automatizado, monitoreo, alertas y SLOs para operar en producción con confianza.",
+    icon: "🔍",
+  },
+];
+---
+
+<section class="services">
+  <div class="services-header">
+    <div class="services-title">
+      <h3>At Ravn, we design, build, and scale digital products.</h3>
+      <h2>From concept to launch, and beyond.</h2>
+    </div>
+    <p class="services-blurb">
+      Whether you need full-cycle development, expert design, AI implementation, or rigorous testing,
+      our cross-functional teams plug in and deliver.
+    </p>
+  </div>
+
+  <div class="services-carousel">
+    <button class="nav-btn nav-prev" type="button" aria-label="Servicio anterior"><</button>
+    <div class="services-track" id="servicesTrack">
+      {
+        services.map((service) => (
+          <article class="service-card my-5">
+            <div class="card-inner">
+              <div class="card-icon" aria-hidden="true">{service.icon}</div>
+              <div class="card-title">{service.title}</div>
+              <div class="card-description">
+                <p>{service.description}</p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+    <button class="nav-btn nav-next" type="button" aria-label="Servicio siguiente">></button>
+  </div>
+</section>
+
+<style>
+  .services {
+    width: 100%;
+    padding: clamp(2rem, 4vw, 3.5rem) 0;
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .services-header {
+    width: 85%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: clamp(1rem, 3vw, 2rem);
+    align-items: center;
+  }
+
+  .services-title h3 {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 0.35rem;
+    color: #c8d2dc;
+  }
+
+  .services-title h2 {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: #f5fcff;
+  }
+
+  .services-blurb {
+    margin: 0;
+    color: #dbe6f0;
+    line-height: 1.5;
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+  }
+
+  .services-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 clamp(2rem, 3vw, 3rem);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .services-track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(240px, 320px);
+    gap: clamp(0.9rem, 2vw, 1.4rem);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0.25rem 0;
+    scrollbar-width: none;
+  }
+
+  .services-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .service-card {
+    scroll-snap-align: start;
+  }
+
+  .card-inner {
+    position: relative;
+    height: clamp(260px, 36vw, 360px);
+    border-radius: 10px;
+    background:
+      radial-gradient(120% 120% at 20% 15%, rgba(255, 255, 255, 0.04), transparent 55%),
+      linear-gradient(145deg, #0b0f16, #040406 55%, #030305);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 1.25rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.55rem;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .card-inner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255, 204, 51, 0.08), transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(37, 196, 255, 0.08), transparent 45%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
+  .card-inner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.7;
+    background-size: 40px 40px;
+    background-image:
+      linear-gradient(to right, #1f1f1f 1px, transparent 1px),
+      linear-gradient(to bottom, #1f1f1f 1px, transparent 1px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .card-icon {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, rgba(255, 204, 51, 0.18), rgba(37, 196, 255, 0.2));
+    color: #0a0f16;
+    font-size: 1.6rem;
+    font-weight: 700;
+    z-index: 1;
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card-title {
+    position: relative;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #f6fcff;
+    letter-spacing: -0.01em;
+    z-index: 1;
+  }
+
+  .card-description {
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    opacity: 1;
+    transform: translateY(0);
+    transition: border-color 0.3s ease;
+  }
+
+  .card-description p {
+    margin: 0;
+    color: rgba(245, 252, 255, 0.82);
+    line-height: 1.5;
+    font-weight: 600;
+    font-size: 0.98rem;
+  }
+
+  .card-inner:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 204, 51, 0.4);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .card-inner:hover .card-icon {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(255, 204, 51, 0.25);
+  }
+
+  .card-inner:hover .card-description {
+    border-color: rgba(255, 204, 51, 0.35);
+  }
+
+  .nav-btn {
+    color: #f5fcff;
+    border: none;
+    background: transparent;
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    font-size: 2.4rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .nav-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }
+
+  .nav-prev {
+    order: 0;
+  }
+
+  .nav-next {
+    order: 2;
+  }
+
+  @media (max-width: 900px) {
+    .services-header {
+      grid-template-columns: 1fr;
+      width: 92%;
+    }
+
+    .services-blurb {
+      width: 100%;
+    }
+
+    .services-carousel {
+      padding: 0 1rem;
+    }
+
+    .nav-btn {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const track = document.querySelector("#servicesTrack");
+  const prevBtn = document.querySelector(".nav-prev");
+  const nextBtn = document.querySelector(".nav-next");
+  let loopWidth = 0;
+  let autoId = 0;
+
+  const stepSize = () => {
+    const card = track?.querySelector(".service-card");
+    if (!card) return 320;
+    const rect = card.getBoundingClientRect();
+    const gap =
+      track instanceof HTMLElement
+        ? parseFloat(getComputedStyle(track).columnGap || "0") || 0
+        : 0;
+    return rect.width + gap;
+  };
+
+  const normalizePosition = () => {
+    if (!track || !loopWidth) return;
+    const max = loopWidth * 2;
+    if (track.scrollLeft >= max) {
+      track.scrollLeft -= loopWidth;
+    } else if (track.scrollLeft <= 0) {
+      track.scrollLeft += loopWidth;
+    }
+  };
+
+  const scrollByAmount = (dir) => {
+    if (!track) return;
+    const distance = dir * stepSize();
+    stopAuto();
+    track.scrollBy({ left: distance, behavior: "smooth" });
+    setTimeout(normalizePosition, 320);
+    startAuto();
+  };
+
+  const setupInfiniteLoop = () => {
+    if (!track) return;
+    const cards = Array.from(track.children);
+    if (!cards.length) return;
+
+    const before = document.createDocumentFragment();
+    const after = document.createDocumentFragment();
+
+    cards.forEach((card) => {
+      before.appendChild(card.cloneNode(true));
+      after.appendChild(card.cloneNode(true));
+    });
+
+    track.prepend(before);
+    track.append(after);
+
+    loopWidth = track.scrollWidth / 3;
+    track.scrollLeft = loopWidth;
+  };
+
+  const autoTick = () => {
+    if (!track || !loopWidth) return;
+    track.scrollLeft += 0.35;
+    normalizePosition();
+    autoId = requestAnimationFrame(autoTick);
+  };
+
+  const startAuto = () => {
+    if (autoId) return;
+    autoId = requestAnimationFrame(autoTick);
+  };
+
+  const stopAuto = () => {
+    if (!autoId) return;
+    cancelAnimationFrame(autoId);
+    autoId = 0;
+  };
+
+  setupInfiniteLoop();
+  startAuto();
+
+  prevBtn?.addEventListener("click", () => scrollByAmount(-1));
+  nextBtn?.addEventListener("click", () => scrollByAmount(1));
+
+  track?.addEventListener("mouseenter", stopAuto);
+  track?.addEventListener("mouseleave", startAuto);
+  track?.addEventListener("touchstart", stopAuto, { passive: true });
+  track?.addEventListener("touchend", startAuto, { passive: true });
+</script>

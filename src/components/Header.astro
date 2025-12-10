@@ -25,11 +25,13 @@ const socialMedia = [
   <div
     class="p-[1.5vw] w-[90%] mx-auto flex flex-row justify-between text-white"
   >
-    <div id="logo-white" class="relative z-[140]">
-      <Logo variant="white" />
-    </div>
-    <div id="logo-black" class="relative z-[140] hidden">
-      <Logo variant="black" />
+    <div id="logo-wrapper" class="relative z-[140]">
+      <div id="logo-white" class="logo-visible">
+        <Logo variant="white" />
+      </div>
+      <div id="logo-black" class="logo-hidden">
+        <Logo variant="black" />
+      </div>
     </div>
 
     <ul class="flex flex-row gap-20 uppercase">
@@ -64,7 +66,7 @@ const socialMedia = [
           <img
             id="plusMenu"
             src="svg/plus-svgrepo-com-wh.svg"
-            class="w-6 h-6 relative z-[155]"
+            class="w-6 h-6 relative z-[155] cross-fade"
           />
         </div>
       </li>
@@ -74,12 +76,12 @@ const socialMedia = [
   <div id="layerWhite" class="layer-white hidden flex flex-row">
     <div class="triangle-top flex flex-col">
       <ul
-        class="flex flex-col w-full font-bold text-[6vw] z-20 m-auto justify-end items-start h-full pb-16"
+        class="flex flex-col w-full font-bold text-[6vw] z-20 m-auto justify-end items-start h-full pb-10"
       >
         {
           headerLinks.slice(0,4).map((h) => (
             <li class="showMenu-link link-underline">
-              <a href={h.href} class="text-[109px]" style="line-height: 128px;">
+              <a href={h.href} class="text-[100px] text-[#040406] h-max" style="line-height: 128px;">
                 {h.title}
               </a>
             </li>
@@ -109,7 +111,7 @@ const socialMedia = [
                       href={s.url}
                       target="_blank"
                       rel="noreferrer"
-                      class="flex flex-row items-center gap-3 group"
+                      class="flex flex-row items-center gap-3 group text-[#040406]"
                     >
                       <i
                         class={`fa-brands ${s.icon} text-[1.5vw] group-hover:text-[#ffcc33] transition-all duration-300 hover:shadow-2xl`}
@@ -185,7 +187,7 @@ const socialMedia = [
   }
 
   .showMenu-link {
-    animation: fadeIn 2.5s ease-in-out forwards;
+    animation: fadeIn 1.5s ease-in-out forwards;
     margin-left: 10vw;
   }
 
@@ -201,6 +203,26 @@ const socialMedia = [
     transition: transform 0.3s ease;
     z-index: 15;
     color: white;
+  }
+
+  #logo-wrapper {
+    display: grid;
+    place-items: center;
+  }
+
+  #logo-wrapper > div {
+    grid-area: 1 / 1;
+    transition: opacity 0.35s ease;
+  }
+
+  .logo-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .logo-hidden {
+    opacity: 0;
+    pointer-events: none;
   }
   /* Espacio entre letras del li */
   .li-spacing {
@@ -406,6 +428,16 @@ const socialMedia = [
     opacity: 1;
   }
 
+  .cross-fade {
+    transition:
+      opacity 0.25s ease,
+      filter 0.3s ease;
+  }
+
+  .cross-fade.cross-fade-out {
+    opacity: 0;
+  }
+
   .plusAnimationIn {
     width: 3.5vw;
     height: 3.5vw;
@@ -435,9 +467,38 @@ const socialMedia = [
   const layerWhite = document.querySelector("#layerWhite");
   const plusMenu = document.querySelector("#plusMenu");
 
-  // Variables de Logos Corregidas (según la estructura de ID del HTML arriba)
+  // Variables de Logos Corregidas (seg?n la estructura de ID del HTML arriba)
   const logoBlack = document.querySelector("#logo-black");
   const logoWhite = document.querySelector("#logo-white");
+
+  const showBlackLogo = () => {
+    logoWhite?.classList.add("logo-hidden");
+    logoWhite?.classList.remove("logo-visible");
+    logoBlack?.classList.add("logo-visible");
+    logoBlack?.classList.remove("logo-hidden");
+  };
+
+  const showWhiteLogo = () => {
+    logoBlack?.classList.add("logo-hidden");
+    logoBlack?.classList.remove("logo-visible");
+    logoWhite?.classList.add("logo-visible");
+    logoWhite?.classList.remove("logo-hidden");
+  };
+
+  const setPlusIcon = (useBlack:any) => {
+    if (!(plusMenu instanceof HTMLImageElement)) return;
+    plusMenu.classList.add("cross-fade-out");
+
+    requestAnimationFrame(() => {
+      plusMenu.src = useBlack
+        ? "svg/plus-svgrepo-com.svg"
+        : "svg/plus-svgrepo-com-wh.svg";
+
+      requestAnimationFrame(() => {
+        plusMenu.classList.remove("cross-fade-out");
+      });
+    });
+  };
 
   function updateHiddenItems() {
     const scroll = window.scrollY;
@@ -459,7 +520,7 @@ const socialMedia = [
     }
   }
 
-  function detectarPosicionComponente(selector: any) {
+  function detectarPosicionComponente(selector:any) {
     const elemento = document.querySelector(selector);
     if (!elemento) return;
   }
@@ -467,7 +528,7 @@ const socialMedia = [
   // Evento scroll
   document.addEventListener("scroll", updateHiddenItems);
 
-  // Detecta al recargar la página
+  // Detecta al recargar la p?gina
   window.addEventListener("load", () => {
     updateHiddenItems();
     detectarPosicionComponente(".navbar");
@@ -479,12 +540,8 @@ const socialMedia = [
 
     items.forEach((el) => el.classList.toggle("hidden-li"));
 
-    // El icono del menú cambia de color y figura
-    if (plusMenu instanceof HTMLImageElement) {
-      plusMenu.src = isOpen
-        ? "svg/plus-svgrepo-com-wh.svg"
-        : "svg/plus-svgrepo-com.svg";
-    }
+    // El icono del men? cambia de color y figura con fade
+    setPlusIcon(!isOpen);
 
     showMenuBtn?.classList.toggle("rotate45");
     showMenuBtn?.classList.toggle("changeColor");
@@ -494,14 +551,14 @@ const socialMedia = [
     const bottom = document.querySelector(".triangle-bottom");
 
     if (!top || !bottom) {
-      // Manejo de visibilidad simple si no hay elementos de transición
+      // Manejo de visibilidad simple si no hay elementos de transici?n
       if (!isOpen) {
         layerWhite.classList.remove("hidden");
-        logoWhite?.classList.add("hidden");
-        logoBlack?.classList.remove("hidden");
+        showBlackLogo();
+        setPlusIcon(true);
       } else {
-        logoWhite?.classList.remove("hidden");
-        logoBlack?.classList.add("hidden");
+        showWhiteLogo();
+        setPlusIcon(false);
         setTimeout(() => {
           layerWhite.classList.add("hidden");
         }, 500);
@@ -517,10 +574,10 @@ const socialMedia = [
       bottom.classList.remove("out");
 
       // OCULTAR logo BLANCO, MOSTRAR logo NEGRO
-      logoWhite?.classList.add("hidden");
-      logoBlack?.classList.remove("hidden");
+      showBlackLogo();
+      setPlusIcon(true);
 
-      // Aplica animación de entrada (vertical invertida)
+      // Aplica animaci?n de entrada (vertical invertida)
       top.classList.add("in");
       bottom.classList.add("in");
     } else {
@@ -528,18 +585,18 @@ const socialMedia = [
       top.classList.remove("in");
       bottom.classList.remove("in");
 
-      // Aplica animación de salida (vertical invertida, saliendo)
+      // Aplica animaci?n de salida (vertical invertida, saliendo)
       top.classList.add("out");
       bottom.classList.add("out");
 
       // MOSTRAR logo BLANCO, OCULTAR logo NEGRO
-      logoWhite?.classList.remove("hidden");
-      logoBlack?.classList.add("hidden");
+      showWhiteLogo();
+      setPlusIcon(false);
 
-      // Esperar fin de animación para ocultar
+      // Esperar fin de animaci?n para ocultar
       setTimeout(() => {
         layerWhite.classList.add("hidden");
-      }, 600); // Debe coincidir con la duración de la animación de salida (0.6s)
+      }, 600); // Debe coincidir con la duraci?n de la animaci?n de salida (0.6s)
     }
   });
 </script>
