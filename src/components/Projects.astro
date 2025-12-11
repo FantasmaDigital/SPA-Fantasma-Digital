@@ -768,11 +768,13 @@ const truncate = (text: string, max = 150) =>
   const caretSecond = document.querySelector(".caret-second") as HTMLElement | null;
   const allCarets = document.querySelectorAll<HTMLElement>(".typing-caret");
   const findWorld = document.querySelector(".find-world") as HTMLElement | null;
+  const findWorldContainer = document.querySelector(
+    ".find-world-container"
+  ) as HTMLElement | null;
   const pageBody = document.body;
-  const triggerOffset = 320; // +200px delay before activating animation
+  const triggerOffset = 120; // +200px delay before activating animation
 
   let frameTop = 0;
-  let parallaxLimit = Infinity;
   let moreGridTop = 0;
   let blackStateActive = false;
   let invertedStateActive = false;
@@ -783,21 +785,17 @@ const truncate = (text: string, max = 150) =>
       frameTop = rect.top + window.scrollY;
     }
 
-    // Límite: alto total del frame (hasta el fondo del componente)
-    if (frame) {
-      parallaxLimit = Math.max(0, frame.scrollHeight);
-    } else if (parallaxTitle) {
-      const rect = parallaxTitle.getBoundingClientRect();
-      parallaxLimit = Math.max(0, rect.top + window.scrollY - frameTop);
-    } else {
-      parallaxLimit = Infinity;
-    }
-
     if (moreGrid) {
       const rect = moreGrid.getBoundingClientRect();
       moreGridTop = rect.top + window.scrollY;
     } else {
       moreGridTop = Infinity;
+    }
+
+    if (findWorldContainer) {
+      const rect = findWorldContainer.getBoundingClientRect();
+      const findWorldTop = rect.top + window.scrollY;
+      console.log("find-world-container top:", findWorldTop);
     }
   };
 
@@ -1005,14 +1003,15 @@ const truncate = (text: string, max = 150) =>
 
     if (shouldShowBlack) {
       const scrollFromFrameStart = Math.max(0, window.scrollY - frameTop);
-      const cappedScroll = Math.min(scrollFromFrameStart, parallaxLimit-75);
+      const cappedScroll = scrollFromFrameStart;
 
       if (firstWord) {
         firstWord.style.transform = `translateY(${cappedScroll}px)`;
       }
 
       if (secondWord) {
-        const boostedScroll = Math.min(cappedScroll * 1.2, parallaxLimit);
+        const boostedScroll = cappedScroll * 1.2;
+        console.log("second word translation:", boostedScroll);
         secondWord.style.transform = `translateY(${boostedScroll}px)`;
       }
     } else {

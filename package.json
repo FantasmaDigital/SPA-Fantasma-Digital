@@ -13,6 +13,7 @@
     "astro": "^5.16.4",
     "font-awesome": "^4.7.0",
     "highlight.js": "^11.11.1",
+    "pnpm": "^10.25.0",
     "tailwindcss": "^4.1.17",
     "three": "^0.181.2"
   },

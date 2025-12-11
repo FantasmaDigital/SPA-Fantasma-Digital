@@ -123,7 +123,7 @@ const services = [
 ];
 ---
 
-<section class="services">
+<section class="services z-60 absolute bg-[#040406]">
   <div class="services-header">
     <div class="services-title">
       <h3>At Ravn, we design, build, and scale digital products.</h3>
@@ -399,7 +399,7 @@ const services = [
     }
   };
 
-  const scrollByAmount = (dir) => {
+  const scrollByAmount = (dir:any) => {
     if (!track) return;
     const distance = dir * stepSize();
     stopAuto();
@@ -430,7 +430,7 @@ const services = [
 
   const autoTick = () => {
     if (!track || !loopWidth) return;
-    track.scrollLeft += 0.35;
+    track.scrollLeft += 0.55;
     normalizePosition();
     autoId = requestAnimationFrame(autoTick);
   };
