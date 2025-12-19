@@ -86,79 +86,110 @@ const truncate = (text: string, max = 150) =>
   text.length > max ? `${text.slice(0, max)}...` : text;
 ---
 
-<section id="frame" class="frame">
-  <div class="orb orb-b"></div>
-  <div class="grid-overlay" aria-hidden="true"></div>
-  <div class="diagonal-beam" aria-hidden="true"></div>
-
-  <div class="parallax-title" id="title-paralax"></div>
-
-  <div class="row">
-    <div class="card hero" style={`background-image:url(${primary.imageUrl});`}>
-      <div class="card-overlay">
-        <div class="brand-line">
-          <span class="brand-mark">tuyo</span>
-          <span class="brand-ghost">Visa</span>
-        </div>
-        <div class="hero-title">{primary.title}</div>
-        <div class="hero-meta">{primary.site}</div>
-        <p class="hero-copy">{truncate(primary.description, 120)}</p>
-        <div class="chips">
-          {primary.technologies.map((tech) => <span class="chip">{tech}</span>)}
-        </div>
-      </div>
-    </div>
-
-    <div class="word-block align-end">
-      <span class="word m-auto" id="first-word"
-        ><span class="callout-hidden link-underline"
-          >{primary.hiddenCallout?.toUpperCase()}</span
-        >{primary.callout.toUpperCase()}</span
+<section
+  id="projects"
+  class="w-[85%] max-w-[1800px] mx-auto py-32 relative z-10 border-t border-white/5"
+>
+  <div
+    class="mb-32 border-b border-white/10 pb-8 flex flex-col md:flex-row items-end justify-between gap-6 projects-header-container transition-colors duration-700"
+    id="projects-header"
+  >
+    <div>
+      <h2
+        class="text-xs font-bold tracking-[0.3em] uppercase text-[#ffcc33] mb-4 reveal-fade-up projects-subtitle transition-colors duration-700"
+        data-repeat
       >
+        Software Engineering
+      </h2>
+      <h3
+        class="text-4xl md:text-6xl font-bold text-white tracking-tight reveal-fade-up delay-100 projects-main-title transition-colors duration-700"
+        data-repeat
+      >
+        FEATURED <span
+          class="text-[#25c4ff] projects-title-accent transition-colors duration-700"
+          >CASES</span
+        >
+      </h3>
     </div>
+    <p
+      class="text-[#889096] max-w-sm text-sm leading-relaxed text-right md:text-left reveal-fade-up delay-150 projects-description transition-colors duration-700"
+      data-repeat
+    >
+      Selected works demonstrating scalability, performance, and user-centric
+      architecture.
+    </p>
   </div>
 
-  <div class="row bottom">
-    <div class="word-block align-end">
-      <span class="word m-auto z-10" id="second-word"
-        ><span class="callout-hidden link-underline"
-          >{secondary.hiddenCallout?.toUpperCase()}</span
-        >{secondary.callout.toUpperCase()}</span
-      >
-    </div>
-
-    <div class="card metric">
-      <div class="ring ring-left"></div>
-      <div class="ring ring-right"></div>
-      <div class="metric-content">
-        <div class="metric-value">{secondary.site}</div>
-        <div class="metric-sub">{secondary.title}</div>
-        <p class="metric-copy">{truncate(secondary.description, 110)}</p>
-        <div class="chips center">
-          {
-            secondary.technologies.map((tech) => (
-              <span class="chip ghost">{tech}</span>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="more-grid">
+  <div class="flex flex-col gap-16" id="project-list">
     {
-      rest.map((project) => (
-        <article class="tile">
-          <div class="tile-callout">{project.callout}</div>
-          <div class="tile-head">
-            <div class="tile-meta">{project.site}</div>
-            <h3 class="tile-title">{project.title}</h3>
+      projects.map((project, index) => (
+        <article
+          class="group relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center border-b border-black/5 pb-16 last:border-0 last:pb-0 reveal-fade-up project-card"
+          data-repeat
+        >
+          {/* Project Image / Visual */}
+          <div class="lg:col-span-7 order-2 lg:order-1 relative">
+            <div class="relative rounded-xl overflow-hidden bg-gray-100 border border-black/5 group-hover:border-[#ffcc33]/50 transition-colors duration-500 aspect-video shadow-lg">
+              <div
+                class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                style={`background-image: url('${project.imageUrl}');`}
+              />
+              {/* Overlay for inactive state */}
+              <div class="absolute inset-0 bg-white/10 group-hover:bg-transparent transition-colors duration-500" />
+            </div>
+
+            {/* Decorational "Tech" Lines */}
+            <div class="absolute -bottom-4 -left-4 w-24 h-24 border-l border-b border-black/5 hidden md:block" />
+            <div class="absolute -top-4 -right-4 w-24 h-24 border-r border-t border-black/5 hidden md:block" />
           </div>
-          <p class="tile-copy">{truncate(project.description, 130)}</p>
-          <div class="chips wrap">
-            {project.technologies.map((tech) => (
-              <span class="chip ghost">{tech}</span>
-            ))}
+
+          {/* Project Details */}
+          <div class="lg:col-span-5 order-1 lg:order-2 flex flex-col justify-center relative">
+            {/* Massive Background Number */}
+            <div class="absolute -top-24 -left-12 select-none pointer-events-none z-0">
+              <span class="text-[10rem] md:text-[12rem] font-black text-black/[0.12] leading-none project-number">
+                0{project.id}
+              </span>
+            </div>
+
+            <div class="relative z-10">
+              <div class="flex items-center gap-4 mb-4">
+                <span class="text-[#25c4ff] font-mono text-sm tracking-widest uppercase font-bold">
+                  {project.hiddenCallout}
+                </span>
+                <div class="h-px bg-[#25c4ff] w-12" />
+              </div>
+
+              <h3 class="text-4xl md:text-5xl font-bold text-black mb-6 leading-tight group-hover:text-gray-600 transition-colors duration-300 project-title">
+                {project.title}
+              </h3>
+
+              <p class="text-[#333] text-lg leading-relaxed mb-8 font-medium project-desc">
+                {project.description}
+              </p>
+
+              <div class="mb-8">
+                <h4 class="text-xs font-bold uppercase tracking-widest text-[#555] mb-4">
+                  Tech Stack
+                </h4>
+                <div class="flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span class="px-3 py-1.5 text-xs font-bold font-mono text-[#005a8c] bg-[#25c4ff]/10 border border-[#0077b5]/20 rounded">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <a
+                href={project.site}
+                target="_blank"
+                class="inline-flex items-center gap-3 text-black font-bold uppercase tracking-widest text-sm hover:text-[#ffcc33] transition-colors group/link w-fit border-b-2 border-transparent hover:border-[#ffcc33] pb-1 project-link"
+              >
+                <span>View Deployment</span>
+                <i class="fa-solid fa-arrow-right transform group-hover/link:translate-x-1 transition-transform" />
+              </a>
+            </div>
           </div>
         </article>
       ))
@@ -166,7 +197,134 @@ const truncate = (text: string, max = 150) =>
   </div>
 </section>
 
-<div class="find-world-container">
+<div class="find-world-container overflow-hidden">
+  <!-- Minimalist Grid Background -->
+  <div
+    class="absolute inset-0 opacity-[0.05] pointer-events-none"
+    style="background-image: radial-gradient(#25c4ff 1px, transparent 1px); background-size: 50px 50px;"
+  >
+  </div>
+
+  <!-- Top Technical Accents (System Status) -->
+  <div
+    class="absolute top-10 left-0 w-full px-10 flex justify-between items-center opacity-30 pointer-events-none select-none hidden md:flex font-mono text-[10px] tracking-widest text-[#889096]"
+  >
+    <div class="flex items-center gap-8">
+      <div class="flex items-center gap-2">
+        <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+        <span>SYSTEM_ACTIVE</span>
+      </div>
+      <span>DC_REGION: LATAM-01</span>
+      <span>UPLINK: 4.2 Gbps</span>
+    </div>
+    <div class="flex items-center gap-8">
+      <span>CPU: 12%</span>
+      <span>MEM: 4.8GB / 64GB</span>
+      <span>PING: 14ms</span>
+    </div>
+  </div>
+
+  <!-- Decorative Code Accents -->
+  <div
+    class="absolute top-1/4 left-10 opacity-20 font-mono text-[10px] text-[#25c4ff] pointer-events-none select-none hidden lg:block reveal-fade-in delay-300"
+  >
+    <div class="mb-2 text-white/60 font-bold">// Strategic Implementation</div>
+    <div class="text-[#ffcc33]/60">async function initializeWorld() &#123;</div>
+    <div class="ml-4">const world = await Fantasma.create(&#123;</div>
+    <div class="ml-8">mode: 'unlimited',</div>
+    <div class="ml-8">resilience: true</div>
+    <div class="ml-4">&#125;);</div>
+    <div class="text-[#ffcc33]/60">&#125;</div>
+  </div>
+
+  <!-- Technical Architecture Pillars (Software focus) -->
+  <div
+    class="absolute top-1/4 right-[15%] opacity-15 font-mono text-[9px] text-white/40 pointer-events-none select-none hidden lg:block"
+  >
+    <div class="text-[#25c4ff] mb-1">// Kotlin Microservice</div>
+    <div>fun handleEvent(event: DomainEvent) &#123;</div>
+    <div class="ml-2">repository.save(event.toSharedState())</div>
+    <div>&#125;</div>
+  </div>
+
+  <div
+    class="absolute bottom-1/4 left-[15%] opacity-15 font-mono text-[9px] text-white/40 pointer-events-none select-none hidden lg:block"
+  >
+    <div class="text-[#65ffcd] mb-1">// C++ Performance Engine</div>
+    <div>template &lt;typename T&gt;</div>
+    <div>class Engine : public Singleton &#123;</div>
+    <div class="ml-2">void optimize() noexcept;</div>
+    <div>&#125;;</div>
+  </div>
+
+  <div
+    class="absolute top-1/2 right-[5%] opacity-10 font-mono text-[11px] text-[#25c4ff] pointer-events-none select-none hidden 2xl:block transform -rotate-90"
+  >
+    #include &lt;express/router&gt;
+  </div>
+
+  <div
+    class="absolute top-2/3 left-[5%] opacity-10 font-mono text-[11px] text-[#ffcc33] pointer-events-none select-none hidden 2xl:block transform rotate-90"
+  >
+    public async Task&lt;User&gt; GetProfile()
+  </div>
+
+  <!-- Background Tech Snippets (Deep Layer) -->
+  <div
+    class="absolute inset-x-10 top-20 bottom-20 opacity-[0.03] pointer-events-none select-none font-mono text-[9px] leading-relaxed hidden md:block"
+  >
+    <div class="absolute top-10 left-[10%] transform -rotate-12">
+      <div class="text-[#25c4ff]">// TypeScript</div>
+      <div>interface IRepository&lt;T&gt; &#123;</div>
+      <div class="ml-2">findAll(): Promise&lt;T[]&gt;;</div>
+      <div class="ml-2">findById(id: string): T;</div>
+      <div>&#125;</div>
+    </div>
+
+    <div class="absolute top-[15%] right-[10%] transform rotate-6">
+      <div class="text-[#65ffcd]">// Astro</div>
+      <div>---</div>
+      <div>const &#123; projects &#125; = Astro.props;</div>
+      <div>---</div>
+      <div>
+        &lt;section&gt; &#123;projects.map(p =&gt; &lt;Card ...p /&gt;)&#125;
+        &lt;/section&gt;
+      </div>
+    </div>
+
+    <div class="absolute bottom-[20%] left-[5%] transform rotate-3">
+      <div class="text-[#ffcc33]">// C# .NET</div>
+      <div>[HttpGet]</div>
+      <div>public async Task&lt;IActionResult&gt; Get() &#123;</div>
+      <div class="ml-2">var data = await _service.Execute();</div>
+      <div class="ml-2">return Ok(data);</div>
+      <div>&#125;</div>
+    </div>
+
+    <div class="absolute bottom-[10%] right-[15%] transform -rotate-6">
+      <div class="text-[#25c4ff]">// Express.js</div>
+      <div>router.use((req, res, next) =&gt; &#123;</div>
+      <div class="ml-2">
+        logger.info(`$&#123;req.method&#125; $&#123;req.url&#125;`);
+      </div>
+      <div class="ml-2">next();</div>
+      <div>&#125;);</div>
+    </div>
+
+    <div
+      class="absolute top-1/2 left-[40%] transform -translate-x-1/2 -translate-y-1/2 opacity-20"
+    >
+      <div class="text-xs font-black tracking-[1em] text-white/10 uppercase">
+        Distributing Logic
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[25rem] h-[25rem] bg-[#ffffff]/3 rounded-full blur-[100px] pointer-events-none"
+  >
+  </div>
+
   <div class="find-world">
     <div class="find-world-col">
       <h2 class="find-world-title title-left">
@@ -183,460 +341,88 @@ const truncate = (text: string, max = 150) =>
 
     <div class="find-world-col">
       <h2 class="find-world-title title-right">
-        <span class="typing-text typing-second" data-text="of possibilities"></span>
+        <span class="typing-text typing-second" data-text="of possibilities"
+        ></span>
         <span class="typing-caret caret-second"></span>
       </h2>
       <p class="find-world-sub">
-        Construimos y operamos: arquitectura escalable, CI/CD, observabilidad y soporte
-        de lanzamiento para que puedas crecer sin fricción.
+        Construimos y operamos: arquitectura escalable, CI/CD, observabilidad y
+        soporte de lanzamiento para que puedas crecer sin fricción.
       </p>
     </div>
   </div>
-  <span class="absolute bottom-10 right-10 underline hover:cursor-pointer transition-colors duration-300 hover:text-[#ffcc33]">Contactanos y pon tus ideas a volar</span>
+
+  <span
+    class="absolute bottom-10 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:right-10 underline hover:cursor-pointer transition-all duration-300 hover:text-[#ffcc33] text-white/40 text-xs tracking-widest uppercase font-bold z-20"
+    >Contactanos y pon tus ideas a volar</span
+  >
+
+  <!-- Gradient transition to next section -->
+  <div
+    class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#040406] to-transparent pointer-events-none z-10"
+  >
+  </div>
 </div>
 
 <style>
-  .frame {
-    width: 85%;
-    margin: 3.5rem auto;
-    /* padding: clamp(1.5rem, 3vw, 2rem); */
-    /* background: #050b12; */
-    border-radius: 28px;
-    position: relative;
-    overflow: visible;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    gap: clamp(0.8rem, 2vw, 1.2rem);
-    color: #f5fcff;
-    font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
-    /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45); */
-  }
-
-  :global(body),
-  :global(body.inverted) {
+  /* Global Theme Transition */
+  :global(body) {
     transition:
-      background-color 0.4s ease,
-      color 0.4s ease;
-  }
-
-  :global(body.inverted) {
-    background: #040406;
+      background-color 0.7s ease,
+      color 0.7s ease;
+    background-color: #040406; /* Default Dark (for Header & Title) */
     color: #f5fcff;
   }
 
-  :global(body.inverted .word) {
-    color: #f5fcff;
+  :global(body.theme-light) {
+    background-color: #ffffff !important;
+    color: #040406 !important;
   }
 
-  .orb {
-    position: absolute;
-    border-radius: 999px;
-    filter: blur(60px);
-    opacity: 0.35;
-    pointer-events: none;
+  /* Handle Project Card Colors when in Dark Mode (fallback or scroll out) */
+  :global(body:not(.theme-light)) .project-title {
+    color: #ffffff !important;
+  }
+  :global(body:not(.theme-light)) .project-desc {
+    color: #cbd5e1 !important;
+  }
+  :global(body:not(.theme-light)) .project-number {
+    color: rgba(255, 255, 255, 0.05) !important;
+  }
+  :global(body:not(.theme-light)) .project-link {
+    color: #ffffff !important;
   }
 
-  .orb-b {
-    width: 320px;
-    height: 320px;
-    background: #ffffff;
-    bottom: -160px;
-    right: -120px;
+  /* Project Header Theme Inversion */
+  :global(body.theme-light) .projects-header-container {
+    border-color: rgba(4, 4, 6, 0.1) !important;
   }
 
-  .row {
-    display: grid;
-    grid-template-columns: 1.3fr 0.9fr;
-    gap: clamp(0.8rem, 2vw, 1.2rem);
-    align-items: stretch;
-    position: relative;
-    z-index: 1;
+  :global(body.theme-light) .projects-subtitle {
+    color: #ffcc33 !important; /* Keep yellow accent */
   }
 
-  .row.bottom {
-    grid-template-columns: 0.9fr 1.3fr;
+  :global(body.theme-light) .projects-main-title {
+    color: #040406 !important;
   }
 
-  .parallax-title {
-    position: absolute;
-    left: 50%;
-    top: clamp(0.4rem, 2vw, 0.9rem);
-    transform: translateX(-50%);
-    font-weight: 800;
-    font-size: clamp(1.4rem, 2vw, 1.8rem);
-    color: #0c1118;
-    z-index: 6;
-    pointer-events: none;
+  :global(body.theme-light) .projects-title-accent {
+    color: #25c4ff !important; /* Keep blue accent */
   }
 
-  .parallax-end {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    pointer-events: none;
+  :global(body.theme-light) .projects-description {
+    color: #666666 !important;
   }
 
-  .card {
-    border-radius: 22px;
-    background: linear-gradient(
-      135deg,
-      rgba(14, 23, 33, 0.95),
-      rgba(10, 18, 28, 0.9)
-    );
-    position: relative;
-    overflow: hidden;
-  }
-
-  .card.hero {
-    min-height: 240px;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .card.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      160deg,
-      rgba(6, 9, 15, 0.7),
-      rgba(7, 13, 21, 0.55)
-    );
-  }
-
-  .card-overlay {
-    position: relative;
-    padding: clamp(1.1rem, 3vw, 1.6rem);
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-    height: 100%;
-  }
-
-  .brand-line {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: #9df3d2;
-  }
-
-  .brand-mark {
-    color: #65ffcd;
-    font-size: 1.05rem;
-  }
-
-  .brand-ghost {
-    margin-left: auto;
-    color: rgba(255, 255, 255, 0.72);
-  }
-
-  .hero-title {
-    font-size: clamp(1.5rem, 3vw, 1.9rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-
-  .hero-meta {
-    font-size: 0.9rem;
-    color: rgba(245, 252, 255, 0.75);
-  }
-
-  .hero-copy {
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: rgba(245, 252, 255, 0.8);
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-top: 0.35rem;
-  }
-
-  .chip {
-    padding: 0.38rem 0.75rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-    font-size: 0.82rem;
-    color: #f5fcff;
-  }
-
-  .chip.ghost {
-    background: rgba(255, 255, 255, 0.04);
-    color: #f7fbff;
-  }
-
-  .word-block {
-    /* background: #050b12; */
-    border-radius: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: clamp(1rem, 3vw, 1.5rem);
-    position: relative;
-    z-index: 4;
-  }
-
-  .word-block.align-end {
-    align-items: flex-start;
-  }
-
-  .word {
-    font-size: clamp(3.5rem, 10vw, 6rem);
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    color: #040406;
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.35rem;
-  }
-
-  .callout-hidden {
-    display: inline-flex;
-    align-items: baseline;
-    opacity: 0;
-    transform: translateY(12px) scale(0.98);
-    max-width: 0;
-    margin-right: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    flex-shrink: 1;
-    pointer-events: auto;
-    transition:
-      opacity 0.35s ease,
-      transform 0.35s ease,
-      max-width 0.5s ease,
-      margin-right 0.5s ease;
-    will-change: opacity, transform, max-width, margin-right;
-  }
-
-  .callout-hidden.callout-visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    max-width: 14ch;
-    margin-right: 0.35rem;
-  }
-
-  .link-underline {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-  }
-
-  .link-underline::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0%;
-    height: 4px;
-    border-radius: 999px;
-    background-color: #ffcc33;
-    transition: width 0.5s ease;
-  }
-
-  .link-underline:hover::after {
-    width: 100%;
-  }
-
-  .card.metric {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background:
-      radial-gradient(
-        140% 120% at 10% 10%,
-        rgba(34, 255, 172, 0.08),
-        transparent
-      ),
-      radial-gradient(
-        120% 120% at 90% 0%,
-        rgba(34, 190, 255, 0.08),
-        transparent
-      ),
-      #0b121c;
-  }
-
-  .ring {
-    position: absolute;
-    height: 72%;
-    width: 32%;
-    border: 2px solid rgba(101, 255, 205, 0.5);
-    border-radius: 999px;
-    opacity: 0.65;
-  }
-
-  .ring-left {
-    left: 10%;
-    border-right-color: transparent;
-    border-top-color: transparent;
-    border-bottom-color: transparent;
-  }
-
-  .ring-right {
-    right: 10%;
-    border-left-color: transparent;
-    border-top-color: transparent;
-    border-bottom-color: transparent;
-  }
-
-  .metric-content {
-    position: relative;
-    text-align: center;
-    padding: clamp(1rem, 3vw, 1.5rem);
-    max-width: 420px;
-    z-index: 1;
-  }
-
-  .metric-value {
-    font-size: clamp(2.1rem, 6vw, 3rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: #f6fcff;
-  }
-
-  .metric-sub {
-    margin-top: 0.25rem;
-    font-weight: 700;
-    color: #7cf0cb;
-    letter-spacing: -0.01em;
-  }
-
-  .metric-copy {
-    margin: 0.7rem 0 0.9rem;
-    color: rgba(245, 252, 255, 0.78);
-    line-height: 1.6;
-  }
-
-  .chips.center {
-    justify-content: center;
-  }
-
-  .chips.wrap {
-    justify-content: flex-start;
-  }
-
-  .more-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: clamp(0.75rem, 2vw, 1rem);
-    position: relative;
-    z-index: 1;
-  }
-
-  .tile {
-    position: relative;
-    padding: 1rem;
-    border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background:
-      radial-gradient(
-        140% 120% at 0% 0%,
-        rgba(101, 255, 205, 0.05),
-        transparent
-      ),
-      radial-gradient(
-        120% 120% at 100% 0%,
-        rgba(37, 196, 255, 0.05),
-        transparent
-      ),
-      #0a111a;
-    box-shadow: 0 12px 38px rgba(0, 0, 0, 0.4);
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    overflow: hidden;
-  }
-
-  .tile-callout {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    padding: 0.32rem 0.65rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #0c1118;
-    background: linear-gradient(135deg, #65ffcd, #25c4ff);
-    border-radius: 999px;
-    font-weight: 800;
-  }
-
-  .tile-head {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .tile-meta {
-    font-size: 0.82rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: rgba(245, 252, 255, 0.7);
-  }
-
-  .tile-title {
-    margin: 0;
-    font-size: 1.2rem;
-    letter-spacing: -0.02em;
-  }
-
-  .tile-copy {
-    margin: 0.15rem 0 0.45rem;
-    color: rgba(245, 252, 255, 0.8);
-    line-height: 1.5;
-    min-height: 60px;
-  }
-
-  .diagonal-beam {
-    position: fixed;
-    top: -20%;
-    right: -10%;
-    width: 130%;
-    height: 45%;
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.08) 45%,
-      rgba(255, 255, 255, 0.22) 50%,
-      rgba(255, 255, 255, 0.08) 55%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    filter: blur(28px);
-    transform: rotate(18deg);
-    pointer-events: none;
-    mix-blend-mode: screen;
-    opacity: 0.75;
-    animation: beam-drift 6s ease-in-out infinite alternate;
-    z-index: 3;
-  }
-
-  @keyframes beam-drift {
-    0% {
-      transform: rotate(18deg) translateY(-12px);
-      opacity: 0.65;
-    }
-    100% {
-      transform: rotate(18deg) translateY(12px);
-      opacity: 0.9;
-    }
-  }
-
+  /* typing animation styles ... */
   .find-world-container {
+    padding-top: 10vh; /* Spacer to ensure proper triggering */
     position: relative;
     min-height: 100dvh;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-items: center;
   }
 
   .find-world {
@@ -651,7 +437,7 @@ const truncate = (text: string, max = 150) =>
     gap: clamp(0.65rem, 2vw, 1.2rem);
     width: min(90vw, 900px);
     min-width: clamp(320px, 60vw, 720px);
-    color: #f5fcff;
+    color: #f5fcff; /* Always white inside dark section */
     text-transform: uppercase;
     letter-spacing: 0.08em;
     text-align: center;
@@ -659,42 +445,52 @@ const truncate = (text: string, max = 150) =>
 
   .find-world h2 {
     margin: 0;
-    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    font-size: clamp(1.8rem, 5vw, 3.2rem);
     font-weight: 800;
     display: inline-flex;
     align-items: center;
     min-width: 12ch;
+    line-height: 1;
   }
 
   .find-world .title-left {
     justify-content: flex-end;
+    margin-bottom: 1rem;
   }
 
   .find-world .title-right {
     justify-content: flex-start;
+    margin-bottom: 1rem;
   }
 
   .find-world-logo {
-    height: clamp(62px, 9vw, 94px);
-    opacity: 0.25;
+    height: auto;
+    width: clamp(80px, 12vw, 120px);
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+    opacity: 0.35;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
   }
 
   .find-world-col {
-    display: grid;
-    gap: 0.4rem;
-    align-items: start;
-    justify-items: start;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   .find-world-sub {
     margin: 0;
     color: #f5fcff;
-    opacity: 0.9;
-    line-height: 1.6;
-    font-weight: 600;
-    max-width: 360px;
-    font-size: .75rem;
+    opacity: 0.7;
+    line-height: 1.8;
+    font-weight: 400;
+    max-width: 420px;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    text-transform: none; /* Let the description be more readable */
   }
 
   .typing-text {
@@ -723,122 +519,47 @@ const truncate = (text: string, max = 150) =>
   }
 
   @media (max-width: 900px) {
-    .row,
-    .row.bottom {
+    .find-world {
       grid-template-columns: 1fr;
-    }
-
-    .word-block {
-      min-height: 140px;
-    }
-
-    .word {
-      font-size: clamp(3rem, 12vw, 4.5rem);
-    }
-
-    .tile {
-      padding: 0.9rem;
+      gap: 2rem;
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
+      padding: 4rem 1rem;
     }
   }
 </style>
 
 <script>
-  const logoWhite = document.querySelector("#logo-white") as HTMLElement | null;
-  const logoBlack = document.querySelector("#logo-black") as HTMLElement | null;
-  const layerWhite = document.querySelector(
-    "#layerWhite"
+  // Typing Animation Logic & Theme Transition
+  const typingFirst = document.querySelector(
+    ".typing-first"
   ) as HTMLElement | null;
-  const plusMenu = document.querySelector(
-    "#plusMenu"
-  ) as HTMLImageElement | null;
-  const frame = document.querySelector(".frame") as HTMLElement | null;
-  const firstWord = document.querySelector("#first-word") as HTMLElement | null;
-  const secondWord = document.querySelector(
-    "#second-word"
+  const typingSecond = document.querySelector(
+    ".typing-second"
   ) as HTMLElement | null;
-  const parallaxTitle = document.querySelector(
-    "#title-paralax"
+  const caretFirst = document.querySelector(
+    ".caret-first"
   ) as HTMLElement | null;
-  const moreGrid = document.querySelector(".more-grid") as HTMLElement | null;
-  const calloutHiddenSpans =
-    document.querySelectorAll<HTMLElement>(".callout-hidden");
-  const typingFirst = document.querySelector(".typing-first") as HTMLElement | null;
-  const typingSecond = document.querySelector(".typing-second") as HTMLElement | null;
-  const caretFirst = document.querySelector(".caret-first") as HTMLElement | null;
-  const caretSecond = document.querySelector(".caret-second") as HTMLElement | null;
+  const caretSecond = document.querySelector(
+    ".caret-second"
+  ) as HTMLElement | null;
   const allCarets = document.querySelectorAll<HTMLElement>(".typing-caret");
   const findWorld = document.querySelector(".find-world") as HTMLElement | null;
-  const findWorldContainer = document.querySelector(
-    ".find-world-container"
+
+  // Theme Triggers
+  const projectList = document.querySelector(
+    "#project-list"
   ) as HTMLElement | null;
-  const pageBody = document.body;
-  const triggerOffset = 120; // +200px delay before activating animation
 
-  let frameTop = 0;
-  let moreGridTop = 0;
-  let blackStateActive = false;
-  let invertedStateActive = false;
-
-  const updateFrameMetrics = () => {
-    if (frame) {
-      const rect = frame.getBoundingClientRect();
-      frameTop = rect.top + window.scrollY;
-    }
-
-    if (moreGrid) {
-      const rect = moreGrid.getBoundingClientRect();
-      moreGridTop = rect.top + window.scrollY;
-    } else {
-      moreGridTop = Infinity;
-    }
-
-    if (findWorldContainer) {
-      const rect = findWorldContainer.getBoundingClientRect();
-      const findWorldTop = rect.top + window.scrollY;
-      console.log("find-world-container top:", findWorldTop);
-    }
-  };
-
-  const showBlackLogo = () => {
-    logoWhite?.classList.add("logo-hidden");
-    logoWhite?.classList.remove("logo-visible");
-    logoBlack?.classList.add("logo-visible");
-    logoBlack?.classList.remove("logo-hidden");
-  };
-
-  const showWhiteLogo = () => {
-    logoBlack?.classList.add("logo-hidden");
-    logoBlack?.classList.remove("logo-visible");
-    logoWhite?.classList.add("logo-visible");
-    logoWhite?.classList.remove("logo-hidden");
-  };
-
-  const setPlusIcon = (useBlack: any) => {
-    if (!(plusMenu instanceof HTMLImageElement)) return;
-    plusMenu.classList.add("cross-fade-out");
-
-    requestAnimationFrame(() => {
-      plusMenu.src = useBlack
-        ? "svg/plus-svgrepo-com.svg"
-        : "svg/plus-svgrepo-com-wh.svg";
-
-      requestAnimationFrame(() => {
-        plusMenu.classList.remove("cross-fade-out");
-      });
-    });
-  };
-
-  const backgroundTriggerExtra = 200; // extra px after more-grid before color invert
   let typingCycle = 0;
   let typingInProgress = false;
-  const isElementInViewport = (el: HTMLElement) => {
-    const rect = el.getBoundingClientRect();
-    return rect.top < window.innerHeight && rect.bottom > 0;
-  };
 
   const setActiveCaret = (active: HTMLElement | null) => {
     allCarets.forEach((caret) => {
-      caret.style.visibility = active && caret === active ? "visible" : "hidden";
+      caret.style.visibility =
+        active && caret === active ? "visible" : "hidden";
     });
   };
 
@@ -892,160 +613,61 @@ const truncate = (text: string, max = 150) =>
     typingInProgress = false;
   };
 
-  const showCallouts = () => {
-    calloutHiddenSpans.forEach((span) => {
-      if (span.classList.contains("hidden")) {
-        span.classList.remove("hidden");
-        requestAnimationFrame(() => span.classList.add("callout-visible"));
-      } else {
-        span.classList.add("callout-visible");
-      }
-    });
-  };
-
-  const hideCallouts = () => {
-    calloutHiddenSpans.forEach((span) => {
-      span.classList.remove("callout-visible");
-    });
-  };
-
-  const handleTypingVisibility = (entries: IntersectionObserverEntry[]) => {
+  const handleIntersection = (entries: IntersectionObserverEntry[]) => {
     entries.forEach((entry) => {
-      if (!typingFirst || !typingSecond) return;
-      if (entry.isIntersecting) {
-        runTypingSequence();
-      } else {
-        typingCycle += 1; // cancel current cycle
-        resetTyping();
+      // Typing Logic
+      if (entry.target === findWorld) {
+        if (entry.isIntersecting) {
+          runTypingSequence();
+        } else {
+          typingCycle += 1;
+          resetTyping();
+        }
+      }
+
+      // Main Theme Transition Logic
+      // When Project List enters -> Light Mode
+      if (entry.target === projectList) {
+        if (entry.isIntersecting) {
+          document.body.classList.add("theme-light");
+        } else {
+          // If we scroll up past it, or down past it (handled by FindWorld?)
+          // Actually, if we scroll UP, we want to remove theme-light.
+          // If we scroll DOWN to FindWorld, we also want to remove theme-light.
+
+          // Check bounding rect to see if we are above or below
+          const rect = entry.boundingClientRect;
+          // If top is below viewport (rect.top > window.innerHeight), we scrolled UP. remove light.
+          // If bottom is above viewport (rect.bottom < 0), we scrolled DOWN. remove light.
+          document.body.classList.remove("theme-light");
+        }
       }
     });
   };
 
-  const handleScroll = () => {
-    if (!frame) return;
-
-    const isMenuOpen = layerWhite && !layerWhite.classList.contains("hidden");
-    if (isMenuOpen) return;
-
-    const { top } = frame.getBoundingClientRect();
-    const moreGridRect = moreGrid?.getBoundingClientRect();
-    const viewportCoversMoreGrid =
-      !!moreGridRect && window.innerHeight >= moreGridRect.bottom;
-    const shouldShowBlack = top <= triggerOffset || viewportCoversMoreGrid;
-    const frameTriggerScroll = Math.max(0, frameTop - triggerOffset);
-    const moreGridTriggerScroll = Math.max(0, moreGridTop - window.innerHeight);
-    const triggerReason = viewportCoversMoreGrid
-      ? `viewport >= moreGrid.bottom (${Math.round(window.innerHeight)} >= ${Math.round(moreGridRect?.bottom ?? 0)}) | threshold scrollY >= ${Math.round(moreGridTriggerScroll)}`
-      : `frame top <= offset (${Math.round(top)} <= ${triggerOffset}) | threshold scrollY >= ${Math.round(frameTriggerScroll)}`;
-
-    // Log solo cuando cambia el estado de activación
-    if (shouldShowBlack !== blackStateActive) {
-      blackStateActive = shouldShowBlack;
-      console.log(
-        shouldShowBlack
-          ? `Black logo active | ${triggerReason} | scrollY ${Math.round(window.scrollY)}`
-          : `White logo active | scrollY ${Math.round(window.scrollY)}`
-      );
-    }
-
-    // Invertir colores 200px DESPUÉS de pasar la more-grid
-    const isInverted = window.scrollY >= moreGridTop + backgroundTriggerExtra;
-    if (pageBody) {
-      pageBody.classList.toggle("inverted", isInverted);
-    }
-
-    if (isInverted !== invertedStateActive) {
-      invertedStateActive = isInverted;
-      if (isInverted) {
-        showCallouts();
-      } else {
-        hideCallouts();
-      }
-    }
-
-    calloutHiddenSpans.forEach((span) => {
-      if (isInverted) {
-        // Show with fade/slide in
-        if (span.classList.contains("hidden")) {
-          span.classList.remove("hidden");
-          requestAnimationFrame(() => span.classList.add("callout-visible"));
-        } else {
-          span.classList.add("callout-visible");
-        }
-      } else {
-        // Hide with fade/slide out, then remove from flow
-        span.classList.remove("callout-visible");
-        const onTransitionEnd = () => {
-          span.classList.add("hidden");
-          span.removeEventListener("transitionend", onTransitionEnd);
-        };
-        span.addEventListener("transitionend", onTransitionEnd);
-        // Fallback in case transitionend does not fire
-        setTimeout(() => {
-          if (!span.classList.contains("callout-visible")) {
-            span.classList.add("hidden");
-          }
-        }, 400);
-      }
-    });
-
-    // Prioridad de iconos/logos: modo invertido manda
-    if (isInverted) {
-      showWhiteLogo();
-      setPlusIcon(false);
-    } else if (shouldShowBlack) {
-      showBlackLogo();
-      setPlusIcon(true);
-    } else {
-      showWhiteLogo();
-      setPlusIcon(false);
-    }
-
-    if (shouldShowBlack) {
-      const scrollFromFrameStart = Math.max(0, window.scrollY - frameTop);
-      const cappedScroll = scrollFromFrameStart;
-
-      if (firstWord) {
-        firstWord.style.transform = `translateY(${cappedScroll}px)`;
-      }
-
-      if (secondWord) {
-        const boostedScroll = cappedScroll * 1.2;
-        console.log("second word translation:", boostedScroll);
-        secondWord.style.transform = `translateY(${boostedScroll}px)`;
-      }
-    } else {
-      if (firstWord) firstWord.style.transform = "translateY(0px)";
-      if (secondWord) secondWord.style.transform = "translateY(0px)";
-    }
+  const isElementInViewport = (el: HTMLElement) => {
+    const rect = el.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 0;
   };
 
   const init = () => {
-    updateFrameMetrics();
-    handleScroll();
-
-    if (findWorld && "IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(handleTypingVisibility, {
-        threshold: 0.35,
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(handleIntersection, {
+        threshold: 0.1, // Trigger when 10% visible
+        rootMargin: "-5% 0px -5% 0px", // Slightly shrink trigger area
       });
-      observer.observe(findWorld);
-      if (isElementInViewport(findWorld)) {
-        runTypingSequence();
+
+      if (findWorld) observer.observe(findWorld);
+      if (projectList) observer.observe(projectList);
+
+      // Initial check for load state
+      if (projectList && isElementInViewport(projectList)) {
+        document.body.classList.add("theme-light");
       }
     } else {
       runTypingSequence();
     }
   };
 
-  if (firstWord) firstWord.style.transition = "transform 0.15s ease-out";
-  if (secondWord) secondWord.style.transition = "transform 0.15s ease-out";
-
-  window.addEventListener("scroll", handleScroll);
-  window.addEventListener("resize", () => {
-    updateFrameMetrics();
-    handleScroll();
-  });
   window.addEventListener("load", init);
-
-  if (document.readyState === "complete") init();
 </script>

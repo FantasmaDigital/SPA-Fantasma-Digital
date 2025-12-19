@@ -1,0 +1,125 @@
+---
+// src/components/Sponsorship.astro
+---
+
+<section
+  id="sponsorship"
+  class="py-32 bg-[#040406] relative overflow-hidden border-t border-white/5"
+>
+  <!-- Dynamic Background Element -->
+  <div
+    class="absolute -bottom-24 -left-24 w-96 h-96 bg-[#25c4ff]/5 rounded-full blur-[120px] pointer-events-none"
+  >
+  </div>
+  <div
+    class="absolute -top-24 -right-24 w-96 h-96 bg-[#ffcc33]/5 rounded-full blur-[120px] pointer-events-none"
+  >
+  </div>
+
+  <div class="w-[85%] max-w-[1800px] mx-auto relative z-10">
+    <div
+      class="bg-gradient-to-b from-white/[0.03] to-transparent border border-white/10 p-12 md:p-20 relative overflow-hidden group"
+    >
+      <!-- Decorative Lines -->
+      <div
+        class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
+      >
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        <div class="lg:col-span-7 space-y-8">
+          <div
+            class="inline-flex items-center gap-3 px-4 py-2 bg-[#ffcc33]/10 border border-[#ffcc33]/20 rounded-full reveal-fade-up"
+          >
+            <span class="w-2 h-2 bg-[#ffcc33] rounded-full animate-pulse"
+            ></span>
+            <span
+              class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ffcc33]"
+              >Collaborations & Sponsorship</span
+            >
+          </div>
+
+          <h2
+            class="text-4xl md:text-6xl font-bold text-white leading-tight reveal-fade-up delay-100"
+          >
+            Organizing an event? <br />
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40"
+              >We fuel your digital presence.</span
+            >
+          </h2>
+
+          <p
+            class="text-xl text-[#c8d2dc] font-light max-w-2xl leading-relaxed reveal-fade-up delay-150"
+          >
+            At <span class="text-white font-medium">Fantasma Digital</span>, we
+            love supporting the community. We sponsor high-impact websites for
+            events, tournaments, and non-profits. Let's make your next project
+            legendary.
+          </p>
+
+          <div class="flex flex-wrap gap-8 pt-4 reveal-fade-up delay-200">
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 text-[#25c4ff]"
+              >
+                <i class="fa-solid fa-check text-sm"></i>
+              </div>
+              <span
+                class="text-sm font-bold uppercase tracking-widest text-gray-400"
+                >Custom Design</span
+              >
+            </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 text-[#ffcc33]"
+              >
+                <i class="fa-solid fa-check text-sm"></i>
+              </div>
+              <span
+                class="text-sm font-bold uppercase tracking-widest text-gray-400"
+                >Extreme Scaling</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 flex justify-center lg:justify-end">
+          <div class="relative w-full max-w-sm reveal-scale-up delay-300">
+            <!-- Interactive Call to Action Card -->
+            <div
+              class="bg-white/5 backdrop-blur-md border border-white/10 p-10 relative group-hover:border-[#ffcc33]/50 transition-colors duration-500"
+            >
+              <h4 class="text-2xl font-bold text-white mb-4">
+                Partner with us
+              </h4>
+              <p class="text-gray-400 mb-8 font-light">
+                Are you ready for a sponsorship? Get in touch and tell us about
+                your event.
+              </p>
+
+              <a
+                href="mailto:collabs@fantasma.digital"
+                class="inline-flex items-center gap-4 py-4 px-8 bg-white text-black font-bold uppercase tracking-widest hover:bg-[#ffcc33] transition-all duration-300 w-full justify-center group/btn"
+              >
+                <span>Contact Collabs</span>
+                <i
+                  class="fa-solid fa-paper-plane transform group-hover/btn:-translate-y-1 group-hover/btn:translate-x-1 transition-transform"
+                ></i>
+              </a>
+            </div>
+            <!-- Decorative elements -->
+            <div
+              class="absolute -top-4 -right-4 w-20 h-20 border-t-2 border-r-2 border-[#ffcc33]/20 pointer-events-none"
+            >
+            </div>
+            <div
+              class="absolute -bottom-4 -left-4 w-20 h-20 border-b-2 border-l-2 border-[#25c4ff]/20 pointer-events-none"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

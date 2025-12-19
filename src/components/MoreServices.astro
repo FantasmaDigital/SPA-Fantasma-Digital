@@ -1,0 +1,420 @@
+---
+// src/components/Services.astro
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+}
+
+const services: Service[] = [
+  {
+    id: 1,
+    title: "IT Consultancy",
+    description:
+      "Expert guidance to align your technology strategy with business goals, optimizing infrastructure and processes for maximum efficiency.",
+    icon: "💼",
+    color: "from-blue-400 to-cyan-300",
+  },
+  {
+    id: 2,
+    title: "Software Development",
+    description:
+      "Custom software solutions built with cutting-edge technologies, scalable architectures, and user-centric design principles.",
+    icon: "💻",
+    color: "from-purple-400 to-pink-300",
+  },
+  {
+    id: 3,
+    title: "Data Service",
+    description:
+      "Comprehensive data management, analytics, and visualization services to transform raw data into actionable business intelligence.",
+    icon: "📊",
+    color: "from-emerald-400 to-teal-300",
+  },
+  {
+    id: 4,
+    title: "Cyber Security Solutions",
+    description:
+      "Proactive security measures, threat detection, and compliance management to protect your digital assets and reputation.",
+    icon: "🛡️",
+    color: "from-red-400 to-orange-300",
+  },
+  {
+    id: 5,
+    title: "Collaborative Partnership",
+    description:
+      "Long-term strategic partnerships focused on mutual growth, innovation, and continuous improvement of your digital ecosystem.",
+    icon: "🤝",
+    color: "from-amber-400 to-yellow-300",
+  },
+];
+
+const stats = [
+  { value: 98, suffix: "%", label: "Client Satisfaction" },
+  { value: 250, suffix: "+", label: "Projects Completed" },
+  { value: 15, suffix: " Years", label: "Experience" },
+  { value: 24, suffix: "/7", label: "Support" },
+];
+---
+
+<section id="services" class="relative py-40 bg-[#040406] text-white">
+  <!-- Minimalist Grid Background -->
+  <div
+    class="absolute inset-0 opacity-[0.03] pointer-events-none"
+    style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 40px 40px;"
+    data-parallax
+    data-speed="0.05"
+  >
+  </div>
+
+  <div class="w-[85%] max-w-[1800px] mx-auto relative z-10">
+    <!-- Header -->
+    <div class="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+      <div class="lg:col-span-8">
+        <div class="flex items-center gap-4 mb-12 reveal-fade-up">
+          <h2
+            class="text-[10px] font-bold tracking-[0.4em] uppercase text-[#ffcc33] pb-1 border-b border-[#ffcc33]/40"
+          >
+            Capabilities
+          </h2>
+        </div>
+        <h3
+          class="text-4xl md:text-6xl lg:text-[6.5rem] font-bold leading-[0.9] tracking-tighter text-white service-main-title flex flex-col items-start gap-y-0 uppercase"
+        >
+          <div class="overflow-hidden">
+            <span class="reveal-letters block" data-text="COMPREHENSIVE"
+              >COMPREHENSIVE</span
+            >
+          </div>
+          <div class="overflow-hidden">
+            <span class="reveal-letters block" data-text="SOLUTIONS"
+              >SOLUTIONS</span
+            >
+          </div>
+          <div
+            class="overflow-hidden text-[#25c4ff] drop-shadow-[0_0_40px_rgba(37,196,255,0.15)]"
+          >
+            <span class="reveal-letters block" data-text="ENGINEERED"
+              >ENGINEERED</span
+            >
+          </div>
+          <div
+            class="overflow-hidden text-[#25c4ff] drop-shadow-[0_0_40px_rgba(37,196,255,0.15)]"
+          >
+            <span class="reveal-letters block" data-text="FOR GROWTH."
+              >FOR GROWTH.</span
+            >
+          </div>
+        </h3>
+      </div>
+      <div
+        class="lg:col-span-4 lg:pl-12 border-l border-white/10 h-full flex flex-col justify-end pb-8 relative"
+      >
+        <!-- Decorative Tech Accent -->
+        <div
+          class="absolute top-0 right-0 font-mono text-[10px] opacity-20 text-[#25c4ff] select-none text-right hidden xl:block"
+        >
+          <div class="mb-1 text-[#ffcc33]/60">// System Architecture</div>
+          [INFRA_STRUCTURE]: READY <br />
+          [LATENCY]: 12ms <br />
+          [NODES]: 24_ACTIVE
+        </div>
+        <p
+          class="text-xl text-[#c8d2dc] font-light leading-relaxed max-w-sm reveal-fade-up delay-300"
+        >
+          We combine technical expertise with business acumen to deliver
+          solutions that drive real value. From strategy to execution, we are
+          your partner in digital transformation.
+        </p>
+      </div>
+    </div>
+
+    <!-- Services Grid -->
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-white/10"
+    >
+      {
+        services.map((service, index) => {
+          const isLeft = index === 0 || index === 1 || index === 4;
+          const revealClass = isLeft
+            ? "reveal-slide-right"
+            : "reveal-slide-left";
+          const isWide = index === 0 || index === 3;
+
+          return (
+            <div
+              class={`group relative border-b border-r border-white/10 bg-[#040406] transition-all duration-500 overflow-hidden ${revealClass} service-card ${isWide ? "lg:col-span-2" : ""}`}
+              data-repeat="true"
+              style={`transition-delay: ${index * 100}ms`}
+            >
+              <!-- Hover Background Glow -->
+              <div class="absolute inset-0 bg-gradient-to-br from-[#25c4ff]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div class="p-12 h-full flex flex-col justify-between min-h-[400px] relative z-10">
+                <div class="flex justify-between items-start mb-12">
+                  <div class="text-[#25c4ff] text-4xl group-hover:scale-110 transition-transform duration-500">
+                    {service.icon}
+                  </div>
+                  <span class="font-mono text-sm text-gray-700 group-hover:text-[#ffcc33]/40 transition-colors">
+                    0{service.id}
+                  </span>
+                </div>
+
+                <div>
+                  <h3 class="text-3xl font-bold text-white mb-6 group-hover:text-[#ffcc33] transition-colors">
+                    {service.title}
+                  </h3>
+                  <p class="text-[#c8d2dc] font-light leading-relaxed mb-8 group-hover:text-white transition-colors">
+                    {service.description}
+                  </p>
+
+                  <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#555] group-hover:text-white transition-colors">
+                    <span>Explore</span>
+                    <span class="block w-4 h-px bg-[#555] group-hover:bg-[#ffcc33] group-hover:w-12 transition-all duration-500" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Animated Border Bottom -->
+              <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#ffcc33] transition-all duration-500 group-hover:w-full"></div>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <!-- Stats Section (Minimalist Band) -->
+    <div class="mt-32 pt-16 border-t border-white/10 reveal-fade-up">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+        {
+          stats.map((stat) => (
+            <div class="group">
+              <div class="text-5xl font-bold text-white mb-2 group-hover:text-[#ffcc33] transition-colors">
+                {stat.value}
+                {stat.suffix}
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="h-px w-8 bg-white/20 group-hover:w-12 group-hover:bg-[#25c4ff] transition-all" />
+                <div class="text-xs font-bold text-gray-500 uppercase tracking-widest">
+                  {stat.label}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative Accents -->
+  <div
+    class="absolute top-20 right-[10%] text-white/20 select-none pointer-events-none hidden lg:block"
+  >
+    <div class="text-6xl font-light">+</div>
+  </div>
+</section>
+
+<style>
+  :global(.char) {
+    display: inline-block;
+    transform: translateY(105%);
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform;
+  }
+
+  :global(.reveal-active .char) {
+    transform: translateY(0);
+  }
+
+  .floating-ghost {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    width: 60px;
+    height: 60px;
+    background: url("/logo-blanco.png") no-repeat center center;
+    background-size: contain;
+    filter: drop-shadow(0 0 10px rgba(37, 196, 255, 0.5));
+    animation: ghost-float 2s ease-out forwards;
+  }
+
+  @keyframes ghost-float {
+    0% {
+      transform: translate(-50%, -50%) scale(0) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      transform: translate(-50%, -50%) scale(1.2) rotate(-10deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -200px) scale(0.5) rotate(20deg);
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  const initServicesAnimations = () => {
+    const section = document.querySelector("#services");
+    const cursor = document.querySelector("#inversion-cursor") as HTMLElement;
+    const revealContainers = document.querySelectorAll(".reveal-letters");
+
+    // 1. Split text into letters with robust structure
+    revealContainers.forEach((container) => {
+      const text = container.getAttribute("data-text") || "";
+      container.innerHTML = "";
+
+      [...text].forEach((char, i) => {
+        const span = document.createElement("span");
+        span.className = "char interactive-char";
+        span.style.transitionDelay = `${i * 25}ms`;
+        span.innerHTML = char === " " ? "&nbsp;" : char;
+        container.appendChild(span);
+      });
+    });
+
+    // 2. Magnetic/Interactive Letters Logic
+    let charData: { el: HTMLElement; x: number; y: number }[] = [];
+    let mouseX = 0;
+    let mouseY = 0;
+
+    const updateCharPositions = () => {
+      const chars = document.querySelectorAll(".interactive-char");
+      charData = Array.from(chars).map((char) => {
+        const el = char as HTMLElement;
+        // Temporarily reset transform to get true position
+        const prevTransform = el.style.transform;
+        el.style.transform = "none";
+        const rect = el.getBoundingClientRect();
+        el.style.transform = prevTransform;
+        return {
+          el,
+          x: rect.left + window.scrollX + rect.width / 2,
+          y: rect.top + window.scrollY + rect.height / 2,
+        };
+      });
+    };
+
+    const handleMouseMoveTitle = (e: MouseEvent) => {
+      mouseX = e.pageX;
+      mouseY = e.pageY;
+    };
+
+    const handleMouseLeaveTitle = () => {
+      // Move "virtual mouse" far away to reset letters
+      mouseX = -1000;
+      mouseY = -1000;
+    };
+
+    const titleEl = document.querySelector(".service-main-title");
+    if (titleEl) {
+      titleEl.addEventListener("mousemove", handleMouseMoveTitle as any);
+      titleEl.addEventListener("mouseleave", handleMouseLeaveTitle as any);
+    }
+    window.addEventListener("resize", updateCharPositions);
+
+    const animateLetters = () => {
+      charData.forEach((data) => {
+        const { el, x, y } = data;
+        const dist = Math.hypot(mouseX - x, mouseY - y);
+        const threshold = 180;
+
+        if (dist < threshold) {
+          const angle = Math.atan2(mouseY - y, mouseX - x);
+          const force = (threshold - dist) / threshold;
+          const moveX = Math.cos(angle) * force * -60;
+          const moveY = Math.sin(angle) * force * -60;
+          const rotate = force * 25;
+
+          el.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${rotate}deg)`;
+          el.style.transition = "transform 0.15s ease-out, color 0.3s ease";
+          el.style.color = "#ffcc33";
+          el.style.zIndex = "50";
+        } else {
+          el.style.transform = "translate(0, 0) rotate(0deg)";
+          el.style.transition =
+            "transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.6s ease";
+          el.style.color = "";
+          el.style.zIndex = "1";
+        }
+      });
+      requestAnimationFrame(animateLetters);
+    };
+
+    // Initial positioning after a short delay to ensure layout is ready
+    setTimeout(() => {
+      updateCharPositions();
+      animateLetters();
+    }, 100);
+
+    // 4. Trigger Reveal with Observer
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal-active");
+            // Stop observing once active
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const title = document.querySelector(".service-main-title");
+    if (title) revealObserver.observe(title);
+
+    // 5. Click for Ghosts Effect (Nearest letter spawns ghost)
+    section?.addEventListener("click", (e: any) => {
+      if (charData.length === 0) return;
+
+      // Find nearest character to the click
+      let nearestChar = charData[0];
+      let minPadding = Infinity;
+
+      charData.forEach((data) => {
+        // We use the current transformed position for better feel
+        const rect = data.el.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const dist = Math.hypot(e.clientX - centerX, e.clientY - centerY);
+
+        if (dist < minPadding) {
+          minPadding = dist;
+          nearestChar = data;
+        }
+      });
+
+      // Spawn ghost from the nearest letter
+      const rect = nearestChar.el.getBoundingClientRect();
+      const ghost = document.createElement("div");
+      ghost.className = "floating-ghost";
+      ghost.style.left = `${rect.left + rect.width / 2}px`;
+      ghost.style.top = `${rect.top + rect.height / 2}px`;
+
+      // Variation in animation
+      const randomX = (Math.random() - 0.5) * 150;
+      ghost.style.setProperty("--move-x", `${randomX}px`);
+
+      document.body.appendChild(ghost);
+
+      setTimeout(() => {
+        ghost.remove();
+      }, 2000);
+    });
+  };
+
+  // Run on load and after potential layout shifts
+  document.addEventListener("DOMContentLoaded", initServicesAnimations);
+  // Also run if script is loaded after DOMContentLoaded
+  if (
+    document.readyState === "complete" ||
+    document.readyState === "interactive"
+  ) {
+    initServicesAnimations();
+  }
+</script>
+```

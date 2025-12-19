@@ -1,0 +1,44 @@
+---
+// src/components/Partners.astro
+const partners = [
+  { name: "TechNova", logo: "🚀" },
+  { name: "CyberStream", logo: "🛡️" },
+  { name: "NexGen", logo: "⚡" },
+  { name: "Quantum", logo: "🧬" },
+  { name: "Aethers", logo: "☁️" },
+  { name: "BitForge", logo: "🔨" },
+];
+---
+
+<section id="partners" class="py-24 bg-[#040406] relative overflow-hidden">
+  <div class="w-[85%] max-w-[1800px] mx-auto">
+    <div class="flex flex-col items-center mb-16">
+      <h2
+        class="text-xs font-bold tracking-[0.4em] uppercase text-[#555] mb-4 reveal-fade-up"
+      >
+        Trusted Partners
+      </h2>
+      <div class="h-px w-20 bg-gradient-to-r from-transparent via-[#ffcc33]/40 to-transparent reveal-fade-up delay-100"></div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+      {partners.map((partner, index) => (
+        <div 
+          class="group relative aspect-video flex items-center justify-center border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/10 transition-all duration-500 reveal-fade-up"
+          style={`transition-delay: ${index * 100}ms`}
+        >
+          <!-- Subtle Glow -->
+          <div class="absolute inset-0 bg-gradient-to-br from-[#ffcc33]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          <div class="flex flex-col items-center gap-3 grayscale transition-all duration-500 group-hover:grayscale-0">
+            <span class="text-4xl group-hover:scale-110 transition-transform duration-500">{partner.logo}</span>
+            <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#555] group-hover:text-white transition-colors">{partner.name}</span>
+          </div>
+
+          <!-- Decorative Corner -->
+          <div class="absolute top-0 right-0 w-1 h-1 bg-[#ffcc33]/20 group-hover:bg-[#ffcc33] transition-colors"></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

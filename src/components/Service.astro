@@ -1,459 +1,683 @@
 ---
-const services = [
-  {
-    title: "Product Strategy",
-    description:
-      "Discovery veloz, definición de roadmap, propuesta de valor y KPIs listos para construir y medir.",
-    icon: "🧭",
-  },
-  {
-    title: "UX/UI & Design Systems",
-    description:
-      "Interfaces claras, prototipos validables y sistemas de diseño escalables listos para desarrollo.",
-    icon: "🎨",
-  },
-  {
-    title: "Full-stack Engineering",
-    description:
-      "Arquitectura en la nube, APIs seguras, frontends rápidos y CI/CD para despliegues continuos.",
-    icon: "🛠️",
-  },
-  {
-    title: "AI & Automation",
-    description:
-      "Integración de LLMs, automatización de flujos y copilotos internos con trazabilidad y guardrails.",
-    icon: "🤖",
-  },
-  {
-    title: "QA & Observability",
-    description:
-      "Testing automatizado, monitoreo, alertas y SLOs para operar en producción con confianza.",
-    icon: "🔍",
-  },
-    {
-    title: "Product Strategy",
-    description:
-      "Discovery veloz, definición de roadmap, propuesta de valor y KPIs listos para construir y medir.",
-    icon: "🧭",
-  },
-  {
-    title: "UX/UI & Design Systems",
-    description:
-      "Interfaces claras, prototipos validables y sistemas de diseño escalables listos para desarrollo.",
-    icon: "🎨",
-  },
-  {
-    title: "Full-stack Engineering",
-    description:
-      "Arquitectura en la nube, APIs seguras, frontends rápidos y CI/CD para despliegues continuos.",
-    icon: "🛠️",
-  },
-  {
-    title: "AI & Automation",
-    description:
-      "Integración de LLMs, automatización de flujos y copilotos internos con trazabilidad y guardrails.",
-    icon: "🤖",
-  },
-  {
-    title: "QA & Observability",
-    description:
-      "Testing automatizado, monitoreo, alertas y SLOs para operar en producción con confianza.",
-    icon: "🔍",
-  },
-  {
-    title: "Product Strategy",
-    description:
-      "Discovery veloz, definición de roadmap, propuesta de valor y KPIs listos para construir y medir.",
-    icon: "🧭",
-  },
-  {
-    title: "UX/UI & Design Systems",
-    description:
-      "Interfaces claras, prototipos validables y sistemas de diseño escalables listos para desarrollo.",
-    icon: "🎨",
-  },
-  {
-    title: "Full-stack Engineering",
-    description:
-      "Arquitectura en la nube, APIs seguras, frontends rápidos y CI/CD para despliegues continuos.",
-    icon: "🛠️",
-  },
-  {
-    title: "AI & Automation",
-    description:
-      "Integración de LLMs, automatización de flujos y copilotos internos con trazabilidad y guardrails.",
-    icon: "🤖",
-  },
-  {
-    title: "QA & Observability",
-    description:
-      "Testing automatizado, monitoreo, alertas y SLOs para operar en producción con confianza.",
-    icon: "🔍",
-  },
-    {
-    title: "Product Strategy",
-    description:
-      "Discovery veloz, definición de roadmap, propuesta de valor y KPIs listos para construir y medir.",
-    icon: "🧭",
-  },
-  {
-    title: "UX/UI & Design Systems",
-    description:
-      "Interfaces claras, prototipos validables y sistemas de diseño escalables listos para desarrollo.",
-    icon: "🎨",
-  },
-  {
-    title: "Full-stack Engineering",
-    description:
-      "Arquitectura en la nube, APIs seguras, frontends rápidos y CI/CD para despliegues continuos.",
-    icon: "🛠️",
-  },
-  {
-    title: "AI & Automation",
-    description:
-      "Integración de LLMs, automatización de flujos y copilotos internos con trazabilidad y guardrails.",
-    icon: "🤖",
-  },
-  {
-    title: "QA & Observability",
-    description:
-      "Testing automatizado, monitoreo, alertas y SLOs para operar en producción con confianza.",
-    icon: "🔍",
-  },
-];
+import { services } from "../constants/services";
 ---
 
-<section class="services z-60 absolute bg-[#040406]">
-  <div class="services-header">
-    <div class="services-title">
-      <h3>At Ravn, we design, build, and scale digital products.</h3>
-      <h2>From concept to launch, and beyond.</h2>
+<section
+  class="services relative bg-gradient-to-b from-[#040406] to-[#0a0f16] py-20 overflow-hidden z-10"
+>
+  <!-- Fondo decorativo -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div
+      class="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-[#ffcc33]/5 to-[#25c4ff]/5 rounded-full blur-3xl"
+    >
     </div>
-    <p class="services-blurb">
-      Whether you need full-cycle development, expert design, AI implementation, or rigorous testing,
-      our cross-functional teams plug in and deliver.
-    </p>
+    <div
+      class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-[#25c4ff]/5 to-[#ffcc33]/5 rounded-full blur-3xl"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-[#040406] via-transparent to-[#040406]"
+    >
+    </div>
   </div>
 
-  <div class="services-carousel">
-    <button class="nav-btn nav-prev" type="button" aria-label="Servicio anterior"><</button>
-    <div class="services-track" id="servicesTrack">
-      {
-        services.map((service) => (
-          <article class="service-card my-5">
-            <div class="card-inner">
-              <div class="card-icon" aria-hidden="true">{service.icon}</div>
-              <div class="card-title">{service.title}</div>
-              <div class="card-description">
-                <p>{service.description}</p>
-              </div>
-            </div>
-          </article>
-        ))
-      }
+  <div class="relative z-10 w-[85%] mx-auto">
+    <!-- Header del carousel -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 mb-16 lg:mb-24">
+      <div class="lg:col-span-2">
+        <div class="mb-6">
+          <div
+            class="inline-block px-3 py-1 bg-gradient-to-r from-[#ffcc33]/10 to-[#25c4ff]/10 rounded-full border border-white/5 mb-4 reveal-fade-up"
+          >
+            <span class="text-sm font-semibold text-[#c8d2dc] tracking-wider"
+              >NUESTROS SERVICIOS</span
+            >
+          </div>
+          <h2
+            class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight reveal-fade-up delay-100"
+          >
+            <span
+              class="bg-gradient-to-r from-[#f5fcff] via-[#ffcc33] to-[#25c4ff] bg-clip-text text-transparent"
+            >
+              Soluciones digitales<br class="hidden lg:block" />
+              de principio a fin
+            </span>
+          </h2>
+        </div>
+      </div>
+      <div class="m-auto">
+        <p
+          class="text-[#dbe6f0] text-lg lg:text-xl leading-relaxed justify-center items-center reveal-fade-up delay-200"
+        >
+          Desde la estrategia inicial hasta la implementación y escalamiento,
+          entregamos productos digitales que impulsan el crecimiento de su
+          negocio.
+        </p>
+      </div>
     </div>
-    <button class="nav-btn nav-next" type="button" aria-label="Servicio siguiente">></button>
+
+    <!-- Contenedor principal del carousel -->
+    <div class="carousel-container relative reveal-fade-up delay-300">
+      <!-- Barra de progreso -->
+      <div
+        class="absolute -top-8 left-0 right-0 h-0.5 bg-white/5 rounded-full overflow-hidden"
+      >
+        <div
+          class="carousel-progress h-full bg-gradient-to-r from-[#ffcc33] via-[#25c4ff] to-[#ffcc33] w-1/3 transition-all duration-500 ease-out rounded-full"
+        >
+        </div>
+      </div>
+
+      <!-- Controles de navegación -->
+      <div class="flex items-center justify-end gap-4 mb-8">
+        <div class="flex items-center gap-2">
+          {
+            services.map((_, index) => (
+              <button
+                class={`carousel-indicator w-2 h-2 rounded-full transition-all duration-300 ${index === 0 ? "w-8 bg-gradient-to-r from-[#ffcc33] to-[#25c4ff]" : "bg-white/30 hover:bg-white/50"}`}
+                data-index={index}
+                aria-label={`Ir al servicio ${index + 1}`}
+              />
+            ))
+          }
+        </div>
+        <div class="flex items-center gap-3">
+          <button
+            class="nav-btn nav-prev group relative w-12 h-12 rounded-full border border-white/10 bg-gradient-to-br from-[#0b0f16]/80 to-[#040406]/80 flex items-center justify-center text-white transition-all duration-300 hover:border-[#ffcc33]/40 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,204,51,0.15)]"
+            type="button"
+            aria-label="Servicio anterior"
+          >
+            <svg
+              class="w-5 h-5 group-hover:-translate-x-0.5 transition-transform"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <button
+            class="nav-btn nav-next group relative w-12 h-12 rounded-full border border-white/10 bg-gradient-to-br from-[#0b0f16]/80 to-[#040406]/80 flex items-center justify-center text-white transition-all duration-300 hover:border-[#25c4ff]/40 hover:scale-105 hover:shadow-[0_0_30px_rgba(37,196,255,0.15)]"
+            type="button"
+            aria-label="Servicio siguiente"
+          >
+            <svg
+              class="w-5 h-5 group-hover:translate-x-0.5 transition-transform"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Carousel principal -->
+      <div class="carousel-viewport overflow-hidden rounded-2xl p-5">
+        <div
+          class="services-track flex gap-6 transition-transform duration-700 ease-out"
+          id="servicesTrack"
+          style="transform: translateX(0px);"
+        >
+          {
+            services.map((service: any, index: number) => (
+              <article
+                class="service-card flex-shrink-0 w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] lg:w-[calc(25%-18px)] transition-all duration-500"
+                data-index={index}
+              >
+                <div class="card-inner group relative h-[380px] rounded-2xl overflow-hidden cursor-pointer border border-white/5 bg-gradient-to-br from-[#0b0f16] to-[#040406] hover:border-white/10 transition-all duration-500">
+                  {/* Efectos de fondo */}
+                  <div class="absolute inset-0 bg-gradient-to-br from-[#0b0f16] via-transparent to-[#040406]" />
+                  <div class="absolute inset-0 bg-gradient-to-tr from-[#ffcc33]/0 via-[#25c4ff]/0 to-[#ffcc33]/0 group-hover:from-[#ffcc33]/5 group-hover:via-[#25c4ff]/5 group-hover:to-[#ffcc33]/5 transition-all duration-700" />
+
+                  {/* Grid pattern sutil */}
+                  <div
+                    class="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-700"
+                    style={{
+                      backgroundImage: `linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+                                    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                      backgroundSize: "40px 40px",
+                    }}
+                  />
+
+                  {/* Efectos de luz en hover */}
+                  <div class="absolute -inset-[1px] bg-gradient-to-r from-[#ffcc33]/0 via-[#25c4ff]/0 to-[#ffcc33]/0 group-hover:from-[#ffcc33]/10 group-hover:via-[#25c4ff]/10 group-hover:to-[#ffcc33]/10 rounded-2xl transition-all duration-700 blur-xl" />
+
+                  {/* Contenido principal */}
+                  <div class="relative h-full p-8 flex flex-col z-10">
+                    {/* Icono */}
+                    <div class="card-icon-wrapper mb-8">
+                      <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-[#ffcc33]/20 to-[#25c4ff]/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div class="card-icon relative w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0b0f16] to-[#040406] border border-white/10 flex items-center justify-center text-white text-2xl font-bold shadow-2xl group-hover:scale-110 group-hover:border-[#ffcc33]/30 transition-all duration-500">
+                          {service.icon ? (
+                            <span class="text-3xl" set:html={service.icon} />
+                          ) : (
+                            <div class="relative">
+                              <div class="absolute inset-0 bg-gradient-to-br from-[#ffcc33] to-[#25c4ff] blur-md opacity-50 rounded-2xl" />
+                              <div class="relative font-bold text-white">
+                                {index + 1}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Título */}
+                    <h3 class="card-title text-2xl font-bold text-[#f6fcff] mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#ffcc33] group-hover:to-[#25c4ff] group-hover:bg-clip-text transition-all duration-500">
+                      {service.title}
+                    </h3>
+
+                    {/* Descripción */}
+                    <div class="card-description flex-1">
+                      <p class="text-[#c8d2dc] text-base leading-relaxed line-clamp-4 group-hover:line-clamp-6 transition-all duration-500">
+                        {service.description}
+                      </p>
+                    </div>
+
+                    {/* Footer con CTA */}
+                    <div class="mt-8 pt-6 border-t border-white/10 group-hover:border-[#25c4ff]/30 transition-all duration-500">
+                      <div class="flex items-center justify-between">
+                        <span class="text-sm text-[#dbe6f0] font-medium">
+                          Servicio {index + 1}/{services.length}
+                        </span>
+                        <button class="learn-more-btn opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-500 text-sm font-semibold text-[#25c4ff] hover:text-[#ffcc33] flex items-center gap-2">
+                          Explorar servicio
+                          <svg
+                            class="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      {/* Contador y navegación inferior */}
+      <div
+        class="flex items-center justify-between mt-8 pt-6 border-t border-white/10"
+      >
+        <div class="text-sm text-[#c8d2dc]">
+          <span class="carousel-counter font-semibold text-white">01</span>
+          <span class="mx-2">/</span>
+          <span class="text-white/50"
+            >{services.length.toString().padStart(2, "0")}</span
+          >
+        </div>
+        <div class="flex items-center gap-4">
+          <button
+            class="text-sm font-medium text-[#dbe6f0] hover:text-white transition-colors"
+          >
+            Ver todos los servicios →
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
-  .services {
-    width: 100%;
-    padding: clamp(2rem, 4vw, 3.5rem) 0;
-    display: grid;
-    gap: clamp(1.5rem, 3vw, 2.5rem);
+  /* Animaciones principales */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 
-  .services-header {
-    width: 85%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: clamp(1rem, 3vw, 2rem);
-    align-items: center;
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  .services-title h3 {
-    font-size: clamp(1rem, 2vw, 1.3rem);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin: 0 0 0.35rem;
-    color: #c8d2dc;
+  @keyframes pulse-border {
+    0%,
+    100% {
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    50% {
+      border-color: rgba(37, 196, 255, 0.4);
+    }
   }
 
-  .services-title h2 {
-    margin: 0;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 700;
-    color: #f5fcff;
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
   }
 
-  .services-blurb {
-    margin: 0;
-    color: #dbe6f0;
-    line-height: 1.5;
-    font-size: clamp(0.95rem, 2vw, 1.05rem);
+  /* Clases de animación */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
 
-  .services-carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    padding: 0 clamp(2rem, 3vw, 3rem);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  .animate-slide-up {
+    animation: slide-up 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
-  .services-track {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(240px, 320px);
-    gap: clamp(0.9rem, 2vw, 1.4rem);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 0.25rem 0;
-    scrollbar-width: none;
+  .animate-pulse-border {
+    animation: pulse-border 3s ease-in-out infinite;
   }
 
-  .services-track::-webkit-scrollbar {
-    display: none;
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
   }
 
+  /* Efectos del carousel */
   .service-card {
-    scroll-snap-align: start;
+    opacity: 0.6;
+    transform: scale(0.95);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .service-card.active {
+    opacity: 1;
+    transform: scale(1);
   }
 
   .card-inner {
-    position: relative;
-    height: clamp(260px, 36vw, 360px);
-    border-radius: 10px;
-    background:
-      radial-gradient(120% 120% at 20% 15%, rgba(255, 255, 255, 0.04), transparent 55%),
-      linear-gradient(145deg, #0b0f16, #040406 55%, #030305);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 1.25rem;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 0.55rem;
-    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-  }
-
-  .card-inner::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 30% 20%, rgba(255, 204, 51, 0.08), transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(37, 196, 255, 0.08), transparent 45%),
-      linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
-    opacity: 0.8;
-    pointer-events: none;
-  }
-
-  .card-inner::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    opacity: 0.7;
-    background-size: 40px 40px;
-    background-image:
-      linear-gradient(to right, #1f1f1f 1px, transparent 1px),
-      linear-gradient(to bottom, #1f1f1f 1px, transparent 1px);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .card-icon {
-    position: relative;
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    display: grid;
-    place-items: center;
-    background: linear-gradient(135deg, rgba(255, 204, 51, 0.18), rgba(37, 196, 255, 0.2));
-    color: #0a0f16;
-    font-size: 1.6rem;
-    font-weight: 700;
-    z-index: 1;
-    transform: translateY(0);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .card-title {
-    position: relative;
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #f6fcff;
-    letter-spacing: -0.01em;
-    z-index: 1;
-  }
-
-  .card-description {
-    position: relative;
-    z-index: 1;
-    margin-top: auto;
-    padding-top: 0.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    opacity: 1;
-    transform: translateY(0);
-    transition: border-color 0.3s ease;
-  }
-
-  .card-description p {
-    margin: 0;
-    color: rgba(245, 252, 255, 0.82);
-    line-height: 1.5;
-    font-weight: 600;
-    font-size: 0.98rem;
+    transform-style: preserve-3d;
+    perspective: 1000px;
   }
 
   .card-inner:hover {
     transform: translateY(-8px);
-    border-color: rgba(255, 204, 51, 0.4);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    box-shadow:
+      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      0 0 80px rgba(37, 196, 255, 0.2);
   }
 
-  .card-inner:hover .card-icon {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(255, 204, 51, 0.25);
+  /* Efectos de borde gradiente */
+  .card-inner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(45deg, #ffcc33, #25c4ff, #ffcc33);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
   }
 
-  .card-inner:hover .card-description {
-    border-color: rgba(255, 204, 51, 0.35);
+  .card-inner:hover::before {
+    opacity: 0.8;
   }
 
-  .nav-btn {
-    color: #f5fcff;
-    border: none;
-    background: transparent;
-    width: 64px;
-    height: 64px;
-    display: grid;
-    place-items: center;
-    font-size: 2.4rem;
-    cursor: pointer;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-  }
-
-  .nav-btn:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-  }
-
-  .nav-prev {
-    order: 0;
-  }
-
-  .nav-next {
-    order: 2;
-  }
-
-  @media (max-width: 900px) {
-    .services-header {
-      grid-template-columns: 1fr;
-      width: 92%;
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .services-track {
+      gap: 1rem;
     }
 
-    .services-blurb {
-      width: 100%;
+    .service-card {
+      width: calc(100% - 1rem);
     }
 
-    .services-carousel {
-      padding: 0 1rem;
+    .card-inner {
+      height: 340px;
+      padding: 1.5rem;
     }
+  }
 
-    .nav-btn {
-      display: none;
+  @media (min-width: 641px) and (max-width: 768px) {
+    .service-card {
+      width: calc(50% - 0.75rem);
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .service-card {
+      width: calc(33.333% - 1rem);
     }
   }
 </style>
 
 <script>
-  const track = document.querySelector("#servicesTrack");
-  const prevBtn = document.querySelector(".nav-prev");
-  const nextBtn = document.querySelector(".nav-next");
-  let loopWidth = 0;
-  let autoId = 0;
+  // let rectScTop: number | undefined;
+  // let rectFWY: number | undefined;
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   const rectService = document.querySelector(".services");
+  //   const rectSc = rectService?.getBoundingClientRect();
+  //   rectScTop = rectSc?.top;
+  //   console.log(rectSc);
+  // });
 
-  const stepSize = () => {
-    const card = track?.querySelector(".service-card");
-    if (!card) return 320;
-    const rect = card.getBoundingClientRect();
-    const gap =
-      track instanceof HTMLElement
-        ? parseFloat(getComputedStyle(track).columnGap || "0") || 0
-        : 0;
-    return rect.width + gap;
-  };
+  // document.addEventListener("scroll", () => {
+  //   const firstWord = document.querySelector(
+  //     "#first-word"
+  //   ) as HTMLElement | null;
+  //   const rectFW = firstWord?.getBoundingClientRect();
+  //   rectFWY = rectFW?.y;
 
-  const normalizePosition = () => {
-    if (!track || !loopWidth) return;
-    const max = loopWidth * 2;
-    if (track.scrollLeft >= max) {
-      track.scrollLeft -= loopWidth;
-    } else if (track.scrollLeft <= 0) {
-      track.scrollLeft += loopWidth;
+  //   const secondWord = document.querySelector(
+  //     "#second-word"
+  //   ) as HTMLElement | null;
+  //   const rectSW = secondWord?.getBoundingClientRect();
+  //   const rectSWY = rectSW?.y;
+
+  //   if (rectScTop && rectFWY) {
+  //     if (rectScTop <= rectFWY) {
+  //       if (firstWord) {
+  //         firstWord.style.display = "none";
+  //       }
+  //     }
+  //   }
+
+  //   if (rectScTop && rectSWY) {
+  //     if (rectScTop <= rectSWY) {
+  //       if (secondWord) {
+  //         secondWord.style.display = "none";
+  //       }
+  //     }
+  //   }
+  // });
+  // Carousel para agencia de desarrollo - TypeScript compatible
+  class PremiumCarousel {
+    private track: HTMLElement;
+    private prevBtn: HTMLButtonElement;
+    private nextBtn: HTMLButtonElement;
+    private indicators: NodeListOf<HTMLButtonElement>;
+    private progressBar: HTMLElement;
+    private counter: HTMLElement;
+    private cards: HTMLElement[];
+
+    private config: any = {
+      currentIndex: 0,
+      cardWidth: 320,
+      gap: 24,
+      autoPlay: true,
+      autoPlayInterval: 5000,
+      transitionDuration: 700,
+      enableInfinite: true,
+      enableTouch: true,
+      enableKeyboard: true,
+    };
+
+    private autoPlayTimer: number | null = null;
+    private isAnimating: boolean = false;
+    private touchStartX: number = 0;
+    private touchEndX: number = 0;
+    private totalCards: number;
+    private visibleCards: number = 1;
+
+    constructor() {
+      this.track = document.getElementById("servicesTrack") as HTMLElement;
+      this.prevBtn = document.querySelector(".nav-prev") as HTMLButtonElement;
+      this.nextBtn = document.querySelector(".nav-next") as HTMLButtonElement;
+      this.indicators = document.querySelectorAll(".carousel-indicator");
+      this.progressBar = document.querySelector(
+        ".carousel-progress"
+      ) as HTMLElement;
+      this.counter = document.querySelector(".carousel-counter") as HTMLElement;
+      this.cards = Array.from(this.track.querySelectorAll(".service-card"));
+      this.totalCards = this.cards.length;
+
+      this.init();
     }
-  };
 
-  const scrollByAmount = (dir:any) => {
-    if (!track) return;
-    const distance = dir * stepSize();
-    stopAuto();
-    track.scrollBy({ left: distance, behavior: "smooth" });
-    setTimeout(normalizePosition, 320);
-    startAuto();
-  };
+    private init(): void {
+      this.calculateVisibleCards();
+      this.setupEventListeners();
+      this.updateUI();
+      this.setActiveCard();
 
-  const setupInfiniteLoop = () => {
-    if (!track) return;
-    const cards = Array.from(track.children);
-    if (!cards.length) return;
+      if (this.config.autoPlay) {
+        this.startAutoPlay();
+      }
+    }
 
-    const before = document.createDocumentFragment();
-    const after = document.createDocumentFragment();
+    private calculateVisibleCards(): void {
+      const width = window.innerWidth;
+      if (width < 640) {
+        this.visibleCards = 1;
+      } else if (width < 768) {
+        this.visibleCards = 2;
+      } else if (width < 1024) {
+        this.visibleCards = 3;
+      } else {
+        this.visibleCards = 4;
+      }
+    }
 
-    cards.forEach((card) => {
-      before.appendChild(card.cloneNode(true));
-      after.appendChild(card.cloneNode(true));
-    });
+    private setupEventListeners(): void {
+      // Botones de navegación
+      this.prevBtn.addEventListener("click", () => this.prev());
+      this.nextBtn.addEventListener("click", () => this.next());
 
-    track.prepend(before);
-    track.append(after);
+      // Indicadores
+      this.indicators.forEach((indicator) => {
+        indicator.addEventListener("click", (e: Event) => {
+          const target = e.currentTarget as HTMLButtonElement;
+          const index = parseInt(target.dataset.index || "0");
+          this.goTo(index);
+        });
+      });
 
-    loopWidth = track.scrollWidth / 3;
-    track.scrollLeft = loopWidth;
-  };
+      // Navegación por teclado
+      if (this.config.enableKeyboard) {
+        document.addEventListener("keydown", (e: KeyboardEvent) => {
+          if (e.key === "ArrowLeft") this.prev();
+          if (e.key === "ArrowRight") this.next();
+        });
+      }
 
-  const autoTick = () => {
-    if (!track || !loopWidth) return;
-    track.scrollLeft += 0.55;
-    normalizePosition();
-    autoId = requestAnimationFrame(autoTick);
-  };
+      // Navegación táctil
+      if (this.config.enableTouch) {
+        this.track.addEventListener(
+          "touchstart",
+          (e: TouchEvent) => {
+            this.touchStartX = e.touches[0].clientX;
+            this.stopAutoPlay();
+          },
+          { passive: true }
+        );
 
-  const startAuto = () => {
-    if (autoId) return;
-    autoId = requestAnimationFrame(autoTick);
-  };
+        this.track.addEventListener(
+          "touchend",
+          (e: TouchEvent) => {
+            this.touchEndX = e.changedTouches[0].clientX;
+            this.handleSwipe();
+            this.startAutoPlay();
+          },
+          { passive: true }
+        );
+      }
 
-  const stopAuto = () => {
-    if (!autoId) return;
-    cancelAnimationFrame(autoId);
-    autoId = 0;
-  };
+      // Pausar auto-play al interactuar
+      this.track.addEventListener("mouseenter", () => this.stopAutoPlay());
+      this.track.addEventListener("mouseleave", () => this.startAutoPlay());
 
-  setupInfiniteLoop();
-  startAuto();
+      // Responsive
+      window.addEventListener("resize", () => {
+        this.calculateVisibleCards();
+        this.updateUI();
+      });
+    }
 
-  prevBtn?.addEventListener("click", () => scrollByAmount(-1));
-  nextBtn?.addEventListener("click", () => scrollByAmount(1));
+    private handleSwipe(): void {
+      const swipeThreshold = 50;
+      const swipeDistance = this.touchStartX - this.touchEndX;
 
-  track?.addEventListener("mouseenter", stopAuto);
-  track?.addEventListener("mouseleave", startAuto);
-  track?.addEventListener("touchstart", stopAuto, { passive: true });
-  track?.addEventListener("touchend", startAuto, { passive: true });
+      if (Math.abs(swipeDistance) > swipeThreshold) {
+        if (swipeDistance > 0) {
+          this.next();
+        } else {
+          this.prev();
+        }
+      }
+    }
+
+    private prev(): void {
+      if (this.isAnimating) return;
+
+      this.config.currentIndex = Math.max(0, this.config.currentIndex - 1);
+      this.slideToIndex();
+    }
+
+    private next(): void {
+      if (this.isAnimating) return;
+
+      const maxIndex = Math.max(0, this.totalCards - this.visibleCards);
+      this.config.currentIndex = Math.min(
+        maxIndex,
+        this.config.currentIndex + 1
+      );
+      this.slideToIndex();
+    }
+
+    private goTo(index: number): void {
+      if (this.isAnimating || index === this.config.currentIndex) return;
+
+      this.config.currentIndex = index;
+      this.slideToIndex();
+    }
+
+    private slideToIndex(): void {
+      this.isAnimating = true;
+
+      // Calcular desplazamiento
+      const card = this.cards[0];
+      if (!card) return;
+
+      const cardRect = card.getBoundingClientRect();
+      const gap = parseInt(getComputedStyle(this.track).gap) || 24;
+      const offset = this.config.currentIndex * (cardRect.width + gap);
+
+      // Aplicar transformación
+      this.track.style.transform = `translateX(-${offset}px)`;
+
+      // Actualizar UI
+      setTimeout(() => {
+        this.updateUI();
+        this.setActiveCard();
+        this.isAnimating = false;
+      }, this.config.transitionDuration);
+    }
+
+    private setActiveCard(): void {
+      this.cards.forEach((card, index) => {
+        if (
+          index >= this.config.currentIndex &&
+          index < this.config.currentIndex + this.visibleCards
+        ) {
+          card.classList.add("active");
+        } else {
+          card.classList.remove("active");
+        }
+      });
+    }
+
+    private updateUI(): void {
+      // Actualizar botones
+      const maxIndex = Math.max(0, this.totalCards - this.visibleCards);
+      this.prevBtn.disabled = this.config.currentIndex === 0;
+      this.nextBtn.disabled = this.config.currentIndex >= maxIndex;
+
+      // Actualizar indicadores
+      this.indicators.forEach((indicator, index) => {
+        const isActive = index === this.config.currentIndex;
+        indicator.style.width = isActive ? "32px" : "8px";
+        indicator.style.backgroundColor = isActive
+          ? "transparent"
+          : "rgba(255, 255, 255, 0.3)";
+        indicator.style.backgroundImage = isActive
+          ? "linear-gradient(to right, #ffcc33, #25c4ff)"
+          : "none";
+      });
+
+      // Actualizar barra de progreso
+      if (this.progressBar) {
+        const progress =
+          ((this.config.currentIndex + this.visibleCards) / this.totalCards) *
+          100;
+        this.progressBar.style.width = `${progress}%`;
+      }
+
+      // Actualizar contador
+      if (this.counter) {
+        this.counter.textContent = (this.config.currentIndex + 1)
+          .toString()
+          .padStart(2, "0");
+      }
+    }
+
+    private startAutoPlay(): void {
+      if (!this.config.autoPlay || this.autoPlayTimer) return;
+
+      this.autoPlayTimer = window.setInterval(() => {
+        const maxIndex = Math.max(0, this.totalCards - this.visibleCards);
+        if (this.config.currentIndex >= maxIndex) {
+          this.goTo(0);
+        } else {
+          this.next();
+        }
+      }, this.config.autoPlayInterval);
+    }
+
+    private stopAutoPlay(): void {
+      if (this.autoPlayTimer) {
+        clearInterval(this.autoPlayTimer);
+        this.autoPlayTimer = null;
+      }
+    }
+
+    public destroy(): void {
+      this.stopAutoPlay();
+      // Limpieza de event listeners aquí
+    }
+  }
+
+  // Inicializar cuando el DOM esté listo
+  document.addEventListener("DOMContentLoaded", () => {
+    new PremiumCarousel();
+  });
 </script>

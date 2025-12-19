@@ -3,33 +3,88 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 const { title } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-			integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		/>
-		<meta name="generator" content={Astro.generator} />
-		<title>Fantasma Digital {title}</title>
-	</head>
-	<body class="overflow-x-hidden">
-		<Header />
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>Fantasma Digital {title}</title>
+  </head>
+  <body class="overflow-x-hidden">
+    <Header />
+    <slot />
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Reveal Animations
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.1,
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("reveal-active");
+              if (!entry.target.hasAttribute("data-repeat")) {
+                observer.unobserve(entry.target);
+              }
+            } else {
+              if (entry.target.hasAttribute("data-repeat")) {
+                entry.target.classList.remove("reveal-active");
+              }
+            }
+          });
+        }, observerOptions);
+
+        const animatedElements =
+          document.querySelectorAll('[class*="reveal-"]');
+        animatedElements.forEach((el) => observer.observe(el));
+
+        // Parallax Effect
+        const parallaxElements = document.querySelectorAll("[data-parallax]");
+
+        if (parallaxElements.length > 0) {
+          window.addEventListener("scroll", () => {
+            parallaxElements.forEach((el) => {
+              const speed = parseFloat(el.getAttribute("data-speed") || "0.1");
+              const rect = el.getBoundingClientRect();
+              const isVisible =
+                rect.top < window.innerHeight && rect.bottom > 0;
+
+              if (isVisible) {
+                // Calculate distance from center of viewport
+                const center = window.innerHeight / 2;
+                const elementCenter = rect.top + rect.height / 2;
+                const distanceFromCenter = center - elementCenter;
+
+                // Apply transform
+                // We use translate3d for better performance
+                el.style.transform = `translate3d(0, ${distanceFromCenter * speed}px, 0)`;
+              }
+            });
+          });
+        }
+      });
+    </script>
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>

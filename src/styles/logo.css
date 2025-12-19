@@ -1,0 +1,24 @@
+/* 1. Definición de la animación de flotación */
+@keyframes upToBottom {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+#nameBussines {
+  letter-spacing: 0.2vw;
+}
+
+/* 2. Aplicación de la animación al pasar el ratón por encima del contenedor */
+.logo:hover {
+  animation: upToBottom 2s ease-in-out infinite alternate;
+}
+
+/* 3. (Opcional) Una transición para suavizar el inicio/fin del hover */
+.logo {
+  transition: transform 2s ease-out;
+}

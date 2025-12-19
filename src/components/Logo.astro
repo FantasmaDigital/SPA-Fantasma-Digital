@@ -1,20 +1,32 @@
 ---
 const { variant, showName } = Astro.props;
+
+// Import styles
+import "../styles/logo.css";
 ---
 
 <div class="logo flex flex-row gap-2">
     <img
         src={variant === "white" ? "/logo-blanco.png" : "/logo-negro.png"}
         alt="Logo"
-        class={showName ? "w-24" : "w-20"}
+        class={`
+            ${showName ? "w-24" : "w-20"}
+            ${variant === "white" ? "drop-shadow-lg drop-shadow-black" : "drop-shadow-lg drop-shadow-white"}
+        `}
     />
     {
         showName && (
             <div class="m-auto flex-flex-col" id="nameBussines">
-                <p class="m-auto font-semibold text-[1.5vw]">
+                <p class={`
+                    m-auto font-semibold text-[1.5vw]
+                    ${variant === "white" ? "drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]" : "drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]"}
+                `}>
                     Fantasma Digital
                 </p>
-                <p class="m-auto font-semibold text-[1vw] text-center">
+                <p class={`
+                    m-auto font-semibold text-[1vw] text-center
+                    ${variant === "white" ? "drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]" : "drop-shadow-[0_1px_1px_rgba(255,255,255,0.6)]"}
+                `}>
                     {" "}
                     -- Digital --
                 </p>
@@ -22,30 +34,3 @@ const { variant, showName } = Astro.props;
         )
     }
 </div>
-
-<style>
-    /* 1. Definición de la animación de flotación */
-    @keyframes upToBottom {
-        0%,
-        100% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-2px);
-        }
-    }
-
-    #nameBussines {
-        letter-spacing: 0.2vw;
-    }
-
-    /* 2. Aplicación de la animación al pasar el ratón por encima del contenedor */
-    .logo:hover {
-        animation: upToBottom 2s ease-in-out infinite alternate;
-    }
-
-    /* 3. (Opcional) Una transición para suavizar el inicio/fin del hover */
-    .logo {
-        transition: transform 2s ease-out;
-    }
-</style>

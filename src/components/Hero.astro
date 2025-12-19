@@ -1,299 +1,232 @@
-<div
-    class="relative w-full h-screen overflow-hidden flex flex-col items-center justify-center bg-[#040406]"
->
-    <div
-        class="absolute inset-0 z-0 opacity-70 [background-size:40px_40px] [background-image:linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)]"
-    ></div>
-    <div
-        id="heroInteractiveGrid"
-        class="absolute inset-0 z-[5] opacity-70"
-        aria-hidden="true"
-    ></div>
-    <div
-        class="pointer-events-none absolute inset-x-0 bottom-0 top-1/2 z-10 bg-gradient-to-t from-[#040406] via-[#040406]/80 to-transparent"
-    ></div>
-    <div
-        class="pointer-events-none absolute inset-0 z-20 bg-[#040406]/60 [mask-image:radial-gradient(ellipse_at_center,transparent_25%,#040406)]"
-    ></div>
-    <div
-        class="relative z-30 w-[90%] flex flex-col justify-between items-center gap-10"
-    >
-        <div
-            class="w-full md:w-[55%] flex flex-col items-center text-center gap-5"
-        >
-            <h1
-                class="text-white text-[6vw] font-bold text-center flex justify-center"
-            >
-                <span id="heroTitle">Design. Build.</span>
-            </h1>
-            <p class="text-white text-[2vw]">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. amet
-                consectetur adipisicing elit.
-            </p>
+---
+import "../styles/hero.css";
+---
 
-            <button
-                class="w-max px-20 py-3 rounded uppercase text-black bg-[#ffcc33] font-semibold mx-auto mt-5"
-                >Agenda tu cita</button
-            >
-        </div>
+<div
+  id="hero"
+  class="relative w-full h-screen overflow-hidden flex flex-col items-center justify-center bg-[#040406] hero-section transition-colors duration-700"
+>
+  <div
+    class="absolute inset-0 z-0 opacity-70 [background-size:40px_40px] [background-image:linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] hero-grid transition-opacity duration-700"
+    data-parallax
+    data-speed="0.05"
+  >
+  </div>
+  <div
+    id="heroInteractiveGrid"
+    class="absolute inset-0 z-[5] opacity-70"
+    aria-hidden="true"
+    data-parallax
+    data-speed="0.08"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute inset-x-0 bottom-0 top-1/2 z-10 bg-gradient-to-t from-[#040406] via-[#040406]/80 to-transparent hero-gradient-bottom transition-colors duration-700"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute inset-0 z-20 bg-[#040406]/60 [mask-image:radial-gradient(ellipse_at_center,transparent_25%,#040406)] hero-vignette transition-colors duration-700"
+  >
+  </div>
+  <div
+    class="relative z-30 w-[90%] flex flex-col justify-between items-center gap-10"
+  >
+    <div class="w-full md:w-[55%] flex flex-col items-center text-center gap-5">
+      <h1
+        class="text-white text-[6vw] font-bold text-center flex justify-center reveal-fade-up hero-title transition-colors duration-700"
+      >
+        <span id="heroTitle">Design. Build.</span>
+      </h1>
+      <p
+        class="text-white text-[2vw] reveal-fade-up delay-200 hero-description transition-colors duration-700"
+      >
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. amet
+        consectetur adipisicing elit.
+      </p>
+
+      <button
+        class="w-max px-20 py-3 rounded uppercase text-black bg-[#ffcc33] font-semibold mx-auto mt-5 reveal-fade-up delay-400 hero-cta transition-colors duration-700"
+        >Agenda tu cita</button
+      >
     </div>
+  </div>
 </div>
 
 <style>
-    #heroInteractiveGrid {
-        --tile-size: 86px;
-        --tile-gap: 12px;
-        position: absolute;
-        inset: 0;
-        display: grid;
-        grid-template-columns: repeat(
-            auto-fill,
-            minmax(var(--tile-size), 1fr)
-        );
-        grid-auto-rows: var(--tile-size);
-        gap: var(--tile-gap);
-        padding: 18px;
-        pointer-events: auto;
-        mask-image: radial-gradient(
-            ellipse at center,
-            rgba(0, 0, 0, 0.95),
-            transparent 90%
-        );
-    }
+  /* Theme Light Overrides for Hero */
+  :global(body.theme-light) .hero-section {
+    background-color: #ffffff !important;
+  }
 
-    @media (max-width: 1024px) {
-        #heroInteractiveGrid {
-            --tile-size: 72px;
-            --tile-gap: 10px;
-        }
-    }
+  :global(body.theme-light) .hero-grid {
+    background-image:
+      linear-gradient(to right, #e5e5e5 1px, transparent 1px),
+      linear-gradient(to bottom, #e5e5e5 1px, transparent 1px) !important;
+  }
 
-    @media (max-width: 768px) {
-        #heroInteractiveGrid {
-            --tile-size: 60px;
-            --tile-gap: 8px;
-        }
-    }
+  :global(body.theme-light) .hero-gradient-bottom {
+    background: linear-gradient(
+      to top,
+      #ffffff,
+      rgba(255, 255, 255, 0.8),
+      transparent
+    ) !important;
+  }
 
-    .bg-tile {
-        position: relative;
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        background: linear-gradient(
-            145deg,
-            rgba(255, 255, 255, 0.03),
-            rgba(255, 255, 255, 0.01)
-        );
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        transition: transform 0.45s ease, border-color 0.45s ease,
-            box-shadow 0.45s ease, background-color 0.45s ease,
-            opacity 0.45s ease;
-        overflow: hidden;
-        opacity: 0.8;
-    }
+  :global(body.theme-light) .hero-vignette {
+    background-color: rgba(255, 255, 255, 0.6) !important;
+    mask-image: radial-gradient(
+      ellipse at center,
+      transparent 25%,
+      #ffffff
+    ) !important;
+  }
 
-    .bg-tile::after {
-        content: "";
-        position: absolute;
-        inset: -60%;
-        background: radial-gradient(
-            circle,
-            rgba(255, 204, 51, 0.22),
-            rgba(255, 204, 51, 0) 55%
-        );
-        opacity: 0;
-        transform: scale(0.6);
-        transition: opacity 0.55s ease, transform 0.55s ease;
-    }
+  :global(body.theme-light) .hero-title {
+    color: #040406 !important;
+  }
 
-    .bg-tile:hover {
-        transform: translateY(-6px) scale(1.05);
-        border-color: rgba(255, 204, 51, 0.5);
-        background: linear-gradient(
-            160deg,
-            rgba(255, 204, 51, 0.22),
-            rgba(255, 255, 255, 0.04)
-        );
-        box-shadow: 0 12px 40px rgba(255, 204, 51, 0.2),
-            inset 0 0 22px rgba(255, 204, 51, 0.25);
-        opacity: 1;
-        animation: tileRipple 0.85s ease forwards;
-    }
+  :global(body.theme-light) .hero-description {
+    color: #333333 !important;
+  }
 
-    .bg-tile:hover::after {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    @keyframes tileRipple {
-        0% {
-            transform: translateY(0) scale(1);
-        }
-        45% {
-            transform: translateY(-9px) scale(1.08);
-        }
-        100% {
-            transform: translateY(-4px) scale(1.04);
-        }
-    }
-
-    #heroTitle {
-        display: inline-block;
-        white-space: pre; /* Mantiene los espacios en blanco y es crucial para el efecto de tipeo */
-        border-right: 0.15em solid white; /* El cursor */
-        animation: blink-caret 0.75s step-end infinite;
-    }
-
-    @keyframes blink-caret {
-        from,
-        to {
-            border-color: transparent;
-        }
-        50% {
-            border-color: white;
-        }
-    }
+  :global(body.theme-light) .hero-cta {
+    background-color: #040406 !important;
+    color: #ffffff !important;
+  }
 </style>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const gridContainer = document.getElementById("heroInteractiveGrid");
+  document.addEventListener("DOMContentLoaded", () => {
+    // const gridContainer = document.getElementById("heroInteractiveGrid");
 
-        if (gridContainer instanceof HTMLElement) {
-            const getTileSize = () => {
-                const rawValue = getComputedStyle(gridContainer).getPropertyValue(
-                    "--tile-size",
-                );
-                const parsed = parseFloat(rawValue);
-                return Number.isFinite(parsed) ? parsed : 80;
-            };
+    // if (gridContainer instanceof HTMLElement) {
+    //   const getTileSize = () => {
+    //     const rawValue =
+    //       getComputedStyle(gridContainer).getPropertyValue("--tile-size");
+    //     const parsed = parseFloat(rawValue);
+    //     return Number.isFinite(parsed) ? parsed : 80;
+    //   };
 
-            const buildGrid = () => {
-                const { clientWidth, clientHeight } = gridContainer;
-                const tileSize = getTileSize();
+    //   const buildGrid = () => {
+    //     const { clientWidth, clientHeight } = gridContainer;
+    //     const tileSize = getTileSize();
 
-                if (!clientWidth || !clientHeight || !tileSize) return;
+    //     if (!clientWidth || !clientHeight || !tileSize) return;
 
-                gridContainer.innerHTML = "";
+    //     gridContainer.innerHTML = "";
 
-                const columns = Math.ceil(clientWidth / tileSize);
-                const rows = Math.ceil(clientHeight / tileSize);
-                const totalTiles = columns * rows;
-                const fragment = document.createDocumentFragment();
+    //     const columns = Math.ceil(clientWidth / tileSize);
+    //     const rows = Math.ceil(clientHeight / tileSize);
+    //     const totalTiles = columns * rows;
+    //     const fragment = document.createDocumentFragment();
 
-                for (let index = 0; index < totalTiles; index++) {
-                    const tile = document.createElement("div");
-                    tile.className = "bg-tile";
-                    fragment.appendChild(tile);
-                }
+    //     for (let index = 0; index < totalTiles; index++) {
+    //       const tile = document.createElement("div");
+    //       tile.className = "bg-tile";
+    //       fragment.appendChild(tile);
+    //     }
 
-                gridContainer.appendChild(fragment);
-            };
+    //     gridContainer.appendChild(fragment);
+    //   };
 
-            buildGrid();
+    //   buildGrid();
 
-            let resizeFrame: number | null = null;
+    //   let resizeFrame: number | null = null;
 
-            window.addEventListener("resize", () => {
-                if (resizeFrame) cancelAnimationFrame(resizeFrame);
-                resizeFrame = requestAnimationFrame(() => {
-                    buildGrid();
-                    resizeFrame = null;
-                });
-            });
-        }
+    //   window.addEventListener("resize", () => {
+    //     if (resizeFrame) cancelAnimationFrame(resizeFrame);
+    //     resizeFrame = requestAnimationFrame(() => {
+    //       buildGrid();
+    //       resizeFrame = null;
+    //     });
+    //   });
+    // }
 
-        const titleElement = document.getElementById("heroTitle");
-        if (!(titleElement instanceof HTMLElement)) return;
+    const titleElement = document.getElementById("heroTitle");
+    if (!(titleElement instanceof HTMLElement)) return;
 
-        const originalText = "Design. Build.";
-        titleElement.textContent = ""; // Vaciamos para iniciar la animación
+    const originalText = "Design. Build.";
+    titleElement.textContent = ""; // Vaciamos para iniciar la animación
 
-        const SCROLL_THRESHOLD = 50;
+    const SCROLL_THRESHOLD = 50;
 
-        const SLOW_TYPE_SPEED_MS = 150;
-        const FAST_TYPE_SPEED_MS = 50;
+    const SLOW_TYPE_SPEED_MS = 150;
+    const FAST_TYPE_SPEED_MS = 50;
 
-        let isRevealed = false;
-        let isAnimating = false;
-        let animationTimeout: any = null;
-        let initialAnimationDone = false;
+    let isRevealed = false;
+    let isAnimating = false;
+    let animationTimeout: any = null;
+    let initialAnimationDone = false;
 
-        function stopAnimation() {
-            if (animationTimeout !== null) clearTimeout(animationTimeout);
+    function stopAnimation() {
+      if (animationTimeout !== null) clearTimeout(animationTimeout);
+      isAnimating = false;
+    }
+
+    // Función principal de animación de tipeo/borrado
+    function animateTyping(targetText: any, speed: any) {
+      if (!titleElement) return;
+      stopAnimation();
+      isAnimating = true;
+
+      const textLength = originalText.length;
+      let currentText = titleElement.textContent || "";
+      let isTyping = targetText === originalText;
+
+      const typeAnimation = () => {
+        let currentLength = currentText.length;
+
+        if (isTyping) {
+          if (currentLength < textLength) {
+            currentText += originalText[currentLength];
+            titleElement.textContent = currentText;
+            animationTimeout = setTimeout(typeAnimation, speed);
+          } else {
             isAnimating = false;
-        }
-
-        // Función principal de animación de tipeo/borrado
-        function animateTyping(targetText:any, speed:any) {
-            if (!titleElement) return;
-            stopAnimation();
-            isAnimating = true;
-
-            const textLength = originalText.length;
-            let currentText = titleElement.textContent || "";
-            let isTyping = targetText === originalText;
-
-            const typeAnimation = () => {
-                let currentLength = currentText.length;
-
-                if (isTyping) {
-                    if (currentLength < textLength) {
-                        currentText += originalText[currentLength];
-                        titleElement.textContent = currentText;
-                        animationTimeout = setTimeout(typeAnimation, speed);
-                    } else {
-                        isAnimating = false;
-                        isRevealed = true;
-                        if (!initialAnimationDone) {
-                            initialAnimationDone = true;
-                        }
-                    }
-                } else {
-                    if (currentLength > 0) {
-                        currentText = currentText.substring(
-                            0,
-                            currentLength - 1,
-                        );
-                        titleElement.textContent = currentText;
-                        animationTimeout = setTimeout(typeAnimation, speed);
-                    } else {
-                        isAnimating = false;
-                        isRevealed = false;
-                    }
-                }
-            };
-
-            typeAnimation();
-        }
-
-        // Lógica de Scroll para controlar la animación
-        function handleScroll() {
-            const scroll = window.scrollY;
-
-            // 1. CONDICIÓN DE BORRADO (Scroll Down)
-            if (
-                scroll > SCROLL_THRESHOLD &&
-                isRevealed &&
-                initialAnimationDone
-            ) {
-                animateTyping("", FAST_TYPE_SPEED_MS);
+            isRevealed = true;
+            if (!initialAnimationDone) {
+              initialAnimationDone = true;
             }
-
-            // 2. CONDICIÓN DE ESCRITURA (Scroll Up/Top)
-            else if (scroll <= SCROLL_THRESHOLD && initialAnimationDone) {
-                if (!isRevealed) {
-                    animateTyping(originalText, SLOW_TYPE_SPEED_MS);
-                }
-            }
+          }
+        } else {
+          if (currentLength > 0) {
+            currentText = currentText.substring(0, currentLength - 1);
+            titleElement.textContent = currentText;
+            animationTimeout = setTimeout(typeAnimation, speed);
+          } else {
+            isAnimating = false;
+            isRevealed = false;
+          }
         }
+      };
 
-        // --- INICIO DE LA PÁGINA ---
+      typeAnimation();
+    }
 
-        // 1. Inicia la animación de ESCRITURA al cargar la página (Única vez).
-        animateTyping(originalText, SLOW_TYPE_SPEED_MS);
+    // Lógica de Scroll para controlar la animación
+    function handleScroll() {
+      const scroll = window.scrollY;
 
-        // 2. Añade el listener de scroll.
-        window.addEventListener("scroll", handleScroll);
-    });
+      // 1. CONDICIÓN DE BORRADO (Scroll Down)
+      if (scroll > SCROLL_THRESHOLD && isRevealed && initialAnimationDone) {
+        animateTyping("", FAST_TYPE_SPEED_MS);
+      }
+
+      // 2. CONDICIÓN DE ESCRITURA (Scroll Up/Top)
+      else if (scroll <= SCROLL_THRESHOLD && initialAnimationDone) {
+        if (!isRevealed) {
+          animateTyping(originalText, SLOW_TYPE_SPEED_MS);
+        }
+      }
+    }
+
+    // --- INICIO DE LA PÁGINA ---
+
+    // 1. Inicia la animación de ESCRITURA al cargar la página (Única vez).
+    animateTyping(originalText, SLOW_TYPE_SPEED_MS);
+
+    // 2. Añade el listener de scroll.
+    window.addEventListener("scroll", handleScroll);
+  });
 </script>

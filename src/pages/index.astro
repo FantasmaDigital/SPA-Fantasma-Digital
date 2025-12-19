@@ -2,19 +2,36 @@
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import BrandCarousel from "../components/BrandCarousel.astro";
+import TextMarquee from "../components/TextMarquee.astro";
 import Projects from "../components/Projects.astro";
-import Service from "../components/Service.astro";
+import MoreServices from "../components/MoreServices.astro";
+import AboutUs from "../components/AboutUs.astro";
+import CTA from "../components/CTA.astro";
+import Sponsorship from "../components/Sponsorship.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout title=" | Software y Soluciones Digitales">
-	<!-- Hero en posición relativa -->
-	<div class="relative">
-		<Hero />
-	</div>
+  <!-- Hero en posición relativa -->
+  <div class="relative">
+    <Hero />
+  </div>
 
-	<BrandCarousel />
+  <BrandCarousel />
 
-	<Projects />
+  <Projects />
 
-	<Service />
+  <TextMarquee />
+
+  <!-- <Service /> -->
+
+  <MoreServices />
+
+  <AboutUs />
+
+  <CTA />
+
+  <Sponsorship />
+
+  <Footer />
 </Layout>

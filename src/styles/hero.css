@@ -1,0 +1,109 @@
+#heroInteractiveGrid {
+  --tile-size: 86px;
+  --tile-gap: 12px;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--tile-size), 1fr));
+  grid-auto-rows: var(--tile-size);
+  gap: var(--tile-gap);
+  padding: 18px;
+  pointer-events: auto;
+  mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.95),
+    transparent 90%
+  );
+}
+
+@media (max-width: 1024px) {
+  #heroInteractiveGrid {
+    --tile-size: 72px;
+    --tile-gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  #heroInteractiveGrid {
+    --tile-size: 60px;
+    --tile-gap: 8px;
+  }
+}
+
+.bg-tile {
+  position: relative;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: transform 0.45s ease, border-color 0.45s ease,
+    box-shadow 0.45s ease, background-color 0.45s ease, opacity 0.45s ease;
+  overflow: hidden;
+  opacity: 0.8;
+}
+
+.bg-tile::after {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 204, 51, 0.22),
+    rgba(255, 204, 51, 0) 55%
+  );
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.bg-tile:hover {
+  transform: translateY(-6px) scale(1.05);
+  border-color: rgba(255, 204, 51, 0.5);
+  background: linear-gradient(
+    160deg,
+    rgba(255, 204, 51, 0.22),
+    rgba(255, 255, 255, 0.04)
+  );
+  box-shadow: 0 12px 40px rgba(255, 204, 51, 0.2),
+    inset 0 0 22px rgba(255, 204, 51, 0.25);
+  opacity: 1;
+  animation: tileRipple 0.85s ease forwards;
+}
+
+.bg-tile:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@keyframes tileRipple {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  45% {
+    transform: translateY(-9px) scale(1.08);
+  }
+  100% {
+    transform: translateY(-4px) scale(1.04);
+  }
+}
+
+#heroTitle {
+  display: inline-block;
+  white-space: pre; /* Mantiene los espacios en blanco y es crucial para el efecto de tipeo */
+  border-right: 0.15em solid white; /* El cursor */
+  animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: white;
+  }
+}

@@ -1,0 +1,296 @@
+/* Animaciones generales */
+@keyframes leftAnimation {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes rightAnimation {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.showMenu-link {
+  animation: fadeIn 1.5s ease-in-out forwards;
+  margin-left: 10vw;
+}
+
+.applyLeftAnimation {
+  animation: leftAnimation 0.5s forwards;
+}
+
+.applyRightAnimation {
+  animation: rightAnimation 0.5s forwards;
+}
+
+.showMenuBtn {
+  transition: transform 0.3s ease;
+  z-index: 15;
+  color: white;
+}
+
+#logo-wrapper {
+  display: grid;
+  place-items: center;
+}
+
+#logo-wrapper > div {
+  grid-area: 1 / 1;
+  transition: opacity 0.35s ease;
+}
+
+.logo-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.logo-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+/* Espacio entre letras del li */
+.li-spacing {
+  letter-spacing: 0.1em;
+  margin: auto;
+}
+
+.navbar-li {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.link-underline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 3px;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 3px;
+  border-radius: 999px;
+  background-color: #ffcc33;
+  transition: width 0.7s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Thicker, tighter underline inside the full-screen menu */
+.layer-white .link-underline {
+  padding-bottom: 0px;
+}
+
+.layer-white .link-underline::after {
+  height: 6px;
+}
+
+/* Subrayado mA!s delgado solo para redes sociales */
+.social-link.link-underline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 2px;
+}
+
+.social-link.link-underline::after {
+  height: 1.5px;
+}
+
+/* En la capa blanca, adelgazamos aun mA!s el subrayado de redes */
+.layer-white .social-link.link-underline {
+  padding-bottom: 1px;
+}
+
+.layer-white .social-link.link-underline::after {
+  height: 1.5px;
+}
+
+.layer-white .social-panel {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(255, 255, 255, 0.82)
+  );
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.08);
+  padding: 16px 18px;
+}
+
+.layer-white .social-panel p {
+  max-width: 420px;
+}
+
+.layer-white .quick-links .link-underline {
+  padding-bottom: 3px;
+}
+
+.layer-white .quick-links .link-underline::after {
+  height: 2px;
+}
+
+/* Ocultar */
+.hidden-li {
+  opacity: 0;
+}
+
+/* Delay individual para cada item */
+.navbar-li:nth-child(1) {
+  transition-delay: 0s;
+}
+.navbar-li:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.navbar-li:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.navbar-li:nth-child(4) {
+  transition-delay: 0.4s;
+}
+.navbar-li:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+.layer-white {
+  height: 100dvh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 90;
+}
+
+/* IN animations (Vertical Invertida) */
+/* ENTRADA DEL PANEL IZQUIERDO (triangle-top): Viene de ARRIBA hacia abajo */
+@keyframes leftIn {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+/* ENTRADA DEL PANEL DERECHO (triangle-bottom): Viene de ABAJO hacia arriba */
+@keyframes rightIn {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* OUT animations (Vertical Invertida al revés) */
+/* SALIDA DEL PANEL IZQUIERDO (triangle-top): Se va ABAJO */
+@keyframes leftOut {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+/* SALIDA DEL PANEL DERECHO (triangle-bottom): Se va ARRIBA */
+@keyframes rightOut {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+/* Clases para aplicar IN */
+.triangle-top.in {
+  animation: leftIn 0.7s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+.triangle-bottom.in {
+  animation: rightIn 0.7s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+.triangle-top.out {
+  animation: leftOut 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+.triangle-bottom.out {
+  animation: rightOut 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.triangle-top,
+.triangle-bottom {
+  background-color: white;
+  height: 100dvh;
+  width: 50vw;
+  z-index: 6;
+  position: relative;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.changeColor {
+  color: #040406;
+}
+
+.menu-toggle {
+  mix-blend-mode: difference;
+}
+
+.menu-toggle img {
+  transition: filter 0.3s ease, opacity 0.3s ease;
+  filter: invert(0);
+}
+
+.menu-toggle.open img {
+  filter: invert(1);
+  opacity: 1;
+}
+
+.cross-fade {
+  transition: opacity 0.25s ease, filter 0.3s ease;
+}
+
+.cross-fade.cross-fade-out {
+  opacity: 0;
+}
+
+.plusAnimationIn {
+  width: 3.5vw;
+  height: 3.5vw;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.plusAnimationOut {
+  width: 3.5vw;
+  height: 3.5vw;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rotate45 {
+  transition: transform 0.5s ease;
+  transform: rotate(45deg);
+}
