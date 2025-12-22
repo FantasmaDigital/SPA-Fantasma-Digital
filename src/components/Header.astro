@@ -11,7 +11,7 @@ import "../styles/header.css";
   <div
     class="p-[1.5vw] w-[90%] mx-auto flex flex-row justify-between text-white"
   >
-    <div id="logo-wrapper" class="relative z-[140]">
+    <div id="logo-wrapper" class="relative z-[140] cursor-pointer">
       <div id="logo-white" class="logo-visible">
         <Logo variant="white" />
       </div>
@@ -23,9 +23,16 @@ import "../styles/header.css";
     <ul class="flex flex-row gap-20 uppercase">
       {
         headerLinks.map((hl) => {
+          let href = hl.href;
+          const t = hl.title.toLowerCase();
+          if (t.includes('proyectos') || t.includes('projects')) href = "#projects";
+          if (t.includes('servicios') || t.includes('services')) href = "#services";
+          if (t.includes('inicio') || t.includes('home')) href = "#hero";
+          if (t.includes('contacto') || t.includes('contact')) href = "#contact";
+          if (t.includes('nosotros') || t.includes('about')) href = "#about";
           return (
             <li class="inline-block mr-4 text-md font-semibold navbar-li link-underline li-spacing">
-              <a href={hl.href}>{hl.title}</a>
+              <a href={href}>{hl.title}</a>
             </li>
           );
         })
@@ -54,17 +61,26 @@ import "../styles/header.css";
         class="flex flex-col w-full font-bold text-[6vw] z-20 m-auto justify-end items-start h-full pb-10"
       >
         {
-          headerLinks.slice(0, 4).map((h) => (
-            <li class="showMenu-link link-underline">
-              <a
-                href={h.href}
-                class="text-[100px] text-[#040406] h-max"
-                style="line-height: 128px;"
-              >
-                {h.title}
-              </a>
-            </li>
-          ))
+          headerLinks.slice(0, 4).map((h) => {
+            let href = h.href;
+            const t = h.title.toLowerCase();
+            if (t.includes('proyectos') || t.includes('projects')) href = "#projects";
+            if (t.includes('servicios') || t.includes('services')) href = "#services";
+            if (t.includes('inicio') || t.includes('home')) href = "#hero";
+            if (t.includes('contacto') || t.includes('contact')) href = "#contact";
+            if (t.includes('nosotros') || t.includes('about')) href = "#about";
+            return (
+              <li class="showMenu-link link-underline">
+                <a
+                  href={href}
+                  class="text-[100px] text-[#040406] h-max"
+                  style="line-height: 128px;"
+                >
+                  {h.title}
+                </a>
+              </li>
+            );
+          })
         }
       </ul>
     </div>
@@ -113,11 +129,18 @@ import "../styles/header.css";
           <ul class="flex flex-col gap-2 text-[1.4vw] font-semibold text-black">
             {
               headerLinks.map((l) => {
+                let href = l.href;
+                const t = l.title.toLowerCase();
+                if (t.includes('proyectos') || t.includes('projects')) href = "#projects";
+                if (t.includes('servicios') || t.includes('services')) href = "#services";
+                if (t.includes('inicio') || t.includes('home')) href = "#hero";
+                if (t.includes('contacto') || t.includes('contact')) href = "#contact";
+                if (t.includes('nosotros') || t.includes('about')) href = "#about";
                 return (
                   <li class="flex flex-row items-center">
                     <span class="text-[#040406] font-bold pr-2">-</span>
                     <a
-                      href={l.href}
+                      href={href}
                       class="link-underline transition-all duration-300 flex flex-row gap-4"
                     >
                       {l.title}
@@ -208,6 +231,37 @@ import "../styles/header.css";
   window.addEventListener("load", () => {
     updateHiddenItems();
     detectarPosicionComponente(".navbar");
+
+    // Navegación suave y cierre de menú móvil
+    const headerLinks = document.querySelectorAll("header a[href^='#']");
+    headerLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const href = link.getAttribute("href");
+        if (href) {
+          const target = document.querySelector(href);
+          if (target) {
+            // Si el menú móvil está abierto, ciérralo simulando click en el botón
+            if (layerWhite && !layerWhite.classList.contains("hidden")) {
+              (showMenu as HTMLElement)?.click();
+            }
+            target.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      });
+    });
+
+    // Scroll to top al hacer click en el logo
+    const logoWrapper = document.getElementById("logo-wrapper");
+    logoWrapper?.addEventListener("click", () => {
+      if (layerWhite && !layerWhite.classList.contains("hidden")) {
+        (showMenu as HTMLElement)?.click();
+      }
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
   });
 
   showMenu?.addEventListener("click", () => {

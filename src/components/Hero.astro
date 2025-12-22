@@ -25,29 +25,95 @@ import "../styles/hero.css";
   >
   </div>
   <div
-    class="pointer-events-none absolute inset-0 z-20 bg-[#040406]/60 [mask-image:radial-gradient(ellipse_at_center,transparent_25%,#040406)] hero-vignette transition-colors duration-700"
+    class="pointer-events-none absolute inset-0 z-20 bg-[#040406]/60 [mask-image:radial-gradient(circle_at_center,transparent_0%,black_100%)] hero-vignette transition-colors duration-700"
   >
+  </div>
+
+  <!-- Ambient Glows -->
+  <div
+    class="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-[#25c4ff]/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen animate-pulse-slow"
+  >
+  </div>
+  <div
+    class="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-[#ffcc33]/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen animate-pulse-slow delay-1000"
+  >
+  </div>
+
+  <!-- Decorative Code Snippets (Live Typing) -->
+  <div
+    class="absolute top-[18%] left-[5%] hidden lg:block pointer-events-none opacity-40 font-mono text-[10px] leading-relaxed text-[#25c4ff]"
+  >
+    <div
+      class="typing-code"
+      data-code={`const system = {
+  status: "OPTIMIZED",
+  latam_node: true,
+  security: "MAX"
+};`}
+    >
+    </div>
+  </div>
+
+  <div
+    class="absolute bottom-[25%] right-[5%] hidden lg:block pointer-events-none opacity-40 font-mono text-[10px] leading-relaxed text-[#ffcc33] text-right"
+  >
+    <div
+      class="typing-code"
+      data-code={`await Fantasma.init({
+  mode: "SCALABLE",
+  modules: ["AI", "UX"]
+});`}
+    >
+    </div>
+  </div>
+
+  <div
+    class="absolute top-[25%] right-[10%] hidden lg:block pointer-events-none opacity-30 font-mono text-[10px] leading-relaxed text-white/50"
+  >
+    <div
+      class="typing-code"
+      data-code={`import { Future } 
+  from "@fantasma/core";`}
+    >
+    </div>
   </div>
   <div
     class="relative z-30 w-[90%] flex flex-col justify-between items-center gap-10"
   >
     <div class="w-full md:w-[55%] flex flex-col items-center text-center gap-5">
       <h1
-        class="text-white text-[6vw] font-bold text-center flex justify-center reveal-fade-up hero-title transition-colors duration-700"
+        class="text-[6vw] font-bold text-center flex justify-center reveal-fade-up hero-title transition-colors duration-700 leading-tight"
       >
-        <span id="heroTitle">Design. Build.</span>
+        <span
+          id="heroTitle"
+          class="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50 drop-shadow-sm"
+          >Innovación Escalable.</span
+        >
       </h1>
       <p
         class="text-white text-[2vw] reveal-fade-up delay-200 hero-description transition-colors duration-700"
       >
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. amet
-        consectetur adipisicing elit.
+        Transformamos negocios en El Salvador y Centroamérica con software de
+        alto rendimiento, diseño centrado en el usuario y estrategias digitales
+        impulsadas por IA.
       </p>
 
-      <button
-        class="w-max px-20 py-3 rounded uppercase text-black bg-[#ffcc33] font-semibold mx-auto mt-5 reveal-fade-up delay-400 hero-cta transition-colors duration-700"
-        >Agenda tu cita</button
+      <a
+        href="#contact"
+        class="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none mt-8 reveal-fade-up delay-400 hero-cta group"
       >
+        <span
+          class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#25c4ff_0%,#040406_50%,#ffcc33_100%)]"
+        ></span>
+        <span
+          class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#040406] px-10 py-1 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-3xl transition-colors duration-300 group-hover:bg-[#040406]/80 hero-cta-inner gap-3"
+        >
+          Iniciar Proyecto
+          <i
+            class="fa-solid fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform duration-300 text-[#ffcc33]"
+          ></i>
+        </span>
+      </a>
     </div>
   </div>
 </div>
@@ -76,9 +142,9 @@ import "../styles/hero.css";
   :global(body.theme-light) .hero-vignette {
     background-color: rgba(255, 255, 255, 0.6) !important;
     mask-image: radial-gradient(
-      ellipse at center,
-      transparent 25%,
-      #ffffff
+      circle at center,
+      transparent 10%,
+      black 85%
     ) !important;
   }
 
@@ -91,62 +157,65 @@ import "../styles/hero.css";
   }
 
   :global(body.theme-light) .hero-cta {
-    background-color: #040406 !important;
-    color: #ffffff !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  :global(body.theme-light) .hero-cta-inner {
+    background-color: #ffffff !important;
+    color: #040406 !important;
+  }
+
+  :global(body.theme-light) .hero-cta-inner:hover {
+    background-color: #f0f0f0 !important;
+  }
+  :global(body.theme-light) .hero-cta-text {
+    color: #040406 !important;
+  }
+  :global(body.theme-light) .hero-cta:hover {
+    background-color: rgba(4, 4, 6, 0.1) !important;
+  }
+
+  @keyframes pulse-slow {
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.1);
+    }
+  }
+  .typing-cursor::after {
+    content: "|";
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+    opacity: 0.7;
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  .typing-code {
+    white-space: pre;
   }
 </style>
 
 <script>
+  // Forzar inicio en el top al recargar la página (para el Preloader)
+  if (history.scrollRestoration) {
+    history.scrollRestoration = "manual";
+  }
+  window.scrollTo(0, 0);
+
   document.addEventListener("DOMContentLoaded", () => {
-    // const gridContainer = document.getElementById("heroInteractiveGrid");
-
-    // if (gridContainer instanceof HTMLElement) {
-    //   const getTileSize = () => {
-    //     const rawValue =
-    //       getComputedStyle(gridContainer).getPropertyValue("--tile-size");
-    //     const parsed = parseFloat(rawValue);
-    //     return Number.isFinite(parsed) ? parsed : 80;
-    //   };
-
-    //   const buildGrid = () => {
-    //     const { clientWidth, clientHeight } = gridContainer;
-    //     const tileSize = getTileSize();
-
-    //     if (!clientWidth || !clientHeight || !tileSize) return;
-
-    //     gridContainer.innerHTML = "";
-
-    //     const columns = Math.ceil(clientWidth / tileSize);
-    //     const rows = Math.ceil(clientHeight / tileSize);
-    //     const totalTiles = columns * rows;
-    //     const fragment = document.createDocumentFragment();
-
-    //     for (let index = 0; index < totalTiles; index++) {
-    //       const tile = document.createElement("div");
-    //       tile.className = "bg-tile";
-    //       fragment.appendChild(tile);
-    //     }
-
-    //     gridContainer.appendChild(fragment);
-    //   };
-
-    //   buildGrid();
-
-    //   let resizeFrame: number | null = null;
-
-    //   window.addEventListener("resize", () => {
-    //     if (resizeFrame) cancelAnimationFrame(resizeFrame);
-    //     resizeFrame = requestAnimationFrame(() => {
-    //       buildGrid();
-    //       resizeFrame = null;
-    //     });
-    //   });
-    // }
 
     const titleElement = document.getElementById("heroTitle");
     if (!(titleElement instanceof HTMLElement)) return;
 
-    const originalText = "Design. Build.";
+    const originalText = "Innovación Escalable.";
     titleElement.textContent = ""; // Vaciamos para iniciar la animación
 
     const SCROLL_THRESHOLD = 50;
@@ -228,5 +297,30 @@ import "../styles/hero.css";
 
     // 2. Añade el listener de scroll.
     window.addEventListener("scroll", handleScroll);
+
+    // --- LOGICA PARA SNIPPETS DE CODIGO (Efecto Matrix/Typing) ---
+    const codeSnippets = document.querySelectorAll(".typing-code");
+
+    codeSnippets.forEach((el, index) => {
+      const text = el.getAttribute("data-code") || "";
+      const delay = index * 1500 + 500; // Stagger start times
+
+      setTimeout(() => {
+        let i = 0;
+        el.innerHTML = '<span class="typing-cursor"></span>';
+        const cursor: any = el.querySelector(".typing-cursor");
+
+        function typeChar() {
+          if (i < text.length) {
+            const char = text.charAt(i);
+            // Insert char before cursor
+            cursor.insertAdjacentText("beforebegin", char);
+            i++;
+            setTimeout(typeChar, Math.random() * 50 + 30); // Random typing speed
+          }
+        }
+        typeChar();
+      }, delay);
+    });
   });
 </script>

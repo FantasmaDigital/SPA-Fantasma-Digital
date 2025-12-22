@@ -11,51 +11,74 @@ interface Service {
 const services: Service[] = [
   {
     id: 1,
-    title: "IT Consultancy",
-    description:
-      "Expert guidance to align your technology strategy with business goals, optimizing infrastructure and processes for maximum efficiency.",
-    icon: "💼",
+    title: "Ciberseguridad Empresarial",
+    description: "Blindaje digital proactivo para proteger tus activos más críticos y la confianza de tus clientes.",
+    icon: "🛡️",
     color: "from-blue-400 to-cyan-300",
   },
   {
     id: 2,
-    title: "Software Development",
-    description:
-      "Custom software solutions built with cutting-edge technologies, scalable architectures, and user-centric design principles.",
-    icon: "💻",
+    title: "Diseño de Experiencia (UX/UI)",
+    description: "Interfaces intuitivas y estéticas que convierten visitantes en clientes leales a través de diseño científico.",
+    icon: "🎨",
     color: "from-purple-400 to-pink-300",
   },
   {
     id: 3,
-    title: "Data Service",
-    description:
-      "Comprehensive data management, analytics, and visualization services to transform raw data into actionable business intelligence.",
-    icon: "📊",
+    title: "Desarrollo Web de Alto Rendimiento",
+    description: "Arquitecturas web modernas, veloces y SEO-ready que funcionan como el motor de crecimiento de tu marca.",
+    icon: "🌐",
     color: "from-emerald-400 to-teal-300",
   },
   {
     id: 4,
-    title: "Cyber Security Solutions",
-    description:
-      "Proactive security measures, threat detection, and compliance management to protect your digital assets and reputation.",
-    icon: "🛡️",
+    title: "Soporte e Infraestructura Crítica",
+    description: "Garantizamos la continuidad operativa de tu negocio con monitoreo 24/7 y respuesta inmediata.",
+    icon: "🛠️",
     color: "from-red-400 to-orange-300",
   },
   {
     id: 5,
-    title: "Collaborative Partnership",
-    description:
-      "Long-term strategic partnerships focused on mutual growth, innovation, and continuous improvement of your digital ecosystem.",
-    icon: "🤝",
+    title: "Desarrollo de Apps Nativas",
+    description: "Aplicaciones móviles y de escritorio potentes que ponen tu negocio en el bolsillo de tus usuarios.",
+    icon: "📱",
     color: "from-amber-400 to-yellow-300",
+  },
+  {
+    id: 6,
+    title: "Automatización Inteligente",
+    description: "Optimizamos flujos de trabajo eliminando tareas repetitivas mediante software a medida e IA.",
+    icon: "🤖",
+    color: "from-blue-400 to-cyan-300",
+  },
+  {
+    id: 7,
+    title: "Data Science & Analytics",
+    description: "Transformamos datos brutos en inteligencia de negocios accionable para decisiones estratégicas.",
+    icon: "📈",
+    color: "from-purple-400 to-pink-300",
+  },
+  {
+    id: 8,
+    title: "Consultoría Estratégica TI",
+    description: "Auditoría y roadmaps tecnológicos para alinear tu infraestructura con tus objetivos comerciales a largo plazo.",
+    icon: "💡",
+    color: "from-emerald-400 to-teal-300",
+  },
+  {
+    id: 9,
+    title: "Estrategia de Contenido Digital",
+    description: "Narrativa de marca y producción visual que posiciona tu autoridad en el mercado digital.",
+    icon: "📸",
+    color: "from-red-400 to-orange-300",
   },
 ];
 
 const stats = [
-  { value: 98, suffix: "%", label: "Client Satisfaction" },
-  { value: 250, suffix: "+", label: "Projects Completed" },
-  { value: 15, suffix: " Years", label: "Experience" },
-  { value: 24, suffix: "/7", label: "Support" },
+  { value: 98, suffix: "%", label: "Satisfacción Global" },
+  { value: 250, suffix: "+", label: "Proyectos Exitosos" },
+  { value: 15, suffix: " Años", label: "Experiencia Combinada" },
+  { value: 24, suffix: "/7", label: "Soporte Crítico" },
 ];
 ---
 
@@ -84,27 +107,27 @@ const stats = [
           class="text-4xl md:text-6xl lg:text-[6.5rem] font-bold leading-[0.9] tracking-tighter text-white service-main-title flex flex-col items-start gap-y-0 uppercase"
         >
           <div class="overflow-hidden">
-            <span class="reveal-letters block" data-text="COMPREHENSIVE"
-              >COMPREHENSIVE</span
+            <span class="reveal-letters block" data-text="SOLUCIONES"
+              >SOLUCIONES</span
             >
           </div>
           <div class="overflow-hidden">
-            <span class="reveal-letters block" data-text="SOLUTIONS"
-              >SOLUTIONS</span
+            <span class="reveal-letters block" data-text="INTEGRALES"
+              >INTEGRALES</span
             >
           </div>
           <div
             class="overflow-hidden text-[#25c4ff] drop-shadow-[0_0_40px_rgba(37,196,255,0.15)]"
           >
-            <span class="reveal-letters block" data-text="ENGINEERED"
-              >ENGINEERED</span
+            <span class="reveal-letters block" data-text="DISEÑADAS PARA"
+              >DISEÑADAS PARA</span
             >
           </div>
           <div
             class="overflow-hidden text-[#25c4ff] drop-shadow-[0_0_40px_rgba(37,196,255,0.15)]"
           >
-            <span class="reveal-letters block" data-text="FOR GROWTH."
-              >FOR GROWTH.</span
+            <span class="reveal-letters block" data-text="EL CRECIMIENTO."
+              >EL CRECIMIENTO.</span
             >
           </div>
         </h3>
@@ -124,10 +147,17 @@ const stats = [
         <p
           class="text-xl text-[#c8d2dc] font-light leading-relaxed max-w-sm reveal-fade-up delay-300"
         >
-          We combine technical expertise with business acumen to deliver
-          solutions that drive real value. From strategy to execution, we are
-          your partner in digital transformation.
+          Combinamos experiencia técnica con visión de negocio para entregar soluciones que generan valor real. Desde la estrategia hasta la ejecución, somos tu socio en transformación digital.
         </p>
+
+        <div
+          class="typing-code mt-6 font-mono text-xs text-[#25c4ff] opacity-80 whitespace-pre leading-relaxed"
+          data-code={`const system = {
+  status: "OPTIMIZED",
+  latam_node: true,
+  security: "MAX"
+};`}
+        ></div>
       </div>
     </div>
 
@@ -137,17 +167,16 @@ const stats = [
     >
       {
         services.map((service, index) => {
-          const isLeft = index === 0 || index === 1 || index === 4;
-          const revealClass = isLeft
-            ? "reveal-slide-right"
-            : "reveal-slide-left";
-          const isWide = index === 0 || index === 3;
+          // Adjust reveal animation pattern for 3-column grid
+          // Rows: 0-2, 3-5, 6-8
+          // Let's alternate or use index to determine animation
+          const revealClass = index % 2 === 0 ? "reveal-slide-right" : "reveal-slide-left";
 
           return (
             <div
-              class={`group relative border-b border-r border-white/10 bg-[#040406] transition-all duration-500 overflow-hidden ${revealClass} service-card ${isWide ? "lg:col-span-2" : ""}`}
+              class={`group relative border-b border-r border-white/10 bg-[#040406] transition-all duration-500 overflow-hidden ${revealClass} service-card`}
               data-repeat="true"
-              style={`transition-delay: ${index * 100}ms`}
+              style={`transition-delay: ${index * 50}ms`}
             >
               <!-- Hover Background Glow -->
               <div class="absolute inset-0 bg-gradient-to-br from-[#25c4ff]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -170,10 +199,14 @@ const stats = [
                     {service.description}
                   </p>
 
-                  <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#555] group-hover:text-white transition-colors">
-                    <span>Explore</span>
+                  <a 
+                    href="#contact"
+                    data-service={service.title}
+                    class="service-link flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#555] group-hover:text-white transition-colors"
+                  >
+                    <span>Empezar Proyecto</span>
                     <span class="block w-4 h-px bg-[#555] group-hover:bg-[#ffcc33] group-hover:w-12 transition-all duration-500" />
-                  </div>
+                  </a>
                 </div>
               </div>
 
@@ -226,6 +259,16 @@ const stats = [
 
   :global(.reveal-active .char) {
     transform: translateY(0);
+  }
+
+  .typing-code::after {
+    content: "_";
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
   }
 
   .floating-ghost {
@@ -405,6 +448,40 @@ const stats = [
         ghost.remove();
       }, 2000);
     });
+
+    // 6. Typing Code Effect
+    const typingElement = document.querySelector(".typing-code");
+    if (typingElement && !typingElement.hasAttribute("data-typing-started")) {
+      typingElement.setAttribute("data-typing-started", "true");
+      const codeToType = typingElement.getAttribute("data-code") || "";
+      typingElement.textContent = ""; // Clear initial content
+      
+      let charIndex = 0;
+      const typeChar = () => {
+        if (charIndex < codeToType.length) {
+          typingElement.textContent += codeToType.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeChar, Math.random() * 50 + 30);
+        }
+      };
+
+      // Start typing after a delay
+      setTimeout(() => {
+        typeChar();
+      }, 1000);
+    }
+
+    // 7. Navegación suave sin '#' en la URL
+    const serviceLinks = document.querySelectorAll(".service-link");
+    serviceLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault(); // Evita que se añada #contact al URL
+        const contactSection = document.getElementById("contact");
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    });
   };
 
   // Run on load and after potential layout shifts
@@ -417,4 +494,3 @@ const stats = [
     initServicesAnimations();
   }
 </script>
-```

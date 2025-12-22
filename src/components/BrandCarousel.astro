@@ -41,24 +41,35 @@ import "../styles/brands.css";
         aria-hidden="true"
       >
         {
-          brandCards.concat(brandCards).map((brand, index) => (
-            <div class="brand-card flex-shrink-0 hover:cursor-pointer flex items-center gap-3 min-w-[220px] px-5 py-3 rounded-xl border border-white/10 bg-white/5 shadow-[0_15px_45px_rgba(0,0,0,0.35)] backdrop-blur-md transition-colors duration-700">
+          brandCards
+            .concat(brandCards, brandCards, brandCards)
+            .map((brand, index) => (
               <div
-                class="brand-icon w-12 h-12 rounded-2xl flex items-center justify-center border border-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
-                style="background: linear-gradient(135deg, #2a2a2a, #0f0f0f); box-shadow: 0 12px 32px rgba(0,0,0,0.35);"
+                class="brand-card flex-shrink-0 hover:cursor-pointer flex items-center gap-3 min-w-[240px] px-6 py-4 rounded-2xl border border-white/5 bg-white/[0.03] shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-500 group"
+                style={`--brand-color: ${brand.color};`}
               >
-                <span class="block" set:html={brand.icon} />
+                <div
+                  class="brand-icon w-12 h-12 rounded-xl flex items-center justify-center border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-transform duration-500 group-hover:scale-110"
+                  style="background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));"
+                >
+                  <div
+                    class="brand-svg-container transition-all duration-500 text-white/70 group-hover:text-white"
+                    set:html={brand.icon}
+                  />
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-white font-bold tracking-tight brand-card-title transition-colors duration-700">
+                    {brand.name}
+                  </span>
+                  <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40 brand-card-tagline transition-colors duration-700">
+                    {brand.tagline}
+                  </span>
+                </div>
+
+                {/* Dynamic Glow Background */}
+                <div class="absolute inset-0 rounded-2xl bg-[var(--brand-color)] opacity-0 group-hover:opacity-[0.03] blur-xl transition-opacity duration-500 pointer-events-none" />
               </div>
-              <div class="flex flex-col">
-                <span class="text-white font-semibold leading-tight brand-card-title transition-colors duration-700">
-                  {brand.name}
-                </span>
-                <span class="text-xs uppercase tracking-[0.2em] text-white/60 brand-card-tagline transition-colors duration-700">
-                  {brand.tagline}
-                </span>
-              </div>
-            </div>
-          ))
+            ))
         }
       </div>
     </div>
@@ -79,7 +90,7 @@ import "../styles/brands.css";
   :global(body.theme-light) .brand-text {
     color: rgba(4, 4, 6, 0.6) !important;
   }
-
+  
   :global(body.theme-light) .brand-container {
     border-color: rgba(4, 4, 6, 0.1) !important;
     background-color: rgba(4, 4, 6, 0.03) !important;

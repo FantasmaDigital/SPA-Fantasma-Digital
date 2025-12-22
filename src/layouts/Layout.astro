@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Header from "../components/Header.astro";
+import Preloader from "../components/Preloader.astro";
 const { title } = Astro.props;
 ---
 
@@ -18,9 +19,53 @@ const { title } = Astro.props;
       referrerpolicy="no-referrer"
     />
     <meta name="generator" content={Astro.generator} />
-    <title>Fantasma Digital {title}</title>
+
+    <!-- SEO & Meta Tags -->
+    <meta
+      name="description"
+      content="Fantasma Digital es la agencia líder en desarrollo de software, diseño UX/UI y transformación digital en El Salvador y Centroamérica. Creamos soluciones tecnológicas de alto impacto."
+    />
+    <meta
+      name="keywords"
+      content="Desarrollo de Software El Salvador, Agencia Digital Centroamérica, Diseño Web, Apps Móviles, Inteligencia Artificial, Transformación Digital, UX/UI, Fantasma Digital, Soluciones Empresariales"
+    />
+    <meta name="author" content="Fantasma Digital" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://fantasmadigital.dev/" />
+    <meta
+      property="og:title"
+      content={`Fantasma Digital ${title ? title : "| Innovación y Software en El Salvador"}`}
+    />
+    <meta
+      property="og:description"
+      content="Impulsamos el futuro digital de tu empresa con ingeniería de software de clase mundial y estrategias de crecimiento. Desde El Salvador para el mundo."
+    />
+    <meta property="og:image" content="/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://fantasmadigital.dev/" />
+    <meta
+      property="twitter:title"
+      content={`Fantasma Digital ${title ? title : "| Innovación y Software en El Salvador"}`}
+    />
+    <meta
+      property="twitter:description"
+      content="Impulsamos el futuro digital de tu empresa con ingeniería de software de clase mundial y estrategias de crecimiento."
+    />
+    <meta property="twitter:image" content="/og-image.jpg" />
+
+    <title>
+      Fantasma Digital {
+        title || "| Agencia de Software y Diseño en El Salvador"
+      }
+    </title>
   </head>
   <body class="overflow-x-hidden">
+    <Preloader />
     <Header />
     <slot />
     <script>
@@ -57,8 +102,11 @@ const { title } = Astro.props;
         if (parallaxElements.length > 0) {
           window.addEventListener("scroll", () => {
             parallaxElements.forEach((el) => {
-              const speed = parseFloat(el.getAttribute("data-speed") || "0.1");
-              const rect = el.getBoundingClientRect();
+              const htmlEl = el as HTMLElement;
+              const speed = parseFloat(
+                htmlEl.getAttribute("data-speed") || "0.1"
+              );
+              const rect = htmlEl.getBoundingClientRect();
               const isVisible =
                 rect.top < window.innerHeight && rect.bottom > 0;
 
@@ -70,11 +118,35 @@ const { title } = Astro.props;
 
                 // Apply transform
                 // We use translate3d for better performance
-                el.style.transform = `translate3d(0, ${distanceFromCenter * speed}px, 0)`;
+                htmlEl.style.transform = `translate3d(0, ${distanceFromCenter * speed}px, 0)`;
               }
             });
           });
         }
+      });
+
+      // Smooth Scroll for CTA Links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", (e) => {
+          const href = anchor.getAttribute("href");
+          if (!href || href === "#") return;
+
+          e.preventDefault();
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId);
+
+          if (targetElement) {
+            const headerOffset = 80; // Adjust based on your header height
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          }
+        });
       });
     </script>
   </body>

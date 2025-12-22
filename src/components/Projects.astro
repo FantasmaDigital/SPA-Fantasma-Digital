@@ -22,7 +22,7 @@ const projects: ProjectsProps["projects"] = [
     imageUrl: "/images/projects/fintech-landing.jpg",
     site: "https://tuyo.app",
     hiddenCallout: "Fintech",
-    callout: "Launch",
+    callout: "Lanzamiento",
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ const projects: ProjectsProps["projects"] = [
     imageUrl: "/images/projects/saas-dashboard.jpg",
     site: "https://growlytics.io",
     hiddenCallout: "SaaS",
-    callout: "Scale",
+    callout: "Escala",
   },
   {
     id: 3,
@@ -44,7 +44,7 @@ const projects: ProjectsProps["projects"] = [
     imageUrl: "/images/projects/ecommerce.jpg",
     site: "https://luxette.com",
     hiddenCallout: "Ecommerce",
-    callout: "Convert",
+    callout: "Conversión",
   },
   {
     id: 4,
@@ -55,7 +55,7 @@ const projects: ProjectsProps["projects"] = [
     imageUrl: "/images/projects/edtech.jpg",
     site: "https://mentorflow.ai",
     hiddenCallout: "Edtech",
-    callout: "Teach",
+    callout: "Enseñanza",
   },
   {
     id: 5,
@@ -66,7 +66,7 @@ const projects: ProjectsProps["projects"] = [
     imageUrl: "/images/projects/logistics.jpg",
     site: "https://cargozen.io",
     hiddenCallout: "Logistics",
-    callout: "Deliver",
+    callout: "Entrega",
   },
   {
     id: 6,
@@ -77,7 +77,7 @@ const projects: ProjectsProps["projects"] = [
     imageUrl: "/images/projects/intranet.jpg",
     site: "https://zenit.group",
     hiddenCallout: "Corporate",
-    callout: "Unify",
+    callout: "Unificar",
   },
 ];
 
@@ -99,15 +99,15 @@ const truncate = (text: string, max = 150) =>
         class="text-xs font-bold tracking-[0.3em] uppercase text-[#ffcc33] mb-4 reveal-fade-up projects-subtitle transition-colors duration-700"
         data-repeat
       >
-        Software Engineering
+        Ingeniería de Software
       </h2>
       <h3
         class="text-4xl md:text-6xl font-bold text-white tracking-tight reveal-fade-up delay-100 projects-main-title transition-colors duration-700"
         data-repeat
       >
-        FEATURED <span
+        CASOS <span
           class="text-[#25c4ff] projects-title-accent transition-colors duration-700"
-          >CASES</span
+          >DESTACADOS</span
         >
       </h3>
     </div>
@@ -115,8 +115,8 @@ const truncate = (text: string, max = 150) =>
       class="text-[#889096] max-w-sm text-sm leading-relaxed text-right md:text-left reveal-fade-up delay-150 projects-description transition-colors duration-700"
       data-repeat
     >
-      Selected works demonstrating scalability, performance, and user-centric
-      architecture.
+      Trabajos seleccionados que demuestran escalabilidad, rendimiento y
+      arquitectura centrada en el usuario.
     </p>
   </div>
 
@@ -170,7 +170,7 @@ const truncate = (text: string, max = 150) =>
 
               <div class="mb-8">
                 <h4 class="text-xs font-bold uppercase tracking-widest text-[#555] mb-4">
-                  Tech Stack
+                  Tecnologías
                 </h4>
                 <div class="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
@@ -186,7 +186,7 @@ const truncate = (text: string, max = 150) =>
                 target="_blank"
                 class="inline-flex items-center gap-3 text-black font-bold uppercase tracking-widest text-sm hover:text-[#ffcc33] transition-colors group/link w-fit border-b-2 border-transparent hover:border-[#ffcc33] pb-1 project-link"
               >
-                <span>View Deployment</span>
+                <span>Ver Despliegue</span>
                 <i class="fa-solid fa-arrow-right transform group-hover/link:translate-x-1 transition-transform" />
               </a>
             </div>
@@ -328,7 +328,8 @@ const truncate = (text: string, max = 150) =>
   <div class="find-world">
     <div class="find-world-col">
       <h2 class="find-world-title title-left">
-        <span class="typing-text typing-first" data-text="Find a world"></span>
+        <span class="typing-text typing-first" data-text="Descubre un mundo"
+        ></span>
         <span class="typing-caret caret-first"></span>
       </h2>
       <p class="find-world-sub">
@@ -341,7 +342,7 @@ const truncate = (text: string, max = 150) =>
 
     <div class="find-world-col">
       <h2 class="find-world-title title-right">
-        <span class="typing-text typing-second" data-text="of possibilities"
+        <span class="typing-text typing-second" data-text="de posibilidades"
         ></span>
         <span class="typing-caret caret-second"></span>
       </h2>
@@ -354,7 +355,7 @@ const truncate = (text: string, max = 150) =>
 
   <span
     class="absolute bottom-10 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:right-10 underline hover:cursor-pointer transition-all duration-300 hover:text-[#ffcc33] text-white/40 text-xs tracking-widest uppercase font-bold z-20"
-    >Contactanos y pon tus ideas a volar</span
+    >Contáctanos y pon tus ideas a volar</span
   >
 
   <!-- Gradient transition to next section -->
@@ -435,7 +436,7 @@ const truncate = (text: string, max = 150) =>
     align-items: center;
     justify-items: center;
     gap: clamp(0.65rem, 2vw, 1.2rem);
-    width: min(90vw, 900px);
+    width: min(90vw, 1200px);
     min-width: clamp(320px, 60vw, 720px);
     color: #f5fcff; /* Always white inside dark section */
     text-transform: uppercase;
@@ -652,13 +653,20 @@ const truncate = (text: string, max = 150) =>
 
   const init = () => {
     if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(handleIntersection, {
-        threshold: 0.1, // Trigger when 10% visible
-        rootMargin: "-5% 0px -5% 0px", // Slightly shrink trigger area
+      // Strict observer for Color Transition (Top Trigger)
+      const projectObserver = new IntersectionObserver(handleIntersection, {
+        threshold: 0,
+        rootMargin: "0px 0px -90% 0px",
       });
 
-      if (findWorld) observer.observe(findWorld);
-      if (projectList) observer.observe(projectList);
+      // Standard observer for Animations (Visibility Trigger)
+      const animObserver = new IntersectionObserver(handleIntersection, {
+        threshold: 0.1,
+        rootMargin: "-5% 0px -5% 0px",
+      });
+
+      if (findWorld) animObserver.observe(findWorld);
+      if (projectList) projectObserver.observe(projectList);
 
       // Initial check for load state
       if (projectList && isElementInViewport(projectList)) {
