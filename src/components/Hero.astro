@@ -29,7 +29,6 @@ import "../styles/hero.css";
   >
   </div>
 
-  <!-- Ambient Glows -->
   <div
     class="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-[#25c4ff]/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen animate-pulse-slow"
   >
@@ -39,9 +38,8 @@ import "../styles/hero.css";
   >
   </div>
 
-  <!-- Decorative Code Snippets (Live Typing) -->
   <div
-    class="absolute top-[18%] left-[5%] hidden lg:block pointer-events-none opacity-40 font-mono text-[10px] leading-relaxed text-[#25c4ff]"
+    class="absolute top-[18%] left-[5%] block pointer-events-none opacity-40 font-mono text-[10px] leading-relaxed text-[#25c4ff]"
   >
     <div
       class="typing-code"
@@ -55,7 +53,7 @@ import "../styles/hero.css";
   </div>
 
   <div
-    class="absolute bottom-[25%] right-[5%] hidden lg:block pointer-events-none opacity-40 font-mono text-[10px] leading-relaxed text-[#ffcc33] text-right"
+    class="absolute bottom-[25%] right-[5%] flex pointer-events-none opacity-40 font-mono text-[10px] leading-relaxed text-[#ffcc33] text-right"
   >
     <div
       class="typing-code"
@@ -68,30 +66,39 @@ import "../styles/hero.css";
   </div>
 
   <div
-    class="absolute top-[25%] right-[10%] hidden lg:block pointer-events-none opacity-30 font-mono text-[10px] leading-relaxed text-white/50"
+    class="absolute top-[25%] right-[10%] flex pointer-events-none opacity-30 font-mono text-[10px] leading-relaxed text-white/50"
   >
-    <div
-      class="typing-code"
-      data-code={`import { Future } 
-  from "@fantasma/core";`}
-    >
+    <div class="typing-code" data-code={`import { Future } 
+  from "@fantasma/core";`}>
     </div>
   </div>
+
   <div
     class="relative z-30 w-[90%] flex flex-col justify-between items-center gap-10"
   >
-    <div class="w-full md:w-[55%] flex flex-col items-center text-center gap-5">
+    <div class="w-full md:w-[75%] lg:w-[55%] flex flex-col items-center text-center gap-5">
       <h1
-        class="text-[6vw] font-bold text-center flex justify-center reveal-fade-up hero-title transition-colors duration-700 leading-tight"
+        class="font-bold text-center flex justify-center reveal-fade-up hero-title transition-colors duration-700 leading-tight"
       >
         <span
-          id="heroTitle"
-          class="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50 drop-shadow-sm"
-          >Innovación Escalable.</span
-        >
+          id="heroTitleDesktop"
+          class="hidden lg:block text-[6vw] bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50 drop-shadow-sm min-h-[1.2em]"
+        ></span>
+
+        <div class="flex flex-col lg:hidden items-center justify-center">
+          <span
+            id="heroTitleMobile1"
+            class="bg-clip-text text-transparent text-[14vw] leading-tight bg-gradient-to-b from-white via-white to-white/50 drop-shadow-sm min-h-[1.2em]"
+          ></span>
+          <span
+            id="heroTitleMobile2"
+            class="bg-clip-text text-transparent text-[14vw] leading-tight bg-gradient-to-b from-white via-white to-white/50 drop-shadow-sm min-h-[1.2em]"
+          ></span>
+        </div>
       </h1>
+
       <p
-        class="text-white text-[2vw] reveal-fade-up delay-200 hero-description transition-colors duration-700"
+        class="text-white reveal-fade-up delay-200 hero-description transition-colors duration-700 text-[4vw] md:text-[2vw] lg:text-[1.2vw]"
       >
         Transformamos negocios en El Salvador y Centroamérica con software de
         alto rendimiento, diseño centrado en el usuario y estrategias digitales
@@ -119,208 +126,225 @@ import "../styles/hero.css";
 </div>
 
 <style>
-  /* Theme Light Overrides for Hero */
-  :global(body.theme-light) .hero-section {
-    background-color: #ffffff !important;
-  }
-
+  /* Styles unchanged from previous request, kept for consistency */
+  :global(body.theme-light) .hero-section { background-color: #ffffff !important; }
   :global(body.theme-light) .hero-grid {
-    background-image:
-      linear-gradient(to right, #e5e5e5 1px, transparent 1px),
+    background-image: linear-gradient(to right, #e5e5e5 1px, transparent 1px),
       linear-gradient(to bottom, #e5e5e5 1px, transparent 1px) !important;
   }
-
   :global(body.theme-light) .hero-gradient-bottom {
-    background: linear-gradient(
-      to top,
-      #ffffff,
-      rgba(255, 255, 255, 0.8),
-      transparent
-    ) !important;
+    background: linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0.8), transparent) !important;
   }
-
   :global(body.theme-light) .hero-vignette {
     background-color: rgba(255, 255, 255, 0.6) !important;
-    mask-image: radial-gradient(
-      circle at center,
-      transparent 10%,
-      black 85%
-    ) !important;
+    mask-image: radial-gradient(circle at center, transparent 10%, black 85%) !important;
   }
-
-  :global(body.theme-light) .hero-title {
-    color: #040406 !important;
-  }
-
-  :global(body.theme-light) .hero-description {
-    color: #333333 !important;
-  }
-
-  :global(body.theme-light) .hero-cta {
-    border: none !important;
-    background: transparent !important;
-  }
-
-  :global(body.theme-light) .hero-cta-inner {
-    background-color: #ffffff !important;
-    color: #040406 !important;
-  }
-
-  :global(body.theme-light) .hero-cta-inner:hover {
-    background-color: #f0f0f0 !important;
-  }
-  :global(body.theme-light) .hero-cta-text {
-    color: #040406 !important;
-  }
-  :global(body.theme-light) .hero-cta:hover {
-    background-color: rgba(4, 4, 6, 0.1) !important;
-  }
+  :global(body.theme-light) .hero-title { color: #040406 !important; }
+  :global(body.theme-light) .hero-description { color: #333333 !important; }
+  :global(body.theme-light) .hero-cta { border: none !important; background: transparent !important; }
+  :global(body.theme-light) .hero-cta-inner { background-color: #ffffff !important; color: #040406 !important; }
+  :global(body.theme-light) .hero-cta-inner:hover { background-color: #f0f0f0 !important; }
+  :global(body.theme-light) .hero-cta:hover { background-color: rgba(4, 4, 6, 0.1) !important; }
 
   @keyframes pulse-slow {
-    0%,
-    100% {
-      opacity: 0.5;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.8;
-      transform: scale(1.1);
-    }
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.1); }
   }
+  
+  /* Cursor Effect */
   .typing-cursor::after {
     content: "|";
     animation: blink 1s step-end infinite;
     margin-left: 2px;
     opacity: 0.7;
+    color: currentColor; 
   }
-  @keyframes blink {
-    50% {
-      opacity: 0;
-    }
-  }
-  .typing-code {
-    white-space: pre;
-  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .typing-code { white-space: pre; }
 </style>
 
 <script>
-  // Forzar inicio en el top al recargar la página (para el Preloader)
   if (history.scrollRestoration) {
     history.scrollRestoration = "manual";
   }
   window.scrollTo(0, 0);
 
   document.addEventListener("DOMContentLoaded", () => {
-
-    const titleElement = document.getElementById("heroTitle");
-    if (!(titleElement instanceof HTMLElement)) return;
-
-    const originalText = "Innovación Escalable.";
-    titleElement.textContent = ""; // Vaciamos para iniciar la animación
-
+    // --- CONFIGURACIÓN ---
     const SCROLL_THRESHOLD = 50;
+    const SLOW_SPEED = 100;
+    const FAST_SPEED = 40;
+    const LG_BREAKPOINT = 1024; // Tailwind lg breakpoint
 
-    const SLOW_TYPE_SPEED_MS = 150;
-    const FAST_TYPE_SPEED_MS = 50;
+    // Selectores
+    const desktopTitle = document.getElementById("heroTitleDesktop");
+    const mobileTitle1 = document.getElementById("heroTitleMobile1");
+    const mobileTitle2 = document.getElementById("heroTitleMobile2");
 
+    // Textos
+    const TEXT_DESKTOP = "Innovación Escalable.";
+    const TEXT_MOBILE_1 = "Innovación";
+    const TEXT_MOBILE_2 = "Escalable.";
+
+    // Estado
     let isRevealed = false;
-    let isAnimating = false;
-    let animationTimeout: any = null;
     let initialAnimationDone = false;
+    let animationTimeouts: any[] = [];
+    let isCurrentlyLarge = window.innerWidth >= LG_BREAKPOINT;
 
-    function stopAnimation() {
-      if (animationTimeout !== null) clearTimeout(animationTimeout);
-      isAnimating = false;
+    // --- UTILIDADES ---
+    
+    function isLargeScreen() {
+      return window.innerWidth >= LG_BREAKPOINT;
     }
 
-    // Función principal de animación de tipeo/borrado
-    function animateTyping(targetText: any, speed: any) {
-      if (!titleElement) return;
-      stopAnimation();
-      isAnimating = true;
+    function stopAllAnimations() {
+      animationTimeouts.forEach((t) => clearTimeout(t));
+      animationTimeouts = [];
+    }
 
-      const textLength = originalText.length;
-      let currentText = titleElement.textContent || "";
-      let isTyping = targetText === originalText;
-
-      const typeAnimation = () => {
-        let currentLength = currentText.length;
-
-        if (isTyping) {
-          if (currentLength < textLength) {
-            currentText += originalText[currentLength];
-            titleElement.textContent = currentText;
-            animationTimeout = setTimeout(typeAnimation, speed);
+    // Función Core de Tipeo (Recursiva)
+    function typeEffect(element: HTMLElement | null, text: string, speed: number, isReverse: boolean, callback?: () => void) {
+      if (!element) return;
+      
+      let currentText = element.textContent || "";
+      const step = () => {
+        if (!isReverse) {
+          // ESCRIBIENDO
+          if (currentText.length < text.length) {
+            currentText += text[currentText.length];
+            element.textContent = currentText;
+            animationTimeouts.push(setTimeout(step, speed));
           } else {
-            isAnimating = false;
-            isRevealed = true;
-            if (!initialAnimationDone) {
-              initialAnimationDone = true;
-            }
+            if (callback) callback();
           }
         } else {
-          if (currentLength > 0) {
-            currentText = currentText.substring(0, currentLength - 1);
-            titleElement.textContent = currentText;
-            animationTimeout = setTimeout(typeAnimation, speed);
+          // BORRANDO
+          if (currentText.length > 0) {
+            currentText = currentText.substring(0, currentText.length - 1);
+            element.textContent = currentText;
+            animationTimeouts.push(setTimeout(step, speed));
           } else {
-            isAnimating = false;
-            isRevealed = false;
+            if (callback) callback();
           }
         }
       };
-
-      typeAnimation();
+      step();
     }
 
-    // Lógica de Scroll para controlar la animación
+    // --- CONTROLADOR DE ANIMACIONES ---
+
+    function runAnimation(isReverse: boolean) {
+      stopAllAnimations();
+      const speed = isReverse ? FAST_SPEED : SLOW_SPEED;
+
+      if (isLargeScreen()) {
+        // === LÓGICA DESKTOP (1 Línea) ===
+        // Limpiamos rastros móviles por seguridad
+        if (mobileTitle1) mobileTitle1.textContent = "";
+        if (mobileTitle2) mobileTitle2.textContent = "";
+
+        typeEffect(desktopTitle, TEXT_DESKTOP, speed, isReverse, () => {
+            isRevealed = !isReverse;
+            initialAnimationDone = true;
+        });
+
+      } else {
+        // === LÓGICA MÓVIL (2 Líneas Secuenciales) ===
+        // Limpiamos rastros desktop
+        if (desktopTitle) desktopTitle.textContent = "";
+
+        if (mobileTitle1 && mobileTitle2) {
+            if (!isReverse) {
+                // Escribir: Linea 1 -> Linea 2
+                typeEffect(mobileTitle1, TEXT_MOBILE_1, speed, false, () => {
+                    typeEffect(mobileTitle2, TEXT_MOBILE_2, speed, false, () => {
+                        isRevealed = true;
+                        initialAnimationDone = true;
+                    });
+                });
+            } else {
+                // Borrar: Linea 2 -> Linea 1 (Inverso para que se vea mejor)
+                typeEffect(mobileTitle2, "", speed, true, () => {
+                    typeEffect(mobileTitle1, "", speed, true, () => {
+                        isRevealed = false;
+                        initialAnimationDone = true;
+                    });
+                });
+            }
+        }
+      }
+    }
+
+    // --- HANDLERS ---
+
     function handleScroll() {
       const scroll = window.scrollY;
 
-      // 1. CONDICIÓN DE BORRADO (Scroll Down)
+      // 1. Borrar al bajar
       if (scroll > SCROLL_THRESHOLD && isRevealed && initialAnimationDone) {
-        animateTyping("", FAST_TYPE_SPEED_MS);
-      }
-
-      // 2. CONDICIÓN DE ESCRITURA (Scroll Up/Top)
-      else if (scroll <= SCROLL_THRESHOLD && initialAnimationDone) {
-        if (!isRevealed) {
-          animateTyping(originalText, SLOW_TYPE_SPEED_MS);
-        }
+        runAnimation(true);
+      } 
+      // 2. Escribir al subir
+      else if (scroll <= SCROLL_THRESHOLD && !isRevealed && initialAnimationDone) {
+        runAnimation(false);
       }
     }
 
-    // --- INICIO DE LA PÁGINA ---
-
-    // 1. Inicia la animación de ESCRITURA al cargar la página (Única vez).
-    animateTyping(originalText, SLOW_TYPE_SPEED_MS);
-
-    // 2. Añade el listener de scroll.
-    window.addEventListener("scroll", handleScroll);
-
-    // --- LOGICA PARA SNIPPETS DE CODIGO (Efecto Matrix/Typing) ---
-    const codeSnippets = document.querySelectorAll(".typing-code");
-
-    codeSnippets.forEach((el, index) => {
-      const text = el.getAttribute("data-code") || "";
-      const delay = index * 1500 + 500; // Stagger start times
-
-      setTimeout(() => {
-        let i = 0;
-        el.innerHTML = '<span class="typing-cursor"></span>';
-        const cursor: any = el.querySelector(".typing-cursor");
-
-        function typeChar() {
-          if (i < text.length) {
-            const char = text.charAt(i);
-            // Insert char before cursor
-            cursor.insertAdjacentText("beforebegin", char);
-            i++;
-            setTimeout(typeChar, Math.random() * 50 + 30); // Random typing speed
-          }
+    function handleResize() {
+        const nowLarge = isLargeScreen();
+        // Solo reiniciamos si cruzamos el umbral (Mobile <-> Desktop)
+        if (nowLarge !== isCurrentlyLarge) {
+            isCurrentlyLarge = nowLarge;
+            stopAllAnimations();
+            
+            // Limpiamos todo visualmente
+            if(desktopTitle) desktopTitle.textContent = "";
+            if(mobileTitle1) mobileTitle1.textContent = "";
+            if(mobileTitle2) mobileTitle2.textContent = "";
+            
+            isRevealed = false;
+            initialAnimationDone = false;
+            
+            // Reiniciar animación desde cero en el nuevo modo
+            runAnimation(false);
         }
-        typeChar();
-      }, delay);
+    }
+
+    // --- INICIALIZACIÓN ---
+
+    // Arrancamos la primera animación
+    runAnimation(false);
+
+    // Event Listeners
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+
+    // --- SNIPPETS DE CÓDIGO (Solo visuales) ---
+    // Esta lógica es puramente decorativa y no afecta al título
+    const codeSnippets = document.querySelectorAll(".typing-code");
+    codeSnippets.forEach((el, index) => {
+        if (!isLargeScreen()) return; // Solo iniciar en Desktop
+        
+        const text = el.getAttribute("data-code") || "";
+        const delay = index * 1500 + 500;
+
+        setTimeout(() => {
+            if(!isLargeScreen()) return; 
+            let i = 0;
+            el.innerHTML = '<span class="typing-cursor"></span>';
+            const cursor: any = el.querySelector(".typing-cursor");
+
+            function typeChar() {
+                if (i < text.length) {
+                    const char = text.charAt(i);
+                    cursor.insertAdjacentText("beforebegin", char);
+                    i++;
+                    setTimeout(typeChar, Math.random() * 50 + 30);
+                }
+            }
+            typeChar();
+        }, delay);
     });
   });
 </script>

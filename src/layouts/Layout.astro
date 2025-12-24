@@ -10,7 +10,18 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/logo-blanco.png"
+      media="(prefers-color-scheme: dark)"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/logo-negro.png"
+      media="(prefers-color-scheme: light)"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -64,8 +75,8 @@ const { title } = Astro.props;
       }
     </title>
   </head>
-  <body class="overflow-x-hidden">
-    <Preloader />
+  <body>
+    <!-- <Preloader /> -->
     <Header />
     <slot />
     <script>
@@ -153,10 +164,14 @@ const { title } = Astro.props;
 </html>
 
 <style>
-  html,
-  body {
+  html {
     margin: 0;
     width: 100%;
     height: 100%;
+  }
+  body {
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
   }
 </style>

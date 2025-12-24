@@ -8,15 +8,15 @@ import "../styles/brands.css";
 <section
   class="w-full bg-[#040406] text-white brand-section transition-colors duration-700"
 >
-  <div class="w-full mx-auto flex flex-row gap-6">
-    <div class="flex flex-row sm:items-center gap-3 reveal-fade-up">
-      <div class="flex pl-10 flex-col items-start gap-3">
+  <div class="w-full mx-auto flex flex-col lg:flex-row gap-6">
+    <div class="flex flex-row gap-3 reveal-fade-up">
+      <div class="flex flex-col items-center justify-center lg:justify-center lg:items-start gap-3 lg:pl-10 w-full lg:w-auto">
         <div
           class="h-[2px] w-12 bg-white brand-line transition-colors duration-700"
         >
         </div>
         <span
-          class="uppercase tracking-[0.25em] text-xs text-white/80 brand-text transition-colors duration-700"
+          class="uppercase tracking-[0.25em] text-[3vw] lg:text-xs text-white/80 brand-text transition-colors duration-700"
           >Junto a los mejores</span
         >
       </div>
@@ -24,7 +24,7 @@ import "../styles/brands.css";
 
     <div
       id="brandMarqueeContainer"
-      class="relative w-full overflow-hidden rounded border border-white/10 bg-white/[0.03] backdrop-blur reveal-scale-up delay-200 brand-container transition-colors duration-700"
+      class="relative w-full overflow-hidden lg:rounded border-y lg:border border-white/10 bg-white/[0.03] backdrop-blur reveal-scale-up delay-200 brand-container transition-colors duration-700"
     >
       <div
         class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#040406] via-[#040406]/70 to-transparent pointer-events-none brand-gradient-left transition-colors duration-700"
@@ -43,7 +43,7 @@ import "../styles/brands.css";
         {
           brandCards
             .concat(brandCards, brandCards, brandCards)
-            .map((brand, index) => (
+            .map((brand, _) => (
               <div
                 class="brand-card flex-shrink-0 hover:cursor-pointer flex items-center gap-3 min-w-[240px] px-6 py-4 rounded-2xl border border-white/5 bg-white/[0.03] shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-500 group"
                 style={`--brand-color: ${brand.color};`}
@@ -52,9 +52,11 @@ import "../styles/brands.css";
                   class="brand-icon w-12 h-12 rounded-xl flex items-center justify-center border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-transform duration-500 group-hover:scale-110"
                   style="background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));"
                 >
-                  <div
-                    class="brand-svg-container transition-all duration-500 text-white/70 group-hover:text-white"
-                    set:html={brand.icon}
+                  <img
+                    src={`https://cdn.simpleicons.org/${brand.name.toLowerCase().replace(/ /g, "").replace(/\./g, "dot")}/white`}
+                    onerror={`this.onerror=null; this.src='https://ui-avatars.com/api/?name=${brand.name.replace(" ", "+")}&background=random&color=fff&size=128&bold=true';`}
+                    alt={brand.name}
+                    class="w-6 h-6 object-contain transition-all duration-500 opacity-70 group-hover:opacity-100 brand-icon-img"
                   />
                 </div>
                 <div class="flex flex-col">
@@ -90,7 +92,7 @@ import "../styles/brands.css";
   :global(body.theme-light) .brand-text {
     color: rgba(4, 4, 6, 0.6) !important;
   }
-  
+
   :global(body.theme-light) .brand-container {
     border-color: rgba(4, 4, 6, 0.1) !important;
     background-color: rgba(4, 4, 6, 0.03) !important;
@@ -125,6 +127,10 @@ import "../styles/brands.css";
 
   :global(body.theme-light) .brand-card-tagline {
     color: rgba(4, 4, 6, 0.5) !important;
+  }
+
+  :global(body.theme-light) .brand-icon-img {
+    filter: invert(1);
   }
 </style>
 

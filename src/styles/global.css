@@ -1,3 +1,14 @@
 @import "tailwindcss";
 @import "font-awesome/css/font-awesome.min.css";
 @import "./animations.css";
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
