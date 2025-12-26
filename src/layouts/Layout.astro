@@ -76,7 +76,7 @@ const { title } = Astro.props;
     </title>
   </head>
   <body>
-    <!-- <Preloader /> -->
+    <Preloader />
     <Header />
     <slot />
     <script>
@@ -152,10 +152,10 @@ const { title } = Astro.props;
             const offsetPosition =
               elementPosition + window.pageYOffset - headerOffset;
 
-            // window.scrollTo({
-            //   top: offsetPosition,
-            //   behavior: "smooth",
-            // });
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
           }
         });
       });
