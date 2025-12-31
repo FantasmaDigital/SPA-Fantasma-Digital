@@ -293,17 +293,17 @@
 }
 
 .plusAnimationIn {
-  width: 3.5vw;
-  height: 3.5vw;
-  margin: auto;
+  width: auto;
+  height: auto;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .plusAnimationOut {
-  width: 3.5vw;
-  height: 3.5vw;
-  margin: auto;
+  width: auto;
+  height: auto;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;

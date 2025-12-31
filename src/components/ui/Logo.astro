@@ -1,0 +1,40 @@
+---
+const { variant, showName } = Astro.props;
+
+// Import styles
+import "../../styles/logo.css";
+---
+
+<div class="logo flex flex-row gap-2">
+  <img
+    src={variant === "white" ? "/logo-blanco.png" : "/logo-negro.png"}
+    alt="Logo"
+    class={`
+            ${showName ? "w-24" : "w-20"}
+            ${variant === "white" ? "drop-shadow-lg drop-shadow-black" : "drop-shadow-lg drop-shadow-white"}
+        `}
+  />
+  {
+    showName && (
+      <div class="m-auto flex-flex-col" id="nameBussines">
+        <p
+          class={`
+                    m-auto font-semibold text-[1.5vw]
+                    ${variant === "white" ? "drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]" : "drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]"}
+                `}
+        >
+          Fantasma Digital
+        </p>
+        <p
+          class={`
+                    m-auto font-semibold text-[1vw] text-center
+                    ${variant === "white" ? "drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]" : "drop-shadow-[0_1px_1px_rgba(255,255,255,0.6)]"}
+                `}
+        >
+          {" "}
+          -- Digital --
+        </p>
+      </div>
+    )
+  }
+</div>

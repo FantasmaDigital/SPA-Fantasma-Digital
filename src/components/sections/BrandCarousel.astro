@@ -1,0 +1,197 @@
+---
+import { brandCards } from "../../constants/brands";
+
+// Import styles
+import "../../styles/brands.css";
+---
+
+<section
+  class="w-full bg-[#040406] text-white brand-section transition-colors duration-700"
+>
+  <div class="w-full mx-auto flex flex-col xl:flex-row gap-6">
+    <div class="flex flex-row gap-3 reveal-fade-up">
+      <div
+        class="flex flex-col items-center justify-center xl:justify-center xl:items-start gap-3 xl:pl-10 w-full xl:w-auto"
+      >
+        <div
+          class="h-[2px] w-12 bg-white brand-line transition-colors duration-700"
+        >
+        </div>
+        <span
+          class="uppercase tracking-[0.25em] text-[3vw] xl:text-xs text-white/80 brand-text transition-colors duration-700"
+          >Junto a los mejores</span
+        >
+      </div>
+    </div>
+
+    <div
+      id="brandMarqueeContainer"
+      class="relative w-full overflow-hidden xl:rounded border-y xl:border border-white/10 bg-white/[0.03] backdrop-blur reveal-scale-up delay-200 brand-container transition-colors duration-700"
+    >
+      <div
+        class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#040406] via-[#040406]/70 to-transparent pointer-events-none brand-gradient-left transition-colors duration-700"
+      >
+      </div>
+      <div
+        class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#040406] via-[#040406]/70 to-transparent pointer-events-none brand-gradient-right transition-colors duration-700"
+      >
+      </div>
+
+      <div
+        id="brandMarquee"
+        class="flex gap-4 py-5 pl-6 animate-marquee"
+        aria-hidden="true"
+      >
+        {
+          brandCards
+            .concat(brandCards, brandCards, brandCards)
+            .map((brand, _) => (
+              <div
+                class="brand-card flex-shrink-0 hover:cursor-pointer flex items-center gap-3 min-w-[240px] px-6 py-4 rounded-2xl border border-white/5 bg-white/[0.03] shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-500 group"
+                style={`--brand-color: ${brand.color};`}
+              >
+                <div
+                  class="brand-icon w-12 h-12 rounded-xl flex items-center justify-center border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-transform duration-500 group-hover:scale-110"
+                  style="background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));"
+                >
+                  <img
+                    src={`https://cdn.simpleicons.org/${brand.name.toLowerCase().replace(/ /g, "").replace(/\./g, "dot")}/white`}
+                    onerror={`this.onerror=null; this.src='https://ui-avatars.com/api/?name=${brand.name.replace(" ", "+")}&background=random&color=fff&size=128&bold=true';`}
+                    alt={brand.name}
+                    class="w-6 h-6 object-contain transition-all duration-500 opacity-70 group-hover:opacity-100 brand-icon-img"
+                  />
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-white font-bold tracking-tight brand-card-title transition-colors duration-700">
+                    {brand.name}
+                  </span>
+                  <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40 brand-card-tagline transition-colors duration-700">
+                    {brand.tagline}
+                  </span>
+                </div>
+
+                {/* Dynamic Glow Background */}
+                <div class="absolute inset-0 rounded-2xl bg-[var(--brand-color)] opacity-0 group-hover:opacity-[0.03] blur-xl transition-opacity duration-500 pointer-events-none" />
+              </div>
+            ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Theme Light Overrides for Brand Carousel */
+  :global(body.theme-light) .brand-section {
+    background-color: #ffffff !important;
+    color: #040406 !important;
+  }
+
+  :global(body.theme-light) .brand-line {
+    background-color: #040406 !important;
+  }
+
+  :global(body.theme-light) .brand-text {
+    color: rgba(4, 4, 6, 0.6) !important;
+  }
+
+  :global(body.theme-light) .brand-container {
+    border-color: rgba(4, 4, 6, 0.1) !important;
+    background-color: rgba(4, 4, 6, 0.03) !important;
+  }
+
+  :global(body.theme-light) .brand-gradient-left {
+    background: linear-gradient(
+      to right,
+      #ffffff,
+      rgba(255, 255, 255, 0.7),
+      transparent
+    ) !important;
+  }
+
+  :global(body.theme-light) .brand-gradient-right {
+    background: linear-gradient(
+      to left,
+      #ffffff,
+      rgba(255, 255, 255, 0.7),
+      transparent
+    ) !important;
+  }
+
+  :global(body.theme-light) .brand-card {
+    border-color: rgba(4, 4, 6, 0.1) !important;
+    background-color: rgba(4, 4, 6, 0.05) !important;
+  }
+
+  :global(body.theme-light) .brand-card-title {
+    color: #040406 !important;
+  }
+
+  :global(body.theme-light) .brand-card-tagline {
+    color: rgba(4, 4, 6, 0.5) !important;
+  }
+
+  :global(body.theme-light) .brand-icon-img {
+    filter: invert(1);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const marquee = document.getElementById("brandMarquee");
+    const cards = Array.from(
+      document.querySelectorAll<HTMLElement>(".brand-card")
+    );
+
+    // --- MARQUEE INTERACTION: hover to "freeze time" ---
+    if (marquee && cards.length) {
+      const clearFocus = () => {
+        marquee.classList.remove("marquee-paused");
+        cards.forEach((card) => {
+          card.classList.remove("is-focused", "is-dimmed");
+        });
+      };
+
+      cards.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          marquee.classList.add("marquee-paused");
+          cards.forEach((item) => {
+            if (item === card) {
+              item.classList.add("is-focused");
+              item.classList.remove("is-dimmed");
+            } else {
+              item.classList.add("is-dimmed");
+              item.classList.remove("is-focused");
+            }
+          });
+        });
+
+        card.addEventListener("mouseleave", clearFocus);
+      });
+    }
+
+    // --- LATERAL PULL: near left bar we simulate a suction ---
+    if (marquee && cards.length) {
+      const PULL_THRESHOLD = 85; // px from the left edge
+
+      const tick = () => {
+        const marqueeRect = marquee.getBoundingClientRect();
+
+        cards.forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          const distanceToLeft = rect.right - marqueeRect.left;
+
+          if (distanceToLeft < PULL_THRESHOLD) {
+            card.classList.add("is-pulled");
+          } else {
+            card.classList.remove("is-pulled");
+          }
+        });
+
+        requestAnimationFrame(tick);
+      };
+
+      requestAnimationFrame(tick);
+    }
+  });
+</script>

@@ -1,46 +1,90 @@
-# Astro Starter Kit: Basics
+<div align="center">
+  <img src="public/logo-blanco.png" alt="Fantasma Digital Logo" width="120" />
+  <h1>FANTASMA DIGITAL</h1>
+  <p><strong>Ingeniería de Software Estratégica & Diseño de Alto Rendimiento</strong></p>
+</div>
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+---
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 👻 ¿Qué es Fantasma Digital?
 
-## 🚀 Project Structure
+**Fantasma Digital** es una infraestructura de desarrollo web tipo Single Page Application (SPA) construida sobre **Astro 5**. Este proyecto no es solo un sitio web; es un showcase de ingeniería moderna, integrando animaciones de alto nivel, una arquitectura de componentes escalable y una estética minimalista premium diseñada para impresionar.
 
-Inside of your Astro project, you'll see the following folders and files:
+Diseñado originalmente como la identidad digital de una agencia de software líder en El Salvador, ahora se abre al mundo como un kit de inicio de código abierto para aquellos que buscan la perfección técnica y visual.
+
+## 🚀 Stack Tecnológico
+
+Seleccionamos las herramientas más potentes del ecosistema actual para garantizar rendimiento y flexibilidad:
+
+- **Framework**: [Astro 5.x](https://astro.build/) (Modo Isla para rendimiento máximo)
+- **Estilos**: [Tailwind CSS 4.x](https://tailwindcss.com/) (Utilidades ultra-rápidas)
+- **Animaciones**: [Framer Motion](https://www.framer.com/motion/) & CSS keyframes personalizados
+- **Interacción**: [Three.js](https://threejs.org/) (Sutilezas 3D)
+- **Interactividad**: Vanilla JavaScript & React (donde la complejidad lo requiere)
+- **Iconografía**: [Font Awesome 6](https://fontawesome.com/) & [Simple Icons](https://simpleicons.org/)
+
+## 🏗️ Arquitectura del Proyecto
+
+Hemos organizado el proyecto siguiendo principios de **Modularidad** y **Separación de Preocupaciones**:
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+src/
+├── components/
+│   ├── layout/     # Header, Footer (Componentes globales)
+│   ├── sections/   # Hero, Proyectos, Servicios (Secciones principales)
+│   └── ui/         # Botones, Preloaders, Logos (Átomos y moléculas)
+├── constants/      # Datos estáticos y configuración de menús
+├── layouts/        # Estructura base HTML y Meta Tags (SEO)
+├── styles/         # CSS global y módulos de animación específicos
+└── pages/          # Rutas del sitio (index.astro)
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 💎 Características Principales
 
-## 🧞 Commands
+- **Diseño Inmersivo**: Transiciones de tema claro/oscuro activadas por scroll.
+- **Micro-interacciones**: Efectos de cursor magnéticos y tipografiado dinámico.
+- **Rendimiento Estelar**: Optimizado para Google Lighthouse con carga diferida inteligente.
+- **SEO Ready**: Meta tags configurados, sitemap automático y robots.txt.
+- **Arquitectura Open Source**: Preparado para ser extendido y personalizado.
 
-All commands are run from the root of the project, from a terminal:
+## 🛠️ Instalación y Uso
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+Asegúrate de tener [Node.js](https://nodejs.org/) instalado. Recomendamos usar `pnpm` para la gestión de dependencias.
 
-## 👀 Want to learn more?
+1.  **Clonar el repositorio**:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+    ```bash
+    git clone https://github.com/tu-usuario/SPA-Fantasma-Digital.git
+    cd SPA-Fantasma-Digital
+    ```
+
+2.  **Instalar dependencias**:
+
+    ```bash
+    pnpm install
+    ```
+
+3.  **Iniciar servidor de desarrollo**:
+
+    ```bash
+    pnpm dev
+    ```
+
+4.  **Construir para producción**:
+    ```bash
+    pnpm build
+    ```
+
+## 🤝 Contribuciones
+
+¡Nos encanta recibir ayuda! Si quieres mejorar el proyecto, revisa nuestro archivo [CONTRIBUTING.md](CONTRIBUTING.md). Toda mejora en la arquitectura, diseño o documentación es bienvenida.
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia **MIT**. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+---
+
+<div align="center">
+  <p>Creado con ❤️ por <strong>Fantasma Digital</strong> desde El Salvador para el mundo.</p>
+</div>

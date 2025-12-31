@@ -1,0 +1,164 @@
+<div
+  id="project-modal"
+  class="fixed inset-0 z-[200] opacity-0 pointer-events-none transition-all duration-500 invisible"
+>
+  <div class="modal-overlay absolute inset-0 bg-[#040406]/90 backdrop-blur-xl">
+  </div>
+
+  <div class="modal-container absolute inset-0 pointer-events-none">
+    <div
+      class="modal-content relative w-full h-full bg-[#0c0d10] overflow-hidden transform opacity-0 transition-all duration-700 cubic-bezier(0.2, 0.8, 0.2, 1) pointer-events-auto flex flex-col lg:block"
+    >
+      <button
+        id="close-modal"
+        class="absolute top-4 right-4 md:top-6 md:right-6 z-50 w-10 h-10 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-black/80 text-white/70 hover:bg-black hover:text-white transition-all duration-300 border border-white/20 backdrop-blur-sm"
+      >
+        <i class="fa-solid fa-xmark text-xl md:text-2xl"></i>
+      </button>
+
+      <div
+        id="modal-main-image"
+        class="relative w-full h-[35vh] md:h-[45vh] shrink-0 lg:absolute lg:inset-0 lg:h-full bg-cover bg-center bg-no-repeat transition-transform duration-1000 hover:scale-[1.03] origin-center"
+      >
+      </div>
+
+      <div
+        class="relative w-full h-auto flex-1 lg:absolute lg:top-0 lg:right-0 lg:h-full lg:w-[520px] flex flex-col p-6 md:p-8 xl:p-12 overflow-y-auto custom-scrollbar bg-[#040406] lg:backdrop-blur-xl z-40 lg:border-l border-white/10"
+      >
+        <div class="mb-6 md:mb-10">
+          <div class="flex items-center gap-3 mb-4 md:mb-6">
+            <span
+              id="modal-project-callout"
+              class="px-3 py-1 bg-[#25c4ff]/10 text-[#25c4ff] text-[10px] font-black uppercase tracking-[0.2em] rounded border border-[#25c4ff]/20"
+            >
+              CASO DE ESTUDIO
+            </span>
+          </div>
+
+          <h2
+            id="modal-project-title"
+            class="text-3xl md:text-4xl sm:text-6xl font-bold text-white mb-4 md:mb-6 tracking-tight leading-[1.1]"
+          >
+            Proyecto
+          </h2>
+        </div>
+
+        <div class="mb-8 md:mb-12">
+          <h3
+            class="text-white/30 text-[10px] uppercase tracking-[0.3em] font-bold mb-4 md:mb-6"
+          >
+            Descripción del Reto
+          </h3>
+          <p
+            id="modal-full-description"
+            class="text-[#889096] leading-relaxed text-base md:text-lg font-medium"
+          >
+          </p>
+        </div>
+
+        <div class="block lg:hidden mb-8 md:mb-12">
+           <h3 class="text-white/30 text-[10px] uppercase tracking-[0.3em] font-bold mb-4 md:mb-6">
+             Galería
+           </h3>
+           <div
+             id="modal-screenshots-mobile"
+             class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide snap-x"
+           >
+             </div>
+        </div>
+        <div class="pb-10 md:pb-0">
+          <h3
+            class="text-white/30 text-[10px] uppercase tracking-[0.3em] font-bold mb-4 md:mb-6"
+          >
+            Stack Tecnológico
+          </h3>
+          <div id="modal-technologies" class="flex flex-wrap gap-2 md:gap-3">
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="hidden lg:block absolute bottom-8 left-8 right-auto z-40 max-w-xl"
+      >
+        <h3
+          class="text-white/40 text-[10px] uppercase tracking-[0.3em] font-bold mb-4"
+        >
+          Capturas del Proyecto
+        </h3>
+        <div
+          id="modal-screenshots-mini"
+          class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide snap-x"
+        >
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(37, 196, 255, 0.3);
+  }
+
+  /* Modal Base State */
+  #project-modal {
+    transition:
+      opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .modal-overlay {
+    transition: backdrop-filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .modal-content {
+    transition:
+      transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+      opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Active State Animations */
+  #project-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  #project-modal.active .modal-overlay {
+    backdrop-filter: blur(20px);
+  }
+
+  #project-modal.active .modal-content {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Ensure proper centering */
+  .modal-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Initial state for content */
+  .modal-content {
+    transform: translateY(40px) scale(0.95);
+  }
+</style>

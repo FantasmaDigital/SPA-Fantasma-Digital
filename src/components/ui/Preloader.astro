@@ -1,0 +1,178 @@
+---
+// src/components/Preloader.astro
+import Logo from "./Logo.astro";
+---
+
+<div
+  id="preloader"
+  class="fixed inset-0 z-[9999] flex items-center justify-center bg-[#040406] transition-all duration-1000 ease-in-out"
+>
+  <div class="relative flex flex-col items-center">
+    <!-- Logo Container with fixed space to avoid overlap -->
+    <div class="h-48 md:h-64 flex items-center justify-center relative">
+      <div
+        id="loader-logo"
+        class="opacity-0 translate-y-4 transition-all duration-700 delay-300 scale-[2.5] md:scale-[3.5]"
+      >
+        <Logo variant="white" showName={false} />
+      </div>
+    </div>
+
+    <!-- Technical Progress Section -->
+    <div class="mt-8 flex flex-col items-center">
+      <!-- Technical Progress Bar -->
+      <div class="w-48 h-[1px] bg-white/10 relative overflow-hidden">
+        <div
+          id="loader-progress"
+          class="absolute inset-y-0 left-0 bg-gradient-to-r from-[#25c4ff] to-[#ffcc33] w-0 transition-all duration-[2000ms] ease-out shadow-[0_0_10px_#25c4ff]"
+        >
+        </div>
+      </div>
+
+      <!-- Status Text -->
+      <div
+        class="mt-6 font-mono text-[9px] uppercase tracking-[0.4em] text-white/30 flex items-center gap-1"
+      >
+        <span id="loader-status">root@fantasma:~#</span>
+        <span class="w-1.5 h-3 bg-[#25c4ff] animate-blink"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const steps = [
+    {
+      cmd: "root@fantasma:~# start exploit --target=OFFICIAL_SERVER",
+      delay: 0,
+    },
+    { cmd: "Inyectando payload v4.02 [XSS_BYPASS]...", delay: 400 },
+    { cmd: "Buscando vulnerabilidad en puerto 8080...", delay: 800 },
+    { cmd: "AUTH_Bypass: Forzando SSH terminal...", delay: 1200 },
+    { cmd: "DECRYPTING_PASS: ", isPass: true, delay: 1600 },
+    { cmd: "ACCESO CONCEDIDO", isFinal: true, delay: 2500 },
+  ];
+
+  const preloader = document.getElementById("preloader");
+  const logo = document.getElementById("loader-logo");
+  const progress = document.getElementById("loader-progress");
+  const status = document.getElementById("loader-status");
+
+  function typewriter(element: any, text: string, speed = 30) {
+    if (!element) return;
+    let i = 0;
+    element.textContent = "";
+    return new Promise((resolve: any) => {
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+        } else {
+          clearInterval(interval);
+          resolve();
+        }
+      }, speed);
+    });
+  }
+
+  async function decryptEffect(element: any) {
+    const target = "{GHOST_DECODED}";
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+    let current = "";
+
+    for (let i = 0; i < target.length; i++) {
+      for (let j = 0; j < 3; j++) {
+        const randomChar = chars[Math.floor(Math.random() * chars.length)];
+        element.textContent = "DECRYPTING: " + current + randomChar;
+        await new Promise((r) => setTimeout(r, 40));
+      }
+      current += target[i];
+      element.textContent = "DECRYPTING: " + current;
+    }
+  }
+
+  if (logo && progress && status) {
+    // Initial entrance
+    setTimeout(() => {
+      logo.style.opacity = "1";
+      logo.style.transform = "translateY(0)";
+      progress.style.width = "20%";
+    }, 100);
+
+    // Sequence
+    steps.forEach((step, idx) => {
+      setTimeout(async () => {
+        if (step.isPass) {
+          await decryptEffect(status);
+          progress.style.width = "90%";
+        } else if (!step.isFinal) {
+          typewriter(status, step.cmd);
+          progress.style.width = (idx + 2) * 15 + "%";
+        }
+      }, step.delay);
+    });
+  }
+
+  window.addEventListener("load", () => {
+    if (!preloader || !logo || !progress || !status) return;
+
+    // Final Phase
+    setTimeout(() => {
+      progress.style.width = "100%";
+      typewriter(status, "ACCESO CONCEDIDO");
+      status.style.color = "#25c4ff";
+      status.style.fontWeight = "bold";
+      status.style.textShadow = "0 0 15px rgba(37, 196, 255, 0.8)";
+
+      setTimeout(() => {
+        // Zoom Exit Effect
+        preloader.style.backgroundColor = "transparent";
+
+        if (progress.parentElement) {
+          progress.parentElement.style.opacity = "0";
+        }
+        status.style.opacity = "0";
+
+        logo.style.transition = "all 0.8s ease-out";
+        logo.style.transform = "scale(1.2)"; // Subtle scale instead of massive zoom
+        logo.style.opacity = "0";
+        logo.style.filter = "blur(10px)";
+
+        preloader.style.opacity = "0";
+        preloader.style.pointerEvents = "none";
+
+        setTimeout(() => {
+          preloader.remove();
+        }, 1600);
+      }, 1000);
+    }, 3000);
+  });
+</script>
+
+<style>
+  #preloader {
+    will-change: opacity, transform, background-color;
+  }
+
+  #loader-logo {
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
+  }
+
+  #loader-progress {
+    will-change: width;
+  }
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .animate-blink {
+    animation: blink 0.8s infinite;
+  }
+</style>

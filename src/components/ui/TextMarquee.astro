@@ -1,0 +1,68 @@
+---
+const words = [
+  "Desarrollo de Software",
+  "Ciberseguridad",
+  "Consultoría IT",
+  "Inteligencia Artificial",
+  "Cloud Computing",
+  "Transformación Digital",
+  "Apps Móviles",
+  "UI/UX Design",
+];
+---
+
+<div
+  id="text-marquee"
+  class="relative w-full overflow-hidden bg-white py-6 border-y border-gray-200"
+>
+  <!-- Gradient overlays for depth (optional, keeping it simple as requested: white bg) -->
+
+  <div class="flex whitespace-nowrap overflow-hidden">
+    <div class="animate-marquee flex items-center">
+      {/* First set of words */}
+      {
+        words.map((word) => (
+          <div class="flex items-center mx-8">
+            <span class="text-black text-4xl sm:text-5xl font-black mr-8">
+              *
+            </span>
+            <span class="text-blue-600 text-5xl sm:text-6xl font-black uppercase tracking-tighter whitespace-nowrap">
+              {word}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="animate-marquee flex items-center" aria-hidden="true">
+      {/* Duplicate set for seamless loop */}
+      {
+        words.map((word) => (
+          <div class="flex items-center mx-8">
+            <span class="text-black text-4xl sm:text-5xl font-black mr-8">
+              *
+            </span>
+            <span class="text-blue-600 text-5xl sm:text-6xl font-black uppercase tracking-tighter whitespace-nowrap">
+              {word}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+</style>
