@@ -15,7 +15,7 @@ const techs = [
   // Second Row (Left Direction)
   [
     { name: "C#", slug: "csharp", color: "512BD4", tagline: "Lenguaje" },
-    { name: "Java", slug: "java", color: "007396", tagline: "Lenguaje" },
+    { name: "Java", slug: "java", color: "007396", tagline: "Lenguaje", imgSrc: "https://api.iconify.design/logos:java.svg" },
     { name: "Go", slug: "go", color: "00ADD8", tagline: "Concurrencia" },
     { name: "PHP", slug: "php", color: "777BB4", tagline: "Scripting" },
     { name: "Spring Boot", slug: "springboot", color: "6DB33F", tagline: "Framework" },
@@ -72,7 +72,8 @@ const techs = [
                 >
                   <div class="w-5 h-5 flex items-center justify-center transition-all duration-500 text-white/70 group-hover:text-white">
                     <img
-                      src={`https://cdn.simpleicons.org/${tech.slug}/${tech.color}`}
+                      src={(tech as any).imgSrc || `https://cdn.simpleicons.org/${tech.slug}/${tech.color}`}
+                      onerror={!(tech as any).imgSrc ? `this.onerror=null; this.src='https://api.iconify.design/simple-icons:${tech.slug}.svg?color=%23${tech.color}';` : null}
                       alt={tech.name}
                       class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
                       loading="lazy"

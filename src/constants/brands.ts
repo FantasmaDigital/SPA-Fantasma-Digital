@@ -1,5 +1,6 @@
 type BrandCard = {
   name: string;
+  slug: string;
   tagline: string;
   icon: string;
   color: string;
@@ -8,6 +9,7 @@ type BrandCard = {
 export const brandCards: BrandCard[] = [
   {
     name: "Oracle",
+    slug: "oracle",
     tagline: "ENTERPRISE CLOUD",
     color: "#F80000",
     icon: `<svg viewBox="0 0 24 24" class="w-7 h-7" fill="currentColor">
@@ -16,6 +18,7 @@ export const brandCards: BrandCard[] = [
   },
   {
     name: "Vercel",
+    slug: "vercel",
     tagline: "EDGE PLATFORM",
     color: "#ffffff",
     icon: `<svg viewBox="0 0 24 24" class="w-7 h-7" fill="currentColor">
@@ -24,6 +27,7 @@ export const brandCards: BrandCard[] = [
   },
   {
     name: "GitHub",
+    slug: "github",
     tagline: "CODE PLATFORM",
     color: "#6e5494",
     icon: `<svg viewBox="0 0 24 24" class="w-7 h-7" fill="currentColor">
@@ -32,6 +36,7 @@ export const brandCards: BrandCard[] = [
   },
   {
     name: "Docker",
+    slug: "docker",
     tagline: "CONTAINER PLATFORM",
     color: "#2496ed",
     icon: `<svg viewBox="0 0 24 24" class="w-7 h-7" fill="currentColor">
@@ -40,6 +45,7 @@ export const brandCards: BrandCard[] = [
   },
   {
     name: "Cloudflare",
+    slug: "cloudflare",
     tagline: "WEB SECURITY",
     color: "#f38020",
     icon: `<svg viewBox="0 0 24 24" class="w-7 h-7" fill="currentColor">
@@ -48,6 +54,7 @@ export const brandCards: BrandCard[] = [
   },
   {
     name: "AWS",
+    slug: "amazonaws",
     tagline: "CLOUD PLATFORM",
     color: "#FF9900",
     icon: `<svg viewBox="0 0 24 24" class="w-7 h-7" fill="currentColor">

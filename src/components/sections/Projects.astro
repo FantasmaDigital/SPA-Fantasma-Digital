@@ -21,10 +21,17 @@ const projects: ProjectsProps["projects"] = [
     id: 1,
     title: "Music Center Pro",
     description:
-      "Plataforma de gestión musical con catálogo digital, sistema de ventas y panel administrativo completo.",
+      "Ecosistema digital integral para retail musical: inventario en tiempo real, ventas omnicanal y analítica avanzada.",
     fullDescription:
-      "Sistema integral para la gestión de una tienda de música que incluye catálogo de productos con búsqueda avanzada, carrito de compras, procesamiento de pedidos y panel administrativo para control de inventario, ventas y reportes en tiempo real.",
-    technologies: ["React", "Node.js", "Express", "MongoDB", "Tailwind"],
+      "Solución empresarial robusta que transforma la gestión de instrumentos musicales. Integra un catálogo sincronizado en tiempo real, pasarela de pagos segura, facturación electrónica y un dashboard administrativo que permite la toma de decisiones basada en datos de ventas y comportamiento de usuario.",
+    technologies: [
+      "React",
+      "Node.js",
+      "TypeScript",
+      "Express",
+      "MongoDB",
+      "Tailwind",
+    ],
     imageUrl: "/images/projects/musiccenterpro/1.png",
     icon: "/images/projects/icons/fintech.svg",
     screenshots: [
@@ -38,98 +45,120 @@ const projects: ProjectsProps["projects"] = [
   },
   {
     id: 2,
-    title: "Dashboard SaaS B2B",
+    title: "Abono Viajes",
     description:
-      "Panel de metricas realtime con roles RBAC, facturacion stripe y export de reportes en un clic.",
+      "App móvil nativa para la gestión inteligente de itinerarios y control de gastos corporativos y personales.",
     fullDescription:
-      "Panel administrativo robusto para empresas B2B que permite gestionar métricas en tiempo real. Implementa un sistema de control de acceso basado en roles (RBAC), integración completa con Stripe para la facturación y herramientas de generación de reportes personalizables en múltiples formatos.",
-    technologies: ["React", "TypeScript", "D3", "Node.js", "Express"],
-    imageUrl: "/images/projects/saas-dashboard.jpg",
-    icon: "/images/projects/icons/saas.svg",
+      "Aplicación diseñada para el viajero moderno, ofreciendo una experiencia fluida desde la planificación hasta el regreso. Características incluyen billetera digital para abonos, alertas de vuelo en tiempo real, escaneo de tickets y métricas de consumo, todo con una interfaz optimizada para uso offline.",
+    technologies: ["React Native", "Node.js", "Express", "Expo", "TypeScript"],
+    imageUrl: "/images/projects/abonoviajes/1.png",
+    icon: "/images/projects/icons/edtech.svg",
     screenshots: [
-      "/images/projects/saas-dashboard.jpg",
-      "/images/projects/saas-1.jpg",
-      "/images/projects/saas-2.jpg",
+      "/images/projects/abonoviajes/1.png",
+      "/images/projects/abonoviajes/2.png",
+      "/images/projects/abonoviajes/3.png",
     ],
-    site: "https://growlytics.io",
-    hiddenCallout: "SaaS",
-    callout: "Escala",
+    site: "#",
+    hiddenCallout: "Mobile App",
+    callout: "Viajes",
   },
   {
     id: 3,
-    title: "Ecommerce premium",
+    title: "Volamos Viajes",
     description:
-      "Catalogo 3D con bundles inteligentes, checkout stripe, CMS headless y page builder sin codigo.",
+      "Motor de búsqueda de vuelos de alto rendimiento con conexión directa a sistemas globales de distribución (GDS).",
     fullDescription:
-      "Experiencia de compra de lujo con visualización de productos en 3D, sistema de bundles dinámico basado en comportamiento del usuario y un proceso de checkout optimizado. Utiliza un CMS headless para una gestión de contenidos flexible y un editor visual para que el equipo de marketing cree páginas al instante.",
-    technologies: ["Next.js", "Sanity", "Stripe", "Three.js", "Framer Motion"],
-    imageUrl: "/images/projects/ecommerce.jpg",
-    icon: "/images/projects/icons/ecommerce.svg",
+      "Plataforma de reservas de vanguardia que agrega inventario de cientos de aerolíneas. Implementa algoritmos de búsqueda inteligentes para ofrecer las mejores tarifas, gestión de escalas compleja y emisión automática de billetes, garantizando una experiencia de usuario rápida y confiable.",
+    technologies: ["React", "Node.js", "Express", "Tailwind", "TypeScript"],
+    imageUrl: "/images/projects/volamosviajes/1.png",
+    icon: "/images/projects/icons/logistics.svg",
     screenshots: [
-      "/images/projects/ecommerce.jpg",
-      "/images/projects/ecommerce-1.jpg",
-      "/images/projects/ecommerce-2.jpg",
+      "/images/projects/volamosviajes/1.png",
+      "/images/projects/volamosviajes/2.png",
+      "/images/projects/volamosviajes/3.png",
     ],
-    site: "https://luxette.com",
-    hiddenCallout: "Ecommerce",
-    callout: "Conversión",
+    site: "#",
+    hiddenCallout: "Travel",
+    callout: "Vuelos",
   },
   {
     id: 4,
-    title: "Plataforma edtech",
+    title: "Inkspire Studio",
     description:
-      "Streaming en vivo, quizzes adaptativos y panel de progreso con WebRTC y CDN global.",
+      "Experiencia web inmersiva para estudio de tatuajes, fusionando arte visual con gestión de citas.",
     fullDescription:
-      "Ecosistema educativo completo con soporte para clases en vivo de baja latencia mediante WebRTC, evaluaciones que se adaptan al nivel del estudiante y un panel analítico para monitorear el progreso académico de forma granula. Todo servido a través de una red de distribución de contenido global.",
-    technologies: ["Vue.js", "Node.js", "PostgreSQL", "WebRTC", "Redis"],
-    imageUrl: "/images/projects/edtech.jpg",
-    icon: "/images/projects/icons/edtech.svg",
-    screenshots: [
-      "/images/projects/edtech.jpg",
-      "/images/projects/edtech-1.jpg",
-      "/images/projects/edtech-2.jpg",
+      "Portal digital que captura la esencia artística del estudio mediante galerías interactivas y animaciones fluidas. Incorpora un sistema de agendamiento automatizado, perfiles detallados de artistas y un blog educativo, optimizando la conversión de visitantes en clientes leales.",
+    technologies: [
+      "Next.js",
+      "React",
+      "Tailwind",
+      "Framer Motion",
+      "TypeScript",
+      "Firebase",
+      "Vercel",
     ],
-    site: "https://mentorflow.ai",
-    hiddenCallout: "Edtech",
-    callout: "Enseñanza",
+    imageUrl: "/images/projects/inkspirestudio/1.png",
+    icon: "/images/projects/icons/ecommerce.svg",
+    screenshots: [
+      "/images/projects/inkspirestudio/1.png",
+      "/images/projects/inkspirestudio/2.png",
+      "/images/projects/inkspirestudio/3.png",
+    ],
+    site: "#",
+    hiddenCallout: "Creative",
+    callout: "Arte",
   },
   {
     id: 5,
-    title: "Suite logistica",
+    title: "Producciones 2001",
     description:
-      "Ruteo dinamico, geofencing, tracking en tiempo real y alertas push para flotas distribuidas.",
+      "Portal corporativo institucional para líder en producción de eventos, optimizado para conversión y marca.",
     fullDescription:
-      "Solución integral para la gestión de flotas y logística de última milla. Ofrece ruteo predictivo para optimizar tiempos de entrega, perímetros virtuales (geofencing) para seguridad, seguimiento satelital en tiempo real de unidades y un sistema de notificaciones críticas push.",
-    technologies: ["React Native", "Mapbox", "NestJS", "MongoDB", "RabbitMQ"],
-    imageUrl: "/images/projects/logistics.jpg",
-    icon: "/images/projects/icons/logistics.svg",
-    screenshots: [
-      "/images/projects/logistics.jpg",
-      "/images/projects/logistics-1.jpg",
-      "/images/projects/logistics-2.jpg",
+      "Sitio web corporativo que establece autoridad en la industria de eventos. Presenta un portafolio multimedia de gran escala, integración con CRM para gestión de leads y una arquitectura de información diseñada para destacar la trayectoria y capacidad logística de la empresa.",
+    technologies: [
+      "PHP",
+      "JavaScript",
+      "jQuery",
+      "MySQL",
+      "Bootstrap",
+      "Linux",
     ],
-    site: "https://cargozen.io",
-    hiddenCallout: "Logistics",
-    callout: "Entrega",
+    imageUrl: "/images/projects/producciones2001/1.png",
+    icon: "/images/projects/icons/corporate.svg",
+    screenshots: [
+      "/images/projects/producciones2001/1.png",
+      "/images/projects/producciones2001/2.png",
+      "/images/projects/producciones2001/3.png",
+    ],
+    site: "#",
+    hiddenCallout: "Media",
+    callout: "Eventos",
   },
   {
     id: 6,
-    title: "Intranet corporativa",
+    title: "OpticasCV+ (Demo)",
     description:
-      "SSO con Keycloak, espacios de equipos, workflows aprobatorios y bus de eventos interno.",
+      "E-commerce especializado en salud visual con probador virtual y gestión de prescripciones médicas.",
     fullDescription:
-      "Portal centralizado para la comunicación y operatividad interna de grandes organizaciones. Facilita el inicio de sesión único (SSO), gestiona flujos de aprobación complejos, ofrece espacios colaborativos privados para departamentos y conecta servicios mediante un bus de eventos distribuido.",
-    technologies: ["Angular", "GraphQL", "Keycloak", "Spring Boot", "Kafka"],
-    imageUrl: "/images/projects/intranet.jpg",
-    icon: "/images/projects/icons/corporate.svg",
-    screenshots: [
-      "/images/projects/intranet.jpg",
-      "/images/projects/intranet-1.jpg",
-      "/images/projects/intranet-2.jpg",
+      "Plataforma de comercio electrónico verticalmente integrada para ópticas. Destaca por su probador de monturas con Realidad Aumentada (AR), carga segura de recetas oftalmológicas y sincronización con sistemas de laboratorio para el seguimiento preciso de órdenes personalizadas.",
+    technologies: [
+      "Next.js",
+      "React",
+      "Tailwind",
+      "Framer Motion",
+      "TypeScript",
+      "Vercel",
     ],
-    site: "https://zenit.group",
-    hiddenCallout: "Corporate",
-    callout: "Unificar",
+    imageUrl: "/images/projects/opticasvmasdemo/1.png",
+    icon: "/images/projects/icons/saas.svg",
+    screenshots: [
+      "/images/projects/opticasvmasdemo/1.png",
+      "/images/projects/opticasvmasdemo/2.png",
+      "/images/projects/opticasvmasdemo/3.png",
+    ],
+    site: "#",
+    hiddenCallout: "E-commerce",
+    callout: "Visión",
   },
 ];
 
@@ -141,6 +170,48 @@ const darkProjects = projects.slice(5);
 
 const truncate = (text: string, max = 150) =>
   text.length > max ? `${text.slice(0, max)}...` : text;
+
+const techSlugs: Record<string, string> = {
+  React: "react",
+  "Node.js": "nodedotjs",
+  Express: "express",
+  MongoDB: "mongodb",
+  Tailwind: "tailwindcss",
+  "React Native": "react",
+  Firebase: "firebase",
+  Expo: "expo",
+  "Next.js": "nextdotjs",
+  Stripe: "stripe",
+  Astro: "astro",
+  "Framer Motion": "framermotion",
+  WordPress: "wordpress",
+  PHP: "php",
+  GSAP: "greensock",
+  MySQL: "mysql",
+  Shopify: "shopify",
+  JavaScript: "javascript",
+  SCSS: "sass",
+  "Amadeus API": "amadeus", // Might fail, will fallback or hide
+  Liquid: "shopify", // Fallback to shopify or generic
+  jQuery: "jquery",
+  Bootstrap: "bootstrap",
+  Linux: "linux",
+  Vercel: "vercel",
+  TypeScript: "typescript",
+};
+
+const getTechIcon = (tech: string) => {
+  const slug = techSlugs[tech];
+  if (!slug) return null;
+  return `https://cdn.simpleicons.org/${slug}/005a8c`; // Blue color matching text
+};
+
+const getTechFallback = (tech: string) => {
+  const slug = techSlugs[tech];
+  if (!slug) return null;
+  // Fallback to Iconify with encoded color #005a8c => %23005a8c
+  return `this.onerror=null; this.src='https://api.iconify.design/simple-icons:${slug}.svg?color=%23005a8c';`;
+};
 ---
 
 <section
@@ -230,7 +301,16 @@ const truncate = (text: string, max = 150) =>
                 </h4>
                 <div class="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
-                    <span class="px-3 py-1.5 text-xs font-bold font-mono text-[#005a8c] bg-[#25c4ff]/10 border border-[#0077b5]/20 rounded">
+                    <span class="px-3 py-1.5 text-xs font-bold font-mono text-[#005a8c] bg-[#25c4ff]/10 border border-[#0077b5]/20 rounded flex items-center gap-2">
+                      {techSlugs[tech] && (
+                        <img
+                          src={`https://cdn.simpleicons.org/${techSlugs[tech]}/005a8c`}
+                          onerror={`this.onerror=null; this.src='https://api.iconify.design/simple-icons:${techSlugs[tech]}.svg?color=%23005a8c';`}
+                          alt=""
+                          class="w-3.5 h-3.5 object-contain"
+                          loading="lazy"
+                        />
+                      )}
                       {tech}
                     </span>
                   ))}
@@ -303,7 +383,16 @@ const truncate = (text: string, max = 150) =>
                 </h4>
                 <div class="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
-                    <span class="px-3 py-1.5 text-xs font-bold font-mono text-[#005a8c] bg-[#25c4ff]/10 border border-[#0077b5]/20 rounded">
+                    <span class="px-3 py-1.5 text-xs font-bold font-mono text-[#005a8c] bg-[#25c4ff]/10 border border-[#0077b5]/20 rounded flex items-center gap-2">
+                      {techSlugs[tech] && (
+                        <img
+                          src={`https://cdn.simpleicons.org/${techSlugs[tech]}/005a8c`}
+                          onerror={`this.onerror=null; this.src='https://api.iconify.design/simple-icons:${techSlugs[tech]}.svg?color=%23005a8c';`}
+                          alt=""
+                          class="w-3.5 h-3.5 object-contain"
+                          loading="lazy"
+                        />
+                      )}
                       {tech}
                     </span>
                   ))}
@@ -494,8 +583,8 @@ const truncate = (text: string, max = 150) =>
   /* Global Theme Transition */
   :global(body) {
     transition:
-      background-color 0.7s ease,
-      color 0.7s ease;
+      background-color 0.3s ease,
+      color 0.3s ease;
     background-color: #040406; /* Default Dark (for Header & Title) */
     color: #f5fcff;
   }
@@ -830,13 +919,13 @@ const truncate = (text: string, max = 150) =>
       // ----------------------------------------------------
       const projectObserver = new IntersectionObserver(handleIntersection, {
         threshold: 0,
-        rootMargin: "0px 0px -95% 0px",
+        rootMargin: "0px 0px -50% 0px",
       });
 
       // Standard observer for Animations (Visibility Trigger)
       const animObserver = new IntersectionObserver(handleIntersection, {
         threshold: 0.1,
-        rootMargin: "-5% 0px -20% 0px",
+        rootMargin: "0px 0px -5% 0px",
       });
 
       if (findWorld) animObserver.observe(findWorld);
