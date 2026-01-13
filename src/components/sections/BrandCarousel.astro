@@ -55,8 +55,8 @@ import "../../styles/brands.css";
                   style="background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));"
                 >
                   <img
-                    src={`https://cdn.simpleicons.org/${brand.name.toLowerCase().replace(/ /g, "").replace(/\./g, "dot")}/white`}
-                    onerror={`this.onerror=null; this.src='https://ui-avatars.com/api/?name=${brand.name.replace(" ", "+")}&background=random&color=fff&size=128&bold=true';`}
+                    src={`https://cdn.simpleicons.org/${brand.slug}/white`}
+                    onerror={`this.onerror=null; this.src='https://api.iconify.design/simple-icons:${brand.slug}.svg?color=white';`}
                     alt={brand.name}
                     class="w-6 h-6 object-contain transition-all duration-500 opacity-70 group-hover:opacity-100 brand-icon-img"
                   />
